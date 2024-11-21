@@ -1,0 +1,962 @@
+[TITLE]
+;;Project Title/Notes
+
+[OPTIONS]
+;;Option             Value
+FLOW_UNITS           LPS
+INFILTRATION         HORTON
+FLOW_ROUTING         DYNWAVE
+LINK_OFFSETS         DEPTH
+MIN_SLOPE            0
+ALLOW_PONDING        NO
+SKIP_STEADY_STATE    NO
+
+START_DATE           05/18/2022
+START_TIME           00:00:00
+REPORT_START_DATE    05/18/2022
+REPORT_START_TIME    00:00:00
+END_DATE             05/18/2022
+END_TIME             23:59:00
+SWEEP_START          01/01
+SWEEP_END            12/31
+DRY_DAYS             0
+REPORT_STEP          00:00:01
+WET_STEP             00:01:00
+DRY_STEP             00:01:00
+ROUTING_STEP         0:00:01 
+RULE_STEP            00:00:00
+
+INERTIAL_DAMPING     PARTIAL
+NORMAL_FLOW_LIMITED  BOTH
+FORCE_MAIN_EQUATION  H-W
+VARIABLE_STEP        0.75
+LENGTHENING_STEP     0
+MIN_SURFAREA         0.00000001
+MAX_TRIALS           20
+HEAD_TOLERANCE       0.000005
+SYS_FLOW_TOL         5
+LAT_FLOW_TOL         5
+MINIMUM_STEP         0.1
+THREADS              4
+
+[EVAPORATION]
+;;Data Source    Parameters
+;;-------------- ----------------
+CONSTANT         0.0
+DRY_ONLY         NO
+
+[JUNCTIONS]
+;;Name           Elevation  MaxDepth   InitDepth  SurDepth   Aponded   
+;;-------------- ---------- ---------- ---------- ---------- ----------
+DN1              90.0000    0          0          100        0         
+DN2              88.0000    0          0          100        0         
+DN3              90.0000    0          0          100        0         
+DN4              85.0000    0          0          100        0         
+1-1-DN1          90.9000    0          0          100        0         
+1-2-DN1          90.8000    0          0          100        0         
+1-3-DN1          90.7000    0          0          100        0         
+1-4-DN1          90.6000    0          0          100        0         
+1-5-DN1          90.5000    0          0          100        0         
+1-6-DN1          90.4000    0          0          100        0         
+1-7-DN1          90.3000    0          0          100        0         
+1-8-DN1          90.2000    0          0          100        0         
+1-9-DN1          90.1000    0          0          100        0         
+DN1-1-DN2        89.8225    0          0          100        0         
+DN1-2-DN2        89.6200    0          0          100        0         
+DN1-3-DN2        89.4175    0          0          100        0         
+DN1-4-DN2        89.2150    0          0          100        0         
+DN1-5-DN2        89.0125    0          0          100        0         
+DN1-6-DN2        88.8100    0          0          100        0         
+DN1-7-DN2        88.6075    0          0          100        0         
+DN1-8-DN2        88.4050    0          0          100        0         
+DN1-9-DN2        88.2025    0          0          100        0         
+DN2-1-DN3        88.2225    0          0          100        0         
+DN2-2-DN3        88.4200    0          0          100        0         
+DN2-3-DN3        88.6175    0          0          100        0         
+DN2-4-DN3        88.8150    0          0          100        0         
+DN2-5-DN3        89.0125    0          0          100        0         
+DN2-6-DN3        89.2100    0          0          100        0         
+DN2-7-DN3        89.4075    0          0          100        0         
+DN2-8-DN3        89.6050    0          0          100        0         
+DN2-9-DN3        89.8025    0          0          100        0         
+DN3-1-DN4        89.5000    0          0          100        0         
+DN3-2-DN4        89.0000    0          0          100        0         
+DN3-3-DN4        88.5000    0          0          100        0         
+DN3-4-DN4        88.0000    0          0          100        0         
+DN3-5-DN4        87.5000    0          0          100        0         
+DN3-6-DN4        87.0000    0          0          100        0         
+DN3-7-DN4        86.5000    0          0          100        0         
+DN3-8-DN4        86.0000    0          0          100        0         
+DN3-9-DN4        85.5000    0          0          100        0         
+
+[OUTFALLS]
+;;Name           Elevation  Type       Stage Data       Gated    Route To        
+;;-------------- ---------- ---------- ---------------- -------- ----------------
+OutfallDN1       90.0       FREE                        NO                       
+OutfallDN2       88.0       FREE                        NO                       
+OutfallDN3       90.0       FREE                        NO                       
+OutfallDN4       85.0       FREE                        NO                       
+L_OutfallDN1     90.0       FREE                        NO                       
+L_OutfallDN2     88.0       FREE                        NO                       
+L_OutfallDN3     90.0       FREE                        NO                       
+L_OutfallDN4     85.0       FREE                        NO                       
+
+[STORAGE]
+;;Name           Elev.    MaxDepth   InitDepth  Shape      Curve Type/Params            SurDepth  Fevap    Psi      Ksat     IMD     
+;;-------------- -------- ---------- ----------- ---------- ---------------------------- --------- --------          -------- --------
+Reservoir-1      92.0     110.0      8.0        TABULAR    Source1                      0         0       
+StorageforNodeDN1 90.0     1.0        0.0        FUNCTIONAL 0          0          1920.00001 0         0       
+StorageforNodeDN2 88.0     1.0        0.0        FUNCTIONAL 0          0          1920.00001 0         0       
+StorageforNodeDN3 90.0     1.0        0.0        FUNCTIONAL 0          0          2880.0   0         0       
+StorageforNodeDN4 85.0     1.0        0.0        FUNCTIONAL 0          0          959.99999 0         0       
+
+[CONDUITS]
+;;Name           From Node        To Node          Length     Roughness  InOffset   OutOffset  InitFlow   MaxFlow   
+;;-------------- ---------------- ---------------- ---------- ---------- ---------- ---------- ---------- ----------
+P1-1             Reservoir-1      1-1-DN1          100.0      0.011      0.000      0.0        0          0         
+P1-2             1-1-DN1          1-2-DN1          100.0      0.011      0.000      0.0        0          0         
+P1-3             1-2-DN1          1-3-DN1          100.0      0.011      0.000      0.0        0          0         
+P1-4             1-3-DN1          1-4-DN1          100.0      0.011      0.000      0.0        0          0         
+P1-5             1-4-DN1          1-5-DN1          100.0      0.011      0.000      0.0        0          0         
+P1-6             1-5-DN1          1-6-DN1          100.0      0.011      0.000      0.0        0          0         
+P1-7             1-6-DN1          1-7-DN1          100.0      0.011      0.000      0.0        0          0         
+P1-8             1-7-DN1          1-8-DN1          100.0      0.011      0.000      0.0        0          0         
+P1-9             1-8-DN1          1-9-DN1          100.0      0.011      0.000      0.0        0          0         
+P1-10            1-9-DN1          DN1              100.0      0.011      0.000      0.0        0          0         
+P2-1             DN1              DN1-1-DN2        100.0      0.011      0.025      0.0        0          0         
+P2-2             DN1-1-DN2        DN1-2-DN2        100.0      0.011      0.000      0.0        0          0         
+P2-3             DN1-2-DN2        DN1-3-DN2        100.0      0.011      0.000      0.0        0          0         
+P2-4             DN1-3-DN2        DN1-4-DN2        100.0      0.011      0.000      0.0        0          0         
+P2-5             DN1-4-DN2        DN1-5-DN2        100.0      0.011      0.000      0.0        0          0         
+P2-6             DN1-5-DN2        DN1-6-DN2        100.0      0.011      0.000      0.0        0          0         
+P2-7             DN1-6-DN2        DN1-7-DN2        100.0      0.011      0.000      0.0        0          0         
+P2-8             DN1-7-DN2        DN1-8-DN2        100.0      0.011      0.000      0.0        0          0         
+P2-9             DN1-8-DN2        DN1-9-DN2        100.0      0.011      0.000      0.0        0          0         
+P2-10            DN1-9-DN2        DN2              100.0      0.011      0.000      0.0        0          0         
+P3-1             DN2              DN2-1-DN3        100.0      0.011      0.025      0.0        0          0         
+P3-2             DN2-1-DN3        DN2-2-DN3        100.0      0.011      0.000      0.0        0          0         
+P3-3             DN2-2-DN3        DN2-3-DN3        100.0      0.011      0.000      0.0        0          0         
+P3-4             DN2-3-DN3        DN2-4-DN3        100.0      0.011      0.000      0.0        0          0         
+P3-5             DN2-4-DN3        DN2-5-DN3        100.0      0.011      0.000      0.0        0          0         
+P3-6             DN2-5-DN3        DN2-6-DN3        100.0      0.011      0.000      0.0        0          0         
+P3-7             DN2-6-DN3        DN2-7-DN3        100.0      0.011      0.000      0.0        0          0         
+P3-8             DN2-7-DN3        DN2-8-DN3        100.0      0.011      0.000      0.0        0          0         
+P3-9             DN2-8-DN3        DN2-9-DN3        100.0      0.011      0.000      0.0        0          0         
+P3-10            DN2-9-DN3        DN3              100.0      0.011      0.000      0.0        0          0         
+P4-1             DN3              DN3-1-DN4        100.0      0.011      0.000      0.0        0          0         
+P4-2             DN3-1-DN4        DN3-2-DN4        100.0      0.011      0.000      0.0        0          0         
+P4-3             DN3-2-DN4        DN3-3-DN4        100.0      0.011      0.000      0.0        0          0         
+P4-4             DN3-3-DN4        DN3-4-DN4        100.0      0.011      0.000      0.0        0          0         
+P4-5             DN3-4-DN4        DN3-5-DN4        100.0      0.011      0.000      0.0        0          0         
+P4-6             DN3-5-DN4        DN3-6-DN4        100.0      0.011      0.000      0.0        0          0         
+P4-7             DN3-6-DN4        DN3-7-DN4        100.0      0.011      0.000      0.0        0          0         
+P4-8             DN3-7-DN4        DN3-8-DN4        100.0      0.011      0.000      0.0        0          0         
+P4-9             DN3-8-DN4        DN3-9-DN4        100.0      0.011      0.000      0.0        0          0         
+P4-10            DN3-9-DN4        DN4              100.0      0.011      0.000      0.0        0          0         
+
+[OUTLETS]
+;;Name           From Node        To Node          Offset     Type            QTable/Qcoeff    Qexpon     Gated   
+;;-------------- ---------------- ---------------- ---------- --------------- ---------------- ---------- --------
+OutletDN1        DN1              StorageforNodeDN1 0.200      FUNCTIONAL/DEPTH 21.081851        0.5        YES     
+OutletDN2        DN2              StorageforNodeDN2 0.175      FUNCTIONAL/DEPTH 21.081851        0.5        YES     
+OutletDN3        DN3              StorageforNodeDN3 0.150      FUNCTIONAL/DEPTH 31.622777        0.5        YES     
+OutletDN4        DN4              StorageforNodeDN4 0.150      FUNCTIONAL/DEPTH 10.540925        0.5        YES     
+DemandOutletDN1  StorageforNodeDN1 OutfallDN1       0.000      TABULAR/DEPTH   DemandDN1                   YES     
+DemandOutletDN2  StorageforNodeDN2 OutfallDN2       0.000      TABULAR/DEPTH   DemandDN2                   YES     
+DemandOutletDN3  StorageforNodeDN3 OutfallDN3       0.000      TABULAR/DEPTH   DemandDN3                   YES     
+DemandOutletDN4  StorageforNodeDN4 OutfallDN4       0.000      TABULAR/DEPTH   DemandDN4                   YES     
+LeakforNodeDN1   DN1              L_OutfallDN1     0.200      FUNCTIONAL/DEPTH 2.108185         0.5        YES     
+LeakforNodeDN2   DN2              L_OutfallDN2     0.175      FUNCTIONAL/DEPTH 2.108185         0.5        YES     
+LeakforNodeDN3   DN3              L_OutfallDN3     0.150      FUNCTIONAL/DEPTH 3.162278         0.5        YES     
+LeakforNodeDN4   DN4              L_OutfallDN4     0.150      FUNCTIONAL/DEPTH 1.054093         0.5        YES     
+
+[XSECTIONS]
+;;Link           Shape        Geom1            Geom2      Geom3      Geom4      Barrels    Culvert   
+;;-------------- ------------ ---------------- ---------- ---------- ---------- ---------- ----------
+P1-1             FORCE_MAIN   0.40             130        0          0          1                    
+P1-2             FORCE_MAIN   0.40             130        0          0          1                    
+P1-3             FORCE_MAIN   0.40             130        0          0          1                    
+P1-4             FORCE_MAIN   0.40             130        0          0          1                    
+P1-5             FORCE_MAIN   0.40             130        0          0          1                    
+P1-6             FORCE_MAIN   0.40             130        0          0          1                    
+P1-7             FORCE_MAIN   0.40             130        0          0          1                    
+P1-8             FORCE_MAIN   0.40             130        0          0          1                    
+P1-9             FORCE_MAIN   0.40             130        0          0          1                    
+P1-10            FORCE_MAIN   0.40             130        0          0          1                    
+P2-1             FORCE_MAIN   0.35             130        0          0          1                    
+P2-2             FORCE_MAIN   0.35             130        0          0          1                    
+P2-3             FORCE_MAIN   0.35             130        0          0          1                    
+P2-4             FORCE_MAIN   0.35             130        0          0          1                    
+P2-5             FORCE_MAIN   0.35             130        0          0          1                    
+P2-6             FORCE_MAIN   0.35             130        0          0          1                    
+P2-7             FORCE_MAIN   0.35             130        0          0          1                    
+P2-8             FORCE_MAIN   0.35             130        0          0          1                    
+P2-9             FORCE_MAIN   0.35             130        0          0          1                    
+P2-10            FORCE_MAIN   0.35             130        0          0          1                    
+P3-1             FORCE_MAIN   0.30             130        0          0          1                    
+P3-2             FORCE_MAIN   0.30             130        0          0          1                    
+P3-3             FORCE_MAIN   0.30             130        0          0          1                    
+P3-4             FORCE_MAIN   0.30             130        0          0          1                    
+P3-5             FORCE_MAIN   0.30             130        0          0          1                    
+P3-6             FORCE_MAIN   0.30             130        0          0          1                    
+P3-7             FORCE_MAIN   0.30             130        0          0          1                    
+P3-8             FORCE_MAIN   0.30             130        0          0          1                    
+P3-9             FORCE_MAIN   0.30             130        0          0          1                    
+P3-10            FORCE_MAIN   0.30             130        0          0          1                    
+P4-1             FORCE_MAIN   0.30             130        0          0          1                    
+P4-2             FORCE_MAIN   0.30             130        0          0          1                    
+P4-3             FORCE_MAIN   0.30             130        0          0          1                    
+P4-4             FORCE_MAIN   0.30             130        0          0          1                    
+P4-5             FORCE_MAIN   0.30             130        0          0          1                    
+P4-6             FORCE_MAIN   0.30             130        0          0          1                    
+P4-7             FORCE_MAIN   0.30             130        0          0          1                    
+P4-8             FORCE_MAIN   0.30             130        0          0          1                    
+P4-9             FORCE_MAIN   0.30             130        0          0          1                    
+P4-10            FORCE_MAIN   0.30             130        0          0          1                    
+
+[CONTROLS]
+
+
+Rule OutletDN1
+IF NODE StorageforNodeDN1 DEPTH >= 0.9
+THEN OUTLET OutletDN1 SETTING = CURVE ControlOutletDN1
+
+Rule OutletDN2
+IF NODE StorageforNodeDN2 DEPTH >= 0.9
+THEN OUTLET OutletDN2 SETTING = CURVE ControlOutletDN2
+
+Rule OutletDN3
+IF NODE StorageforNodeDN3 DEPTH >= 0.9
+THEN OUTLET OutletDN3 SETTING = CURVE ControlOutletDN3
+
+Rule OutletDN4
+IF NODE StorageforNodeDN4 DEPTH >= 0.9
+THEN OUTLET OutletDN4 SETTING = CURVE ControlOutletDN4
+
+Rule STOPSUPPLY
+IF SIMULATION CLOCKTIME > 08:00
+THEN CONDUIT P1-1 STATUS = CLOSED
+
+Rule STARTSUPPLY
+IF SIMULATION CLOCKTIME >= 0:00
+AND SIMULATION CLOCKTIME < 08:00
+THEN CONDUIT P1-1 STATUS = OPEN
+
+Rule Patterns
+IF SIMULATION TIME > 0
+THEN OUTLET DemandOutletDN1 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutletDN2 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutletDN3 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutletDN4 SETTING = TIMESERIES Pattern
+
+
+
+[CURVES]
+;;Name           Type       X-Value    Y-Value   
+;;-------------- ---------- ---------- ----------
+ControlOutletDN1 Control    0.9        0.985953  
+ControlOutletDN1            0.902      0.984442  
+ControlOutletDN1            0.904      0.982766  
+ControlOutletDN1            0.906      0.980909  
+ControlOutletDN1            0.908      0.97885   
+ControlOutletDN1            0.91       0.976567  
+ControlOutletDN1            0.912      0.974035  
+ControlOutletDN1            0.914      0.971227  
+ControlOutletDN1            0.916      0.968113  
+ControlOutletDN1            0.918      0.964659  
+ControlOutletDN1            0.92       0.960829  
+ControlOutletDN1            0.922      0.956582  
+ControlOutletDN1            0.924      0.951871  
+ControlOutletDN1            0.926      0.946648  
+ControlOutletDN1            0.928      0.940858  
+ControlOutletDN1            0.93       0.934439  
+ControlOutletDN1            0.932      0.927326  
+ControlOutletDN1            0.934      0.919445  
+ControlOutletDN1            0.936      0.910718  
+ControlOutletDN1            0.938      0.901058  
+ControlOutletDN1            0.94       0.890372  
+ControlOutletDN1            0.942      0.878558  
+ControlOutletDN1            0.944      0.865508  
+ControlOutletDN1            0.946      0.851109  
+ControlOutletDN1            0.948      0.835238  
+ControlOutletDN1            0.95       0.817769  
+ControlOutletDN1            0.952      0.798572  
+ControlOutletDN1            0.954      0.777517  
+ControlOutletDN1            0.956      0.754473  
+ControlOutletDN1            0.958      0.729317  
+ControlOutletDN1            0.96       0.701937  
+ControlOutletDN1            0.962      0.672239  
+ControlOutletDN1            0.964      0.640154  
+ControlOutletDN1            0.966      0.605648  
+ControlOutletDN1            0.968      0.568737  
+ControlOutletDN1            0.97       0.529495  
+ControlOutletDN1            0.972      0.488069  
+ControlOutletDN1            0.974      0.444695  
+ControlOutletDN1            0.976      0.399714  
+ControlOutletDN1            0.978      0.353577  
+ControlOutletDN1            0.98       0.306863  
+ControlOutletDN1            0.982      0.260273  
+ControlOutletDN1            0.984      0.214633  
+ControlOutletDN1            0.986      0.170871  
+ControlOutletDN1            0.988      0.129996  
+ControlOutletDN1            0.99       0.093057  
+ControlOutletDN1            0.992      0.061089  
+ControlOutletDN1            0.994      0.035062  
+ControlOutletDN1            0.996      0.015812  
+ControlOutletDN1            0.998      0.003988  
+ControlOutletDN1            1.0        0.0       
+;
+ControlOutletDN2 Control    0.9        0.985953  
+ControlOutletDN2            0.902      0.984442  
+ControlOutletDN2            0.904      0.982766  
+ControlOutletDN2            0.906      0.980909  
+ControlOutletDN2            0.908      0.97885   
+ControlOutletDN2            0.91       0.976567  
+ControlOutletDN2            0.912      0.974035  
+ControlOutletDN2            0.914      0.971227  
+ControlOutletDN2            0.916      0.968113  
+ControlOutletDN2            0.918      0.964659  
+ControlOutletDN2            0.92       0.960829  
+ControlOutletDN2            0.922      0.956582  
+ControlOutletDN2            0.924      0.951871  
+ControlOutletDN2            0.926      0.946648  
+ControlOutletDN2            0.928      0.940858  
+ControlOutletDN2            0.93       0.934439  
+ControlOutletDN2            0.932      0.927326  
+ControlOutletDN2            0.934      0.919445  
+ControlOutletDN2            0.936      0.910718  
+ControlOutletDN2            0.938      0.901058  
+ControlOutletDN2            0.94       0.890372  
+ControlOutletDN2            0.942      0.878558  
+ControlOutletDN2            0.944      0.865508  
+ControlOutletDN2            0.946      0.851109  
+ControlOutletDN2            0.948      0.835238  
+ControlOutletDN2            0.95       0.817769  
+ControlOutletDN2            0.952      0.798572  
+ControlOutletDN2            0.954      0.777517  
+ControlOutletDN2            0.956      0.754473  
+ControlOutletDN2            0.958      0.729317  
+ControlOutletDN2            0.96       0.701937  
+ControlOutletDN2            0.962      0.672239  
+ControlOutletDN2            0.964      0.640154  
+ControlOutletDN2            0.966      0.605648  
+ControlOutletDN2            0.968      0.568737  
+ControlOutletDN2            0.97       0.529495  
+ControlOutletDN2            0.972      0.488069  
+ControlOutletDN2            0.974      0.444695  
+ControlOutletDN2            0.976      0.399714  
+ControlOutletDN2            0.978      0.353577  
+ControlOutletDN2            0.98       0.306863  
+ControlOutletDN2            0.982      0.260273  
+ControlOutletDN2            0.984      0.214633  
+ControlOutletDN2            0.986      0.170871  
+ControlOutletDN2            0.988      0.129996  
+ControlOutletDN2            0.99       0.093057  
+ControlOutletDN2            0.992      0.061089  
+ControlOutletDN2            0.994      0.035062  
+ControlOutletDN2            0.996      0.015812  
+ControlOutletDN2            0.998      0.003988  
+ControlOutletDN2            1.0        0.0       
+;
+ControlOutletDN3 Control    0.9        0.985953  
+ControlOutletDN3            0.902      0.984442  
+ControlOutletDN3            0.904      0.982766  
+ControlOutletDN3            0.906      0.980909  
+ControlOutletDN3            0.908      0.97885   
+ControlOutletDN3            0.91       0.976567  
+ControlOutletDN3            0.912      0.974035  
+ControlOutletDN3            0.914      0.971227  
+ControlOutletDN3            0.916      0.968113  
+ControlOutletDN3            0.918      0.964659  
+ControlOutletDN3            0.92       0.960829  
+ControlOutletDN3            0.922      0.956582  
+ControlOutletDN3            0.924      0.951871  
+ControlOutletDN3            0.926      0.946648  
+ControlOutletDN3            0.928      0.940858  
+ControlOutletDN3            0.93       0.934439  
+ControlOutletDN3            0.932      0.927326  
+ControlOutletDN3            0.934      0.919445  
+ControlOutletDN3            0.936      0.910718  
+ControlOutletDN3            0.938      0.901058  
+ControlOutletDN3            0.94       0.890372  
+ControlOutletDN3            0.942      0.878558  
+ControlOutletDN3            0.944      0.865508  
+ControlOutletDN3            0.946      0.851109  
+ControlOutletDN3            0.948      0.835238  
+ControlOutletDN3            0.95       0.817769  
+ControlOutletDN3            0.952      0.798572  
+ControlOutletDN3            0.954      0.777517  
+ControlOutletDN3            0.956      0.754473  
+ControlOutletDN3            0.958      0.729317  
+ControlOutletDN3            0.96       0.701937  
+ControlOutletDN3            0.962      0.672239  
+ControlOutletDN3            0.964      0.640154  
+ControlOutletDN3            0.966      0.605648  
+ControlOutletDN3            0.968      0.568737  
+ControlOutletDN3            0.97       0.529495  
+ControlOutletDN3            0.972      0.488069  
+ControlOutletDN3            0.974      0.444695  
+ControlOutletDN3            0.976      0.399714  
+ControlOutletDN3            0.978      0.353577  
+ControlOutletDN3            0.98       0.306863  
+ControlOutletDN3            0.982      0.260273  
+ControlOutletDN3            0.984      0.214633  
+ControlOutletDN3            0.986      0.170871  
+ControlOutletDN3            0.988      0.129996  
+ControlOutletDN3            0.99       0.093057  
+ControlOutletDN3            0.992      0.061089  
+ControlOutletDN3            0.994      0.035062  
+ControlOutletDN3            0.996      0.015812  
+ControlOutletDN3            0.998      0.003988  
+ControlOutletDN3            1.0        0.0       
+;
+ControlOutletDN4 Control    0.9        0.985953  
+ControlOutletDN4            0.902      0.984442  
+ControlOutletDN4            0.904      0.982766  
+ControlOutletDN4            0.906      0.980909  
+ControlOutletDN4            0.908      0.97885   
+ControlOutletDN4            0.91       0.976567  
+ControlOutletDN4            0.912      0.974035  
+ControlOutletDN4            0.914      0.971227  
+ControlOutletDN4            0.916      0.968113  
+ControlOutletDN4            0.918      0.964659  
+ControlOutletDN4            0.92       0.960829  
+ControlOutletDN4            0.922      0.956582  
+ControlOutletDN4            0.924      0.951871  
+ControlOutletDN4            0.926      0.946648  
+ControlOutletDN4            0.928      0.940858  
+ControlOutletDN4            0.93       0.934439  
+ControlOutletDN4            0.932      0.927326  
+ControlOutletDN4            0.934      0.919445  
+ControlOutletDN4            0.936      0.910718  
+ControlOutletDN4            0.938      0.901058  
+ControlOutletDN4            0.94       0.890372  
+ControlOutletDN4            0.942      0.878558  
+ControlOutletDN4            0.944      0.865508  
+ControlOutletDN4            0.946      0.851109  
+ControlOutletDN4            0.948      0.835238  
+ControlOutletDN4            0.95       0.817769  
+ControlOutletDN4            0.952      0.798572  
+ControlOutletDN4            0.954      0.777517  
+ControlOutletDN4            0.956      0.754473  
+ControlOutletDN4            0.958      0.729317  
+ControlOutletDN4            0.96       0.701937  
+ControlOutletDN4            0.962      0.672239  
+ControlOutletDN4            0.964      0.640154  
+ControlOutletDN4            0.966      0.605648  
+ControlOutletDN4            0.968      0.568737  
+ControlOutletDN4            0.97       0.529495  
+ControlOutletDN4            0.972      0.488069  
+ControlOutletDN4            0.974      0.444695  
+ControlOutletDN4            0.976      0.399714  
+ControlOutletDN4            0.978      0.353577  
+ControlOutletDN4            0.98       0.306863  
+ControlOutletDN4            0.982      0.260273  
+ControlOutletDN4            0.984      0.214633  
+ControlOutletDN4            0.986      0.170871  
+ControlOutletDN4            0.988      0.129996  
+ControlOutletDN4            0.99       0.093057  
+ControlOutletDN4            0.992      0.061089  
+ControlOutletDN4            0.994      0.035062  
+ControlOutletDN4            0.996      0.015812  
+ControlOutletDN4            0.998      0.003988  
+ControlOutletDN4            1.0        0.0       
+;
+DemandDN1        Rating     0          0         
+DemandDN1                   0.01       22.222222 
+;
+DemandDN2        Rating     0          0         
+DemandDN2                   0.01       22.222222 
+;
+DemandDN3        Rating     0          0         
+DemandDN3                   0.01       33.333333 
+;
+DemandDN4        Rating     0          0         
+DemandDN4                   0.01       11.111111 
+;
+Source1          Storage    0          1         
+Source1                     6.0        1         
+Source1                     7.0        15360.000019
+Source1                     8.0        15360.000019
+
+[TIMESERIES]
+;;Name           Date       Time       Value     
+;;-------------- ---------- ---------- ----------
+Pattern                     0          0.8       
+Pattern                     1          0.7       
+Pattern                     2          0.6       
+Pattern                     3          0.5       
+Pattern                     4          0.5       
+Pattern                     5          0.5       
+Pattern                     6          0.6       
+Pattern                     7          0.8       
+Pattern                     8          1.2       
+Pattern                     9          1.3       
+Pattern                     10         1.2       
+Pattern                     11         1.2       
+Pattern                     12         1.2       
+Pattern                     13         1.2       
+Pattern                     14         1.2       
+Pattern                     15         1.2       
+Pattern                     16         1.1       
+Pattern                     17         1.1       
+Pattern                     18         1.1       
+Pattern                     19         1.2       
+Pattern                     20         1.3       
+Pattern                     21         1.3       
+Pattern                     22         1.1       
+Pattern                     23         1         
+Pattern                     24         0.8       
+Pattern                     25         0.7       
+Pattern                     26         0.6       
+Pattern                     27         0.5       
+Pattern                     28         0.5       
+Pattern                     29         0.5       
+Pattern                     30         0.6       
+Pattern                     31         0.8       
+Pattern                     32         1.2       
+Pattern                     33         1.3       
+Pattern                     34         1.2       
+Pattern                     35         1.2       
+Pattern                     36         1.2       
+Pattern                     37         1.2       
+Pattern                     38         1.2       
+Pattern                     39         1.2       
+Pattern                     40         1.1       
+Pattern                     41         1.1       
+Pattern                     42         1.1       
+Pattern                     43         1.2       
+Pattern                     44         1.3       
+Pattern                     45         1.3       
+Pattern                     46         1.1       
+Pattern                     47         1         
+Pattern                     48         0.8       
+Pattern                     49         0.7       
+Pattern                     50         0.6       
+Pattern                     51         0.5       
+Pattern                     52         0.5       
+Pattern                     53         0.5       
+Pattern                     54         0.6       
+Pattern                     55         0.8       
+Pattern                     56         1.2       
+Pattern                     57         1.3       
+Pattern                     58         1.2       
+Pattern                     59         1.2       
+Pattern                     60         1.2       
+Pattern                     61         1.2       
+Pattern                     62         1.2       
+Pattern                     63         1.2       
+Pattern                     64         1.1       
+Pattern                     65         1.1       
+Pattern                     66         1.1       
+Pattern                     67         1.2       
+Pattern                     68         1.3       
+Pattern                     69         1.3       
+Pattern                     70         1.1       
+Pattern                     71         1         
+Pattern                     72         0.8       
+Pattern                     73         0.7       
+Pattern                     74         0.6       
+Pattern                     75         0.5       
+Pattern                     76         0.5       
+Pattern                     77         0.5       
+Pattern                     78         0.6       
+Pattern                     79         0.8       
+Pattern                     80         1.2       
+Pattern                     81         1.3       
+Pattern                     82         1.2       
+Pattern                     83         1.2       
+Pattern                     84         1.2       
+Pattern                     85         1.2       
+Pattern                     86         1.2       
+Pattern                     87         1.2       
+Pattern                     88         1.1       
+Pattern                     89         1.1       
+Pattern                     90         1.1       
+Pattern                     91         1.2       
+Pattern                     92         1.3       
+Pattern                     93         1.3       
+Pattern                     94         1.1       
+Pattern                     95         1         
+Pattern                     96         0.8       
+Pattern                     97         0.7       
+Pattern                     98         0.6       
+Pattern                     99         0.5       
+Pattern                     100        0.5       
+Pattern                     101        0.5       
+Pattern                     102        0.6       
+Pattern                     103        0.8       
+Pattern                     104        1.2       
+Pattern                     105        1.3       
+Pattern                     106        1.2       
+Pattern                     107        1.2       
+Pattern                     108        1.2       
+Pattern                     109        1.2       
+Pattern                     110        1.2       
+Pattern                     111        1.2       
+Pattern                     112        1.1       
+Pattern                     113        1.1       
+Pattern                     114        1.1       
+Pattern                     115        1.2       
+Pattern                     116        1.3       
+Pattern                     117        1.3       
+Pattern                     118        1.1       
+Pattern                     119        1         
+Pattern                     120        0.8       
+Pattern                     121        0.7       
+Pattern                     122        0.6       
+Pattern                     123        0.5       
+Pattern                     124        0.5       
+Pattern                     125        0.5       
+Pattern                     126        0.6       
+Pattern                     127        0.8       
+Pattern                     128        1.2       
+Pattern                     129        1.3       
+Pattern                     130        1.2       
+Pattern                     131        1.2       
+Pattern                     132        1.2       
+Pattern                     133        1.2       
+Pattern                     134        1.2       
+Pattern                     135        1.2       
+Pattern                     136        1.1       
+Pattern                     137        1.1       
+Pattern                     138        1.1       
+Pattern                     139        1.2       
+Pattern                     140        1.3       
+Pattern                     141        1.3       
+Pattern                     142        1.1       
+Pattern                     143        1         
+Pattern                     144        0.8       
+Pattern                     145        0.7       
+Pattern                     146        0.6       
+Pattern                     147        0.5       
+Pattern                     148        0.5       
+Pattern                     149        0.5       
+Pattern                     150        0.6       
+Pattern                     151        0.8       
+Pattern                     152        1.2       
+Pattern                     153        1.3       
+Pattern                     154        1.2       
+Pattern                     155        1.2       
+Pattern                     156        1.2       
+Pattern                     157        1.2       
+Pattern                     158        1.2       
+Pattern                     159        1.2       
+Pattern                     160        1.1       
+Pattern                     161        1.1       
+Pattern                     162        1.1       
+Pattern                     163        1.2       
+Pattern                     164        1.3       
+Pattern                     165        1.3       
+Pattern                     166        1.1       
+Pattern                     167        1         
+Pattern                     168        0.8       
+Pattern                     169        0.7       
+Pattern                     170        0.6       
+Pattern                     171        0.5       
+Pattern                     172        0.5       
+Pattern                     173        0.5       
+Pattern                     174        0.6       
+Pattern                     175        0.8       
+Pattern                     176        1.2       
+Pattern                     177        1.3       
+Pattern                     178        1.2       
+Pattern                     179        1.2       
+Pattern                     180        1.2       
+Pattern                     181        1.2       
+Pattern                     182        1.2       
+Pattern                     183        1.2       
+Pattern                     184        1.1       
+Pattern                     185        1.1       
+Pattern                     186        1.1       
+Pattern                     187        1.2       
+Pattern                     188        1.3       
+Pattern                     189        1.3       
+Pattern                     190        1.1       
+Pattern                     191        1         
+Pattern                     192        0.8       
+Pattern                     193        0.7       
+Pattern                     194        0.6       
+Pattern                     195        0.5       
+Pattern                     196        0.5       
+Pattern                     197        0.5       
+Pattern                     198        0.6       
+Pattern                     199        0.8       
+Pattern                     200        1.2       
+Pattern                     201        1.3       
+Pattern                     202        1.2       
+Pattern                     203        1.2       
+Pattern                     204        1.2       
+Pattern                     205        1.2       
+Pattern                     206        1.2       
+Pattern                     207        1.2       
+Pattern                     208        1.1       
+Pattern                     209        1.1       
+Pattern                     210        1.1       
+Pattern                     211        1.2       
+Pattern                     212        1.3       
+Pattern                     213        1.3       
+Pattern                     214        1.1       
+Pattern                     215        1         
+Pattern                     216        0.8       
+Pattern                     217        0.7       
+Pattern                     218        0.6       
+Pattern                     219        0.5       
+Pattern                     220        0.5       
+Pattern                     221        0.5       
+Pattern                     222        0.6       
+Pattern                     223        0.8       
+Pattern                     224        1.2       
+Pattern                     225        1.3       
+Pattern                     226        1.2       
+Pattern                     227        1.2       
+Pattern                     228        1.2       
+Pattern                     229        1.2       
+Pattern                     230        1.2       
+Pattern                     231        1.2       
+Pattern                     232        1.1       
+Pattern                     233        1.1       
+Pattern                     234        1.1       
+Pattern                     235        1.2       
+Pattern                     236        1.3       
+Pattern                     237        1.3       
+Pattern                     238        1.1       
+Pattern                     239        1         
+Pattern                     240        0.8       
+Pattern                     241        0.7       
+Pattern                     242        0.6       
+Pattern                     243        0.5       
+Pattern                     244        0.5       
+Pattern                     245        0.5       
+Pattern                     246        0.6       
+Pattern                     247        0.8       
+Pattern                     248        1.2       
+Pattern                     249        1.3       
+Pattern                     250        1.2       
+Pattern                     251        1.2       
+Pattern                     252        1.2       
+Pattern                     253        1.2       
+Pattern                     254        1.2       
+Pattern                     255        1.2       
+Pattern                     256        1.1       
+Pattern                     257        1.1       
+Pattern                     258        1.1       
+Pattern                     259        1.2       
+Pattern                     260        1.3       
+Pattern                     261        1.3       
+Pattern                     262        1.1       
+Pattern                     263        1         
+Pattern                     264        0.8       
+Pattern                     265        0.7       
+Pattern                     266        0.6       
+Pattern                     267        0.5       
+Pattern                     268        0.5       
+Pattern                     269        0.5       
+Pattern                     270        0.6       
+Pattern                     271        0.8       
+Pattern                     272        1.2       
+Pattern                     273        1.3       
+Pattern                     274        1.2       
+Pattern                     275        1.2       
+Pattern                     276        1.2       
+Pattern                     277        1.2       
+Pattern                     278        1.2       
+Pattern                     279        1.2       
+Pattern                     280        1.1       
+Pattern                     281        1.1       
+Pattern                     282        1.1       
+Pattern                     283        1.2       
+Pattern                     284        1.3       
+Pattern                     285        1.3       
+Pattern                     286        1.1       
+Pattern                     287        1         
+Pattern                     288        0.8       
+Pattern                     289        0.7       
+Pattern                     290        0.6       
+Pattern                     291        0.5       
+Pattern                     292        0.5       
+Pattern                     293        0.5       
+Pattern                     294        0.6       
+Pattern                     295        0.8       
+Pattern                     296        1.2       
+Pattern                     297        1.3       
+Pattern                     298        1.2       
+Pattern                     299        1.2       
+Pattern                     300        1.2       
+Pattern                     301        1.2       
+Pattern                     302        1.2       
+Pattern                     303        1.2       
+Pattern                     304        1.1       
+Pattern                     305        1.1       
+Pattern                     306        1.1       
+Pattern                     307        1.2       
+Pattern                     308        1.3       
+Pattern                     309        1.3       
+Pattern                     310        1.1       
+Pattern                     311        1         
+Pattern                     312        0.8       
+Pattern                     313        0.7       
+Pattern                     314        0.6       
+Pattern                     315        0.5       
+Pattern                     316        0.5       
+Pattern                     317        0.5       
+Pattern                     318        0.6       
+Pattern                     319        0.8       
+Pattern                     320        1.2       
+Pattern                     321        1.3       
+Pattern                     322        1.2       
+Pattern                     323        1.2       
+Pattern                     324        1.2       
+Pattern                     325        1.2       
+Pattern                     326        1.2       
+Pattern                     327        1.2       
+Pattern                     328        1.1       
+Pattern                     329        1.1       
+Pattern                     330        1.1       
+Pattern                     331        1.2       
+Pattern                     332        1.3       
+Pattern                     333        1.3       
+Pattern                     334        1.1       
+Pattern                     335        1         
+Pattern                     336        0.8       
+Pattern                     337        0.7       
+Pattern                     338        0.6       
+Pattern                     339        0.5       
+Pattern                     340        0.5       
+Pattern                     341        0.5       
+Pattern                     342        0.6       
+Pattern                     343        0.8       
+Pattern                     344        1.2       
+Pattern                     345        1.3       
+Pattern                     346        1.2       
+Pattern                     347        1.2       
+Pattern                     348        1.2       
+Pattern                     349        1.2       
+Pattern                     350        1.2       
+Pattern                     351        1.2       
+Pattern                     352        1.1       
+Pattern                     353        1.1       
+Pattern                     354        1.1       
+Pattern                     355        1.2       
+Pattern                     356        1.3       
+Pattern                     357        1.3       
+Pattern                     358        1.1       
+Pattern                     359        1         
+Pattern                     360        0.8       
+Pattern                     361        0.7       
+Pattern                     362        0.6       
+Pattern                     363        0.5       
+Pattern                     364        0.5       
+Pattern                     365        0.5       
+Pattern                     366        0.6       
+Pattern                     367        0.8       
+Pattern                     368        1.2       
+Pattern                     369        1.3       
+Pattern                     370        1.2       
+Pattern                     371        1.2       
+Pattern                     372        1.2       
+Pattern                     373        1.2       
+Pattern                     374        1.2       
+Pattern                     375        1.2       
+Pattern                     376        1.1       
+Pattern                     377        1.1       
+Pattern                     378        1.1       
+Pattern                     379        1.2       
+Pattern                     380        1.3       
+Pattern                     381        1.3       
+Pattern                     382        1.1       
+Pattern                     383        1         
+Pattern                     384        0.8       
+Pattern                     385        0.7       
+Pattern                     386        0.6       
+Pattern                     387        0.5       
+Pattern                     388        0.5       
+Pattern                     389        0.5       
+Pattern                     390        0.6       
+Pattern                     391        0.8       
+Pattern                     392        1.2       
+Pattern                     393        1.3       
+Pattern                     394        1.2       
+Pattern                     395        1.2       
+Pattern                     396        1.2       
+Pattern                     397        1.2       
+Pattern                     398        1.2       
+Pattern                     399        1.2       
+
+[REPORT]
+;;Reporting Options
+SUBCATCHMENTS ALL
+NODES ALL
+LINKS ALL
+
+[TAGS]
+
+[MAP]
+DIMENSIONS 257.293 6338.245 2515.861 6650.881
+Units      None
+
+[COORDINATES]
+;;Node           X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+DN1              1034.871           6602.925          
+DN2              1507.312           6490.439          
+DN3              2047.244           6569.179          
+DN4              2407.199           6355.456          
+1-1-DN1          427.447            6633.296          
+1-2-DN1          494.938            6629.921          
+1-3-DN1          562.430            6626.547          
+1-4-DN1          629.921            6623.172          
+1-5-DN1          697.413            6619.798          
+1-6-DN1          764.905            6616.423          
+1-7-DN1          832.396            6613.049          
+1-8-DN1          899.888            6609.674          
+1-9-DN1          967.379            6606.300          
+DN1-1-DN2        1082.115           6591.676          
+DN1-2-DN2        1129.359           6580.428          
+DN1-3-DN2        1176.603           6569.179          
+DN1-4-DN2        1223.847           6557.931          
+DN1-5-DN2        1271.092           6546.682          
+DN1-6-DN2        1318.336           6535.433          
+DN1-7-DN2        1365.580           6524.185          
+DN1-8-DN2        1412.824           6512.936          
+DN1-9-DN2        1460.068           6501.688          
+DN2-1-DN3        1561.305           6498.313          
+DN2-2-DN3        1615.298           6506.187          
+DN2-3-DN3        1669.292           6514.061          
+DN2-4-DN3        1723.285           6521.935          
+DN2-5-DN3        1777.278           6529.809          
+DN2-6-DN3        1831.271           6537.683          
+DN2-7-DN3        1885.264           6545.557          
+DN2-8-DN3        1939.258           6553.431          
+DN2-9-DN3        1993.251           6561.305          
+DN3-1-DN4        2083.240           6547.807          
+DN3-2-DN4        2119.235           6526.434          
+DN3-3-DN4        2155.231           6505.062          
+DN3-4-DN4        2191.226           6483.690          
+DN3-5-DN4        2227.222           6462.318          
+DN3-6-DN4        2263.217           6440.945          
+DN3-7-DN4        2299.213           6419.573          
+DN3-8-DN4        2335.208           6398.201          
+DN3-9-DN4        2371.204           6376.828          
+OutfallDN1       1040.871           6604.925          
+OutfallDN2       1513.312           6492.439          
+OutfallDN3       2053.244           6571.179          
+OutfallDN4       2413.199           6357.456          
+L_OutfallDN1     1036.871           6599.925          
+L_OutfallDN2     1509.312           6487.439          
+L_OutfallDN3     2049.244           6566.179          
+L_OutfallDN4     2409.199           6352.456          
+Reservoir-1      359.955            6636.670          
+StorageforNodeDN1 1038.871           6602.925          
+StorageforNodeDN2 1511.312           6490.439          
+StorageforNodeDN3 2051.244           6569.179          
+StorageforNodeDN4 2411.199           6355.456          
+
+[VERTICES]
+;;Link           X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+
+[Polygons]
+;;Storage Node   X-Coord            Y-Coord           
+;;-------------- ------------------ ------------------
+
