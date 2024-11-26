@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "A project for IWS Modelling"
 readme = "README.md"
 authors = [
-    { name = "Author Name", email = "author@example.com" }
+    { name = "Omar Abdelazeem", email = "omaraliamer98@gmail.com.com" }
 ]
 license = { file = "LICENSE" }
 classifiers = [
@@ -26,7 +26,7 @@ dependencies = [
 ]
 
 [tool.setuptools]
-package-dir = {"" = "src"}
+package-dir = {"" = "GOSWMMIN"}
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["GOSWMMIN"]
