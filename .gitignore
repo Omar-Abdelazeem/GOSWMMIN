@@ -1,6 +1,6 @@
-**/*.out
-**/*.ini
-**/*.rpt
+**/**/*.out
+**/**/*.ini
+**/**/*.rpt
 
 
 # Byte-compiled / optimized / DLL files

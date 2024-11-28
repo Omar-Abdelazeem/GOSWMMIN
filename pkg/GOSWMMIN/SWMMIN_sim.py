@@ -21,7 +21,7 @@ class SWMMIN_sim:
 
 
     def Convert_to_SWMMIN(self, supply_duration, minimum_pressure, 
-                        desired_pressure, pdw_exponent, n_days, length_to_diameter=30, 
+                        desired_pressure, pdw_exponent, n_days = 1, length_to_diameter=30, 
                         adaptive_disc=False, maximum_xdelta=None, solution_speed = 100, timestep =None, leak_fraction=0.1,
                         q_des=None, tank_areas=None, tank_heights=1, consum_pattern=None, pdw_variable='PRESSURE'):
         """
@@ -34,7 +34,7 @@ class SWMMIN_sim:
         minimum_pressure (float or str): the minimum pressure for PDW in meters. Either a float for a uniform value for all nodes or a string path to a CSV.
         desired_pressure (float or str): the desired pressure for PDW in meters
         pdw_exponent (float or str): the exponent for the PDW equation
-        n_days (int): the number of days to simulate
+        n_days (int): the number of days to simulate. default is 1.
         length_to_diameter (float): the ratio of maximum pipe length to pipe diameter. Default and recommended value is 30.
         adaptive_disc (Boolean): whether to use adaptive discretization. Default is False.
         delta_x_max (float or str): the maximum allowable distance between nodes in meters. Overrides the length_to_diameter  and the adaptive_disc parameters.
@@ -90,7 +90,7 @@ class SWMMIN_sim:
         self.minimum_pressure = minimum_pressure
         self.desired_pressure = desired_pressure
         self.pdw_exponent = pdw_exponent
-        self.n_days = n_days
+        self.n_days = n_days - 1
         self.length_to_diameter = length_to_diameter
         self.adaptive_disc = adaptive_disc
         self.maximum_xdelta = maximum_xdelta

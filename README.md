@@ -13,7 +13,7 @@ Guided Operation of SWMM for Intermittent Networks: a package for SWMM-based sim
   - [Tools](#tools)
   - [Package](#package)
 - License
-- References[#referennces]
+- [References](#references)
 
 ## Introduction
 
@@ -71,6 +71,7 @@ The GOSWMMIN package is structured as a new class ```SWMMIN_sim()``` which is in
 - ```Convert_to_SWMMIN()```: this method creates a SWMMIN simulation from the input EPANET file using a combination of built-in recommended settings and input arguments
 - ```Run_SWMMIN()```: this method executes the SWMMIN simulation and parses its output
 
+![image](./Figures/Figure%20Files/Figure%206.png)
 further details on the methods, inputs and outputs of the GOSWMMIN package can be found in the package's [README](./pkg/README.md)
 
 #### Dependencies
@@ -80,6 +81,9 @@ The dependencies of the GOSWMMIN package are listed in [requirements.txt](./pkg/
 - WNTR: the Water Network Tool for Resilience, a package for EPANET in python [Klise et al. (2017)](#references)
 - PySWMM: a Python wrapper for the Storm Water Management Model [McDonell et al. (2020)](#references)
 
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
 
 ## References
 
