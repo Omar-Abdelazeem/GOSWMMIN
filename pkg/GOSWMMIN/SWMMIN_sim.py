@@ -1,9 +1,12 @@
+#%%
 import wntr             # For EPANET file reading
 import numpy as np      
 import pandas as pd
 import re
 import math
 import pathlib 
+import pyswmm
+import tqdm
 
 class SWMMIN_sim:
     def __init__(self, input_file):
@@ -587,8 +590,8 @@ class SWMMIN_sim:
         # Other inputs that are set to 0
         conduit_zeros=[0]*len(conduits)
         # Replace the reservoir IDs with the new reservoir IDs
-        conduits["from node"].replace(reservoirs.index,self.reservoir_ids_new,inplace=True)
-        conduits["to node"].replace(reservoirs.index,self.reservoir_ids_new,inplace=True)
+        conduits["from node"] = conduits["from node"].replace(reservoirs.index,self.reservoir_ids_new)
+        conduits["to node"] = conduits["to node"].replace(reservoirs.index,self.reservoir_ids_new)
 
 
         conduits_section=pd.DataFrame(zip(conduit_ids,conduits["from node"],conduits["to node"],conduits["Length"],roughness,conduits["InOffset"],conduits["OutOffset"],conduit_zeros,conduit_zeros))
@@ -631,7 +634,7 @@ class SWMMIN_sim:
         outlet_gated=["YES"]*len(outlet_ids)
 
         # Consumption Outlets
-        outdemand_ids = ["DemandOutlet"+id for id in demand_nodes]
+        outdemand_ids = ["ConsumptionOutlet"+id for id in demand_nodes]
         outdemand_from = storage_ids [:]
         outdemand_to = outfall_ids [:]
         outdemand_offset=[0]*len(outlet_ids)
@@ -772,7 +775,7 @@ class SWMMIN_sim:
 
         i = 0
         for outlet in self.outletdemand.iloc[:,0]:
-            out_name="Outlet"+outlet[12:]
+            out_name=outlet
             if self.tank_heights_flag == True:
                 h_max = self.tank_heights[i]
             h_min = 0
@@ -947,9 +950,8 @@ class SWMMIN_sim:
         lines[end_time]="END_TIME             "+str(23)+":"+str(59)+":00\n"
         lines[end_date]="END_DATE             "+start_date[0]+"/"+str(min((int(start_date[1])+self.n_days),30))+"/"+start_date[2]
         if not self.timestep:
-            timestep = self.maximum_xdelta / self.solution_speed
-        else: timestep = self.timestep
-        lines[routing_step]="ROUTING_STEP         "+str(timestep)+"\n"
+            self.timestep = self.maximum_xdelta / self.solution_speed
+        lines[routing_step]="ROUTING_STEP         "+str(self.timestep)+"\n"
         lines[dimensions]="DIMENSIONS "+self.dimensions_line
         lines[coords_marker:coords_marker]=self.coordinate_section
         lines[timesrs_marker:timesrs_marker]=self.timesrs_pat
@@ -970,3 +972,63 @@ class SWMMIN_sim:
             file.write(line)    
         file.close()
         return self
+    
+    def Run_SWMMIN(self, path = None):
+        '''
+        This function runs the SWMMIN simulation. 
+        If no SWMM input file was generated using Convert_to_SWMMIN method, a path must be specified for the SWMMIN input file
+        '''
+        # Verify file path
+        if path:
+            self.swmm_file = path
+
+        # Name the output file
+        self.output_file = pathlib.Path(self.swmm_file).with_suffix('.out')
+        # Open the SWMM simulation
+        print(self.swmm_file)
+        sim=pyswmm.Simulation(str(self.swmm_file))
+
+        # Retrieve demand node IDs
+        demand_nodes = self.demand_nodes
+        storage_ids = self.storage_ids
+        w_outlet_ids = ["Outlet"+str(node) for node in demand_nodes]
+        c_outlet_ids = ["ConsumptionOutlet"+str(node) for node in storage_ids]
+
+
+        number_of_steps = (sim.end_time - sim.start_time).seconds / self.timestep
+        # runs the simulation step by step
+        stp = 0
+        with tqdm.tqdm(range(number_of_steps), desc = 'Running Simulation') as pbar:
+            with sim as sim:
+                system_routing = pyswmm.SystemStats(sim)
+                for step in sim:
+                    pbar.update(1)
+                        # print('Current Simulation Time is >> ',sim.current_time,", ",round(sim.percent_complete*100,1),"% Complete")
+                    stp+=1
+                    pass
+                sim._model.swmm_end()
+                print("Continuity Error: ",sim.flow_routing_error,"%\n")
+
+    
+    
+    
+
+# %%
+
+filepath = pathlib.Path('../../Networks/Linear Network/Linear_Network.inp')
+sim = SWMMIN_sim(filepath)
+min_pressure = '../../Networks/Linear Network/min_pressure.csv'
+des_pressure = '../../Networks/Linear Network/des_pressure.csv'
+pdw_exponent = '../../Networks/Linear Network/pdw_exponent.csv'
+q_des = '../../Networks/Linear Network/q_des.csv'
+tank_areas = '../../Networks/Linear Network/tank_areas.csv'
+tank_heights = '../../Networks/Linear Network/tank_heights.csv'
+consum_pattern = '../../Networks/Linear Network/consum_pattern.csv'
+
+sim.Convert_to_SWMMIN(supply_duration= 8.0, 
+                  minimum_pressure=min_pressure, desired_pressure = des_pressure, pdw_exponent=pdw_exponent,
+                  n_days= 3,length_to_diameter=30, solution_speed=100, q_des=q_des, tank_heights=tank_heights, 
+                  tank_areas=tank_areas, consum_pattern=consum_pattern)
+
+sim.Run_SWMMIN()
+# %%
