@@ -945,7 +945,7 @@ class SWMMIN_sim:
             control_rules="[CONTROLS]\n"+control_rules
 
         swmm_file=self.filepath.stem+'_SWMMIN_'+str(self.maximum_xdelta)+'m.inp'
-        self.swmm_file = swmm_file
+        self.swmm_file = self.filepath.parent / swmm_file
         file=open(self.filepath.parent/swmm_file,'w')
         lines[end_time]="END_TIME             "+str(23)+":"+str(59)+":00\n"
         lines[end_date]="END_DATE             "+start_date[0]+"/"+str(min((int(start_date[1])+self.n_days),30))+"/"+start_date[2]
@@ -977,15 +977,16 @@ class SWMMIN_sim:
         '''
         This function runs the SWMMIN simulation. 
         If no SWMM input file was generated using Convert_to_SWMMIN method, a path must be specified for the SWMMIN input file
+
+        path: str: path to the SWMMIN input file to override the built-in path
         '''
         # Verify file path
         if path:
             self.swmm_file = path
 
         # Name the output file
-        self.output_file = pathlib.Path(self.swmm_file).with_suffix('.out')
+        self.output_file = str(pathlib.Path(self.swmm_file).with_suffix('.out'))
         # Open the SWMM simulation
-        print(self.swmm_file)
         sim=pyswmm.Simulation(str(self.swmm_file))
 
         # Retrieve demand node IDs
@@ -995,20 +996,41 @@ class SWMMIN_sim:
         c_outlet_ids = ["ConsumptionOutlet"+str(node) for node in storage_ids]
 
 
-        number_of_steps = (sim.end_time - sim.start_time).seconds / self.timestep
+        number_of_steps = int((sim.end_time - sim.start_time).seconds / self.timestep) * 3
         # runs the simulation step by step
-        stp = 0
         with tqdm.tqdm(range(number_of_steps), desc = 'Running Simulation') as pbar:
             with sim as sim:
                 system_routing = pyswmm.SystemStats(sim)
                 for step in sim:
                     pbar.update(1)
                         # print('Current Simulation Time is >> ',sim.current_time,", ",round(sim.percent_complete*100,1),"% Complete")
-                    stp+=1
                     pass
                 sim._model.swmm_end()
                 print("Continuity Error: ",sim.flow_routing_error,"%\n")
 
+        sim.close()
+        return self
+
+    def get_pressures(self):
+        '''
+        This function retrieves the pressures at the demand nodes and returns a dataframe with the pressures and the time
+        '''
+        demand_nodes = self.demand_nodes
+        pressures = pd.DataFrame()
+        swtch = True
+        # Open the SWMM Output
+        with pyswmm.Output(self.output_file) as out:
+            for node in out.nodes:
+                if swtch:
+                    pressures['Time'] = pd.Series(out.node_series(node, 'INVERT_DEPTH').keys())
+                    swtch = False
+                
+                if node in demand_nodes:
+                    pressures[node] = pd.Series(out.node_series(node, 'INVERT_DEPTH').values())
+
+
+
+        return pressures
     
     
     
@@ -1027,8 +1049,9 @@ consum_pattern = '../../Networks/Linear Network/consum_pattern.csv'
 
 sim.Convert_to_SWMMIN(supply_duration= 8.0, 
                   minimum_pressure=min_pressure, desired_pressure = des_pressure, pdw_exponent=pdw_exponent,
-                  n_days= 3,length_to_diameter=30, solution_speed=100, q_des=q_des, tank_heights=tank_heights, 
+                  n_days= 3,length_to_diameter=100, solution_speed=100, q_des=q_des, tank_heights=tank_heights, 
                   tank_areas=tank_areas, consum_pattern=consum_pattern)
 
+# %%
 sim.Run_SWMMIN()
 # %%
