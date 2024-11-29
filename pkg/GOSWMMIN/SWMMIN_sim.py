@@ -146,7 +146,7 @@ class SWMMIN_sim:
         supply_duration = self.supply_duration
        
         demand_nodes=[]       # For storing list of nodes that have non-zero demands
-        desired_demands=[]    # For storing demand rates desired by each node for desired volume calculations
+        base_demands=[]    # For storing demand rates desired by each node for desired volume calculations
         elevations=[]         # For storing elevations of demand nodes
         coords=dict()         # For storing coordinates corresponding to each node as a tuple with the id as key
         all_nodes=[]          # For storing list of node ids of all nodes
@@ -164,7 +164,7 @@ class SWMMIN_sim:
             if node[1].base_demand != 0:
                 # Record node ID (name), desired demand (base_demand) in CMS, elevations, x and y coordinates
                 demand_nodes.append(node[1].name)
-                desired_demands.append(node[1].base_demand)
+                base_demands.append(node[1].base_demand)
                 elevations.append(node[1].elevation)
 
         # If a desired flow rate CSV is provided
@@ -172,7 +172,8 @@ class SWMMIN_sim:
             #replace desired demands with input Q_des values
             q_des = pd.read_csv(self.q_des,header=None)
             q_des.columns = ['ID','Desired Flow']
-            desired_demands = q_des['Desired Flow'].to_list()       
+            desired_demands = q_des['Desired Flow'].to_list()  
+        else: desired_demands = [demand * 24 / self.supply_duration for demand in base_demands]     
 
         conduit_ids= []       # To store IDs of the original pipes in the EPANET file
         conduit_from= []      # To store the origin node for each pipe
@@ -249,6 +250,7 @@ class SWMMIN_sim:
         self.reservoirs = reservoirs
         self.demand_nodes = demand_nodes
         self.elevations = elevations
+        self.base_demands = base_demands
         self.desired_demands = desired_demands
         self.network = network
 
@@ -512,6 +514,7 @@ class SWMMIN_sim:
         storage_ids=["StorageforNode"+id for id in demand_nodes]
         # demand_volumes = pd.DataFrame({'ID':demand_nodes,'Volume':storage_areas})
         # demand_volumes.to_csv(filepath.parent/pathlib.Path(filepath.name+'_DemandVolumes.csv'))
+        self.demand_volumes = [demand * 60 * 24 for demand in self.base_demands]
 
         # OVERRIDE OPTION: Input Tank Heights using the CSV
         if self.tank_heights_flag == True:
@@ -521,7 +524,7 @@ class SWMMIN_sim:
         # OVERRIDE OPTION: Input Tank Areas using the CSV
         if self.tank_areas_flag == True:
             storage_areas = self.tank_areas
-        else: storage_areas=[demand*60* self.supply_duration/height for demand,height in zip(self.desired_demands,storage_MaxDepth)]            
+        else: storage_areas=[demand * 60 * 24 /height for demand,height in zip(self.base_demands,storage_MaxDepth)]            
 
         # Set storage invert elevations = elevation of DN + Hmin
         if self.pdw_flag == True:
