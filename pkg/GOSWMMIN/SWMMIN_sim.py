@@ -1,4 +1,3 @@
-#%%
 import wntr             # For EPANET file reading
 import numpy as np      
 import pandas as pd
@@ -996,7 +995,7 @@ class SWMMIN_sim:
         c_outlet_ids = ["ConsumptionOutlet"+str(node) for node in storage_ids]
 
 
-        number_of_steps = int((sim.end_time - sim.start_time).seconds / self.timestep) * 3
+        number_of_steps = int((sim.end_time - sim.start_time).seconds / self.timestep)
         # runs the simulation step by step
         with tqdm.tqdm(range(number_of_steps), desc = 'Running Simulation') as pbar:
             with sim as sim:
@@ -1031,27 +1030,3 @@ class SWMMIN_sim:
 
 
         return pressures
-    
-    
-    
-
-# %%
-
-filepath = pathlib.Path('../../Networks/Linear Network/Linear_Network.inp')
-sim = SWMMIN_sim(filepath)
-min_pressure = '../../Networks/Linear Network/min_pressure.csv'
-des_pressure = '../../Networks/Linear Network/des_pressure.csv'
-pdw_exponent = '../../Networks/Linear Network/pdw_exponent.csv'
-q_des = '../../Networks/Linear Network/q_des.csv'
-tank_areas = '../../Networks/Linear Network/tank_areas.csv'
-tank_heights = '../../Networks/Linear Network/tank_heights.csv'
-consum_pattern = '../../Networks/Linear Network/consum_pattern.csv'
-
-sim.Convert_to_SWMMIN(supply_duration= 8.0, 
-                  minimum_pressure=min_pressure, desired_pressure = des_pressure, pdw_exponent=pdw_exponent,
-                  n_days= 3,length_to_diameter=100, solution_speed=100, q_des=q_des, tank_heights=tank_heights, 
-                  tank_areas=tank_areas, consum_pattern=consum_pattern)
-
-# %%
-sim.Run_SWMMIN()
-# %%
