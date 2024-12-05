@@ -1,2 +1,10 @@
 include Resources/Empty_SWMM_Template.inp
 include Resources/Figure 6.png
+include Resources/consum_pattern.csv
+include Resources/des_pressure.csv
+include Resources/Linear_Network.inp
+include Resources/min_pressure.csv
+include Resources/pdw_exponent.csv
+include Resources/q_des.csv
+include Resources/tank_areas.csv
+include Resources/tank_heights.csv

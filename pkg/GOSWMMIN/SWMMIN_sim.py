@@ -1010,11 +1010,15 @@ class SWMMIN_sim:
         sim.close()
         return self
 
-    def get_pressures(self):
+    def get_pressures(self, specific_nodes = None):
         '''
         This function retrieves the pressures at the demand nodes and returns a dataframe with the pressures and the time
+
+        specific_nodes (list-like): list of specific nodes to retrieve the pressures from
         '''
         demand_nodes = self.demand_nodes
+        if specific_nodes:
+            demand_nodes = specific_nodes
         pressures = pd.DataFrame()
         swtch = True
         # Open the SWMM Output
@@ -1027,6 +1031,83 @@ class SWMMIN_sim:
                 if node in demand_nodes:
                     pressures[node] = pd.Series(out.node_series(node, 'INVERT_DEPTH').values())
 
-
-
         return pressures
+    
+    def get_tank_vols_heights(self, specific_nodes = None):
+        '''
+        This function retrieves the volumes stored at each user tank and returns a dataframe with the tank volumes and the time
+
+        specific_nodes (list-like): list of specific nodes to retrieve the volumes for
+        '''
+        storage_ids = self.storage_ids
+        if specific_nodes:
+            storage_ids = ['StorageforNode' +str(node) for node in specific_nodes]
+        tank_vols = pd.DataFrame()
+        tank_heights = pd.DataFrame()
+        swtch = True
+        # Open the SWMM Output
+        with pyswmm.Output(self.output_file) as out:
+            for node in out.nodes:
+                if swtch:
+                    tank_vols['Time'] = pd.Series(out.node_series(node, 'PONDED_VOLUME').keys())
+                    tank_heights['Time'] = pd.Series(out.node_series(node, 'INVERT_DEPTH').keys())
+                    swtch = False
+                
+                if node in storage_ids:
+                    tank_vols[node] = pd.Series(out.node_series(node, 'PONDED_VOLUME').values())
+                    tank_heights[node] = pd.Series(out.node_series(node, 'INVERT_DEPTH').values())
+
+        return tank_vols, tank_heights
+    
+
+    def get_withdrawals(self, specific_nodes = None):
+        '''
+        This function retrieves the withdrawal rates at the demand nodes and returns a dataframe with the withdrawal rates and the time
+
+        specific_nodes (list-like): list of specific nodes to retrieve the withdrawal rates from
+        '''
+        demand_nodes = self.demand_nodes
+        if specific_nodes:
+            demand_nodes = specific_nodes 
+        with_ids = ["Outlet"+str(node) for node in demand_nodes]
+        withdrawals = pd.DataFrame()
+        swtch = True
+        # Open the SWMM Output
+        with pyswmm.Output(self.output_file) as out:
+            for link in out.links:
+                if swtch:
+                    withdrawals['Time'] = pd.Series(out.link_series(link, 'FLOW_RATE').keys())
+                    swtch = False
+                
+                if link in with_ids:
+                    withdrawals[link] = pd.Series(out.link_series(link, 'FLOW_RATE').values())
+
+
+
+        return withdrawals
+
+    def get_withdrawals(self, specific_nodes = None):
+        '''
+        This function retrieves the consumption rates at the demand nodes and returns a dataframe with the consumption rates and the time
+
+        specific_nodes (list-like): list of specific nodes to retrieve the consumption rates from
+        '''
+        demand_nodes = self.demand_nodes
+        if specific_nodes:
+            demand_nodes = specific_nodes
+        cons_ids = ["ConsumptionOutlet"+str(node) for node in demand_nodes]
+        consumptions = pd.DataFrame()
+        swtch = True
+        # Open the SWMM Output
+        with pyswmm.Output(self.output_file) as out:
+            for link in out.links:
+                if swtch:
+                    consumptions['Time'] = pd.Series(out.link_series(link, 'FLOW_RATE').keys())
+                    swtch = False
+                
+                if link in cons_ids:
+                    consumptions[link] = pd.Series(out.link_series(link, 'FLOW_RATE').values())
+
+
+
+        return consumptions
