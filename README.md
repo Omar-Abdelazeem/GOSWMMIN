@@ -92,3 +92,18 @@ This project is licensed under the MIT License. See the [LICENSE](./LICENSE) fil
 - Gupta, R., & Bhave, P. R. (1996). Comparison of Methods for Predicting Deficient-Network Performance. Journal of Water Resources Planning and Management, 122(3), 214–217. <https://doi.org/10.1061/(ASCE)0733-9496(1996)122:3(214)>  
 - Klise, K. A., Bynum, M., Moriarty, D., & Murray, R. (2017). A software framework for assessing the resilience of drinking water systems to disasters with an example earthquake case study. Environmental Modelling & Software, 95, 420–431. <https://doi.org/10.1016/j.envsoft.2017.06.022>
 - McDonnell, B., Ratliff, K., Tryby, M., Wu, J., & Mullapudi, A. (2020). PySWMM: The Python Interface to Stormwater Management Model (SWMM). Journal of Open Source Software, 5(52), 2292. <https://doi.org/10.21105/joss.02292>
+
+# Ismail Experimentation
+### Installation
+Create a virtual env and install dependencies:
+```
+python3.10 -m venv venv
+source venv/bin/activate
+pip install -e ./pkg
+```
+
+### Run simulation
+Create the inp file:
+```
+python make_network.py
+```

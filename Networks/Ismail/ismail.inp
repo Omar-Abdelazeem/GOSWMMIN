@@ -1,0 +1,136 @@
+[TITLE]
+
+[JUNCTIONS]
+;ID                      Elevation       Demand Pattern                 
+ DN1                            99.35        0.666667                            ;
+ DN2                            99.65        0.666667                            ;
+ DN3                            96.39        0.666667                            ;
+ DN4                             96.3        0.666667                            ;
+ DN5                            96.31        0.666667                            ;
+ DN6                            95.88        0.666667                            ;
+ DN7                            96.44        0.666667                            ;
+ DN8                            96.14        0.666667                            ;
+ DN9                            96.08        0.666667                            ;
+
+[RESERVOIRS]
+;ID                                   Head                  Pattern
+ 1                                200                            ;
+
+[TANKS]
+;ID                              Elevation           Init Level            Min Level            Max Level             Diameter           Min Volume Volume Curve         Overflow            
+
+[PIPES]
+;ID                   Node1                Node2                              Length             Diameter            Roughness           Minor Loss               Status
+ P1                   1                    DN1                               30             300             100               0                 Open   ;
+ P2                   DN1                  DN2                              150             300             100               0                 Open   ;
+ P3                   DN1                  DN3                               30             300             100               0                 Open   ;
+ P4                   DN3                  DN4                               40             300             100               0                 Open   ;
+ P5                   DN3                  DN7                              110             300             100               0                 Open   ;
+ P6                   DN4                  DN5                               50             300             100               0                 Open   ;
+ P7                   DN4                  DN8                               50             300             100               0                 Open   ;
+ P8                   DN5                  DN6                              170             300             100               0                 Open   ;
+ P9                   DN5                  DN9                               70             300             100               0                 Open   ;
+
+[PUMPS]
+;ID                   Node1                Node2                Properties          
+
+[VALVES]
+;ID                   Node1                Node2                            Diameter Type              Setting           Minor Loss
+
+[TAGS]
+;type      name       tag       
+
+[DEMANDS]
+;ID        Demand     Pattern   
+
+[STATUS]
+;ID        Setting   
+
+[PATTERNS]
+;ID        Multipliers
+
+[CURVES]
+;ID         X-Value      Y-Value     
+
+[CONTROLS]
+
+[RULES]
+
+[ENERGY]
+GLOBAL EFFICIENCY      75.0000
+GLOBAL PRICE           0.0000
+DEMAND CHARGE          0.0000
+
+[EMITTERS]
+;ID        Flow coefficient
+
+[QUALITY]
+
+[SOURCES]
+;Node      Type       Quality    Pattern   
+
+[REACTIONS]
+;Type           Pipe/Tank               Coefficient
+
+ ORDER BULK 1
+ ORDER TANK 1
+ ORDER WALL 1
+ GLOBAL BULK 0.0000    
+ GLOBAL WALL 0.0000    
+
+[MIXING]
+;Tank ID             Model Fraction
+
+[TIMES]
+DURATION             24:00:00
+HYDRAULIC TIMESTEP   01:00:00
+QUALITY TIMESTEP     00:05:00
+PATTERN TIMESTEP     01:00:00
+PATTERN START        00:00:00
+REPORT TIMESTEP      00:01:00
+REPORT START         00:00:00
+START CLOCKTIME      00:00:00 AM
+RULE TIMESTEP        00:06:00
+STATISTIC            NONE      
+
+[REPORT]
+
+[OPTIONS]
+UNITS                LPS                 
+HEADLOSS             H-W                 
+SPECIFIC GRAVITY     1
+VISCOSITY            1
+TRIALS               40
+ACCURACY             0.001
+CHECKFREQ            2
+MAXCHECK             10
+UNBALANCED           CONTINUE            
+PATTERN              1                   
+DEMAND MULTIPLIER    1
+EMITTER EXPONENT     0.5
+QUALITY              NONE                
+DIFFUSIVITY          1
+TOLERANCE            0.01
+
+[COORDINATES]
+;Node      X-Coord    Y-Coord   
+1                   0.000000000          0.000000000
+DN1               -30.000000000          0.000000000
+DN2               -30.000000000       -150.000000000
+DN3               -30.000000000         30.000000000
+DN4               -30.000000000         70.000000000
+DN5               -30.000000000        120.000000000
+DN6               -30.000000000        290.000000000
+DN7                80.000000000         30.000000000
+DN8               -80.000000000         70.000000000
+DN9              -100.000000000        120.000000000
+
+[VERTICES]
+;Link      X-Coord    Y-Coord   
+
+[LABELS]
+
+[BACKDROP]
+UNITS    NONE
+
+[END]
