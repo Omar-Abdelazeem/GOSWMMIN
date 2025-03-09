@@ -100,6 +100,7 @@ Create a virtual env and install dependencies:
 python3.10 -m venv venv
 source venv/bin/activate
 pip install -e ./pkg
+pip install pyswmm
 ```
 
 ### Run simulation
