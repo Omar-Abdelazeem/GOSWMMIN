@@ -107,3 +107,8 @@ Create the inp file:
 ```
 python make_network.py
 ```
+
+Convert to SWMMIN format:
+```
+python convert_to_swmmin.py
+```
