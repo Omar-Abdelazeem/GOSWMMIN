@@ -36,10 +36,10 @@ wn.options.quality.diffusivity = 1.0
 wn.options.quality.tolerance = 0.01
 
 
-wn.add_reservoir('1', base_head=200, head_pattern=None)
+wn.add_reservoir('1', base_head=100, head_pattern=None)
 
 # TODO: verify that the diameter units are correct
-BASE_DEMAND = 0.000666667
+BASE_DEMAND = 0.000666667 # TODO: probably too big for this network, 
 
 # For some reason, the whole simulation errors out if the diameter is too small
 PINK_DIAM = 0.3

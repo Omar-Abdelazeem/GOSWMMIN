@@ -113,3 +113,22 @@ Convert to SWMMIN format:
 ```
 python convert_to_swmmin.py
 ```
+
+### Run SWMMIN (Linux)
+Create a wine container:
+```
+docker run -it --rm \
+  -e DISPLAY=$DISPLAY \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -v "$(pwd)":/app \
+  scottyhardy/docker-wine \
+  bash
+```
+Run the installer:
+```
+wine /app/swmm524_setup.exe
+```
+Run the software:
+```
+wine "C:\Program Files\EPA SWMM 5.2.4 (64-bit)\epaswmm5.exe"
+```

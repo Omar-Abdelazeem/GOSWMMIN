@@ -34,7 +34,12 @@ def run_simulation(input_file: Path,output_file: Path):
           step_count+=1
           pass
       sim._model.swmm_end()
-      logging.error(f"Continuity Error: {sim.flow_routing_error}")
+
+      # Diagnostic metric for how good sim was in terms of mass balance in percentage
+      # Want < 5%
+      # TODO: reduce time step for more accurate results
+      logging.error(f"Continuity Error: {sim.flow_routing_error}") 
+      
 
   return Withdraw_ids,Consume_ids
 
