@@ -30,6 +30,7 @@ def load_epanet(
         leak_fraction: float,
         n_days: int,
         storage_initial_fullness_factor: float,
+        reservoir_height: float,
         tank_areas: Path | None = None
         ):
   
@@ -85,7 +86,7 @@ def load_epanet(
       reservoir_ids.append(reservoir[1].name)
       reservoir_heads[reservoir_ids[-1]]=reservoir[1].base_head
       reservoir_coords[reservoir_ids[-1]]=reservoir[1].coordinates
-  reservoir_elevations={reservoir:reservoir_heads[reservoir]-30 for reservoir in reservoir_heads}
+  reservoir_elevations={reservoir:reservoir_heads[reservoir]-reservoir_height for reservoir in reservoir_heads}
 
   pcurves = {}
   for curve in network.curves():
@@ -703,7 +704,8 @@ if __name__ == "__main__":
       pattern=pattern,
       leak_fraction=0.1,
       n_days=1,
-      storage_initial_fullness_factor=storage_initial_fullness_factor
+      reservoir_height=5,
+      storage_initial_fullness_factor=storage_initial_fullness_factor,
   )
 
   output_file = Path("Networks/Ismail/ismail_SWMMIN.inp")
