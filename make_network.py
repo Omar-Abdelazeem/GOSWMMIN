@@ -35,16 +35,22 @@ wn.options.quality.parameter = 'NONE'
 wn.options.quality.diffusivity = 1.0
 wn.options.quality.tolerance = 0.01
 
+# Adding 30 because the conversion code treats base head as elevation + 30
+wn.add_reservoir('1', base_head=100+30, head_pattern=None) 
 
-wn.add_reservoir('1', base_head=100, head_pattern=None)
 
-# TODO: verify that the diameter units are correct
-BASE_DEMAND = 0.000666667 # TODO: probably too big for this network, 
+PEOPLE_PER_HOUSEHOLD = 4
+LITERS_PER_PERSON_PER_DAY = 50
+LITERS_PER_SECOND_PER_PERSON = LITERS_PER_PERSON_PER_DAY / 24 / 3600
+BASE_DEMAND_LPS = PEOPLE_PER_HOUSEHOLD * LITERS_PER_SECOND_PER_PERSON
+BASE_DEMAND = BASE_DEMAND_LPS / 1000  # Convert to m^3/s
 
-# For some reason, the whole simulation errors out if the diameter is too small
-PINK_DIAM = 0.3
-RED_DIAM = 0.3
-GREEN_DIAM = 0.3
+
+PINK_DIAM = 0.09
+RED_DIAM = 0.075
+GREEN_DIAM = 0.063
+
+print(f"Base demand: {BASE_DEMAND}  (m^3/s)")
 
 
 wn.add_junction('DN1', elevation=99.35, base_demand=BASE_DEMAND)  # Node 2 in diagram

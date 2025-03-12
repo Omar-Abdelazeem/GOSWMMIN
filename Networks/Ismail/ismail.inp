@@ -2,34 +2,34 @@
 
 [JUNCTIONS]
 ;ID                      Elevation       Demand Pattern                 
- DN1                            99.35        0.666667                            ;
- DN2                            99.65        0.666667                            ;
- DN3                            96.39        0.666667                            ;
- DN4                             96.3        0.666667                            ;
- DN5                            96.31        0.666667                            ;
- DN6                            95.88        0.666667                            ;
- DN7                            96.44        0.666667                            ;
- DN8                            96.14        0.666667                            ;
- DN9                            96.08        0.666667                            ;
+ DN1                            99.35 0.0023148148148                            ;
+ DN2                            99.65 0.0023148148148                            ;
+ DN3                            96.39 0.0023148148148                            ;
+ DN4                             96.3 0.0023148148148                            ;
+ DN5                            96.31 0.0023148148148                            ;
+ DN6                            95.88 0.0023148148148                            ;
+ DN7                            96.44 0.0023148148148                            ;
+ DN8                            96.14 0.0023148148148                            ;
+ DN9                            96.08 0.0023148148148                            ;
 
 [RESERVOIRS]
 ;ID                                   Head                  Pattern
- 1                                100                            ;
+ 1                                130                            ;
 
 [TANKS]
 ;ID                              Elevation           Init Level            Min Level            Max Level             Diameter           Min Volume Volume Curve         Overflow            
 
 [PIPES]
 ;ID                   Node1                Node2                              Length             Diameter            Roughness           Minor Loss               Status
- P1                   1                    DN1                               30             300             100               0                 Open   ;
- P2                   DN1                  DN2                              150             300             100               0                 Open   ;
- P3                   DN1                  DN3                               30             300             100               0                 Open   ;
- P4                   DN3                  DN4                               40             300             100               0                 Open   ;
- P5                   DN3                  DN7                              110             300             100               0                 Open   ;
- P6                   DN4                  DN5                               50             300             100               0                 Open   ;
- P7                   DN4                  DN8                               50             300             100               0                 Open   ;
- P8                   DN5                  DN6                              170             300             100               0                 Open   ;
- P9                   DN5                  DN9                               70             300             100               0                 Open   ;
+ P1                   1                    DN1                               30              90             100               0                 Open   ;
+ P2                   DN1                  DN2                              150              63             100               0                 Open   ;
+ P3                   DN1                  DN3                               30              90             100               0                 Open   ;
+ P4                   DN3                  DN4                               40              90             100               0                 Open   ;
+ P5                   DN3                  DN7                              110              63             100               0                 Open   ;
+ P6                   DN4                  DN5                               50              75             100               0                 Open   ;
+ P7                   DN4                  DN8                               50              63             100               0                 Open   ;
+ P8                   DN5                  DN6                              170              63             100               0                 Open   ;
+ P9                   DN5                  DN9                               70              63             100               0                 Open   ;
 
 [PUMPS]
 ;ID                   Node1                Node2                Properties          
