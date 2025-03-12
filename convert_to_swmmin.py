@@ -56,7 +56,6 @@ def load_epanet(
   conduit_diameters= [] # pipe diameters
 
   for link in network.pipes():
-
     # Extract and store each of the aforementioned properties
     conduit_ids.append(link[1].name)
     conduit_from.append(link[1].start_node_name)
@@ -154,8 +153,6 @@ def load_epanet(
       if adaptive:
           n_parts = np.max(round(length / diameter / len_to_diameter_ratio) - 1, 0)
       else: n_parts = math.ceil(length / maximum_xdelta)
-
-      xdelta = length / n_parts
 
       # If the conduit is bigger than the maximum allowable length (delta x), we will break it down into smaller pipes
       if n_parts>0:
@@ -652,12 +649,16 @@ if __name__ == "__main__":
   minimum_pressure = 0 
 
   # Step for control curve generation. The smaller the step, the smoother the curve
-  step = 0.002
+  step = 0.002 # Reduce if continuity error is too high
   # Parameters for Mauro de Marchis et al. (2015)'s float valve emitter law
   m, n= 2.5, 4
   tank_height = 1
   # Diurnal demand pattern defined as a list of multipliers for the base demand
-  pattern=[0.8,0.7,0.6,0.5,0.5,0.5,0.6,0.8,1.2,1.3,1.2,1.2,1.2,1.2,1.2,1.2,1.1,1.1,1.1,1.2,1.3,1.3,1.1,1]                
+  pattern=[0.8,0.7,0.6,0.5,0.5,0.5,0.6,0.8,1.2,1.3,1.2,1.2,1.2,1.2,1.2,1.2,1.1,1.1,1.1,1.2,1.3,1.3,1.1,1]
+
+  # Disable adaptative discretization to reduce computational load
+  maximum_xdelta = 20
+  adaptative = False                
 
   (
       n_days,
@@ -679,8 +680,8 @@ if __name__ == "__main__":
       supply_duration_inp=8.0,
       concentric=True,
       len_to_diameter_ratio=30,
-      adaptive=True,
-      maximum_xdelta=0,
+      adaptive=adaptative,
+      maximum_xdelta=maximum_xdelta,
       tank_height=tank_height,
       minimum_pressure=0,
       pressure_diff=desired_pressure - minimum_pressure,
