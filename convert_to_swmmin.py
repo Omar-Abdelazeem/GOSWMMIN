@@ -29,6 +29,7 @@ def load_epanet(
         pattern: list,
         leak_fraction: float,
         n_days: int,
+        storage_initial_fullness_factor: float,
         tank_areas: Path | None = None
         ):
   
@@ -283,7 +284,10 @@ def load_epanet(
       storage_MaxDepth.columns = ['Height']
       storage_MaxDepth = storage_MaxDepth['Height'].to_list()
   else: storage_MaxDepth=[tank_height]*len(storage_ids)
-  storage_InitDepth=[0]*len(storage_ids)
+  storage_InitDepth = [storage_initial_fullness_factor*depth for depth in storage_MaxDepth] # Depth measured from the bottom of the tank up
+  logger.debug(f"Storage Elevations: {storage_elevations}")
+  logger.debug(f"Storage Init Depths: {storage_InitDepth}")
+  logger.debug(f"Storage Max Depths: {storage_MaxDepth}")
   storage_shape=["FUNCTIONAL"]*len(storage_ids)
   zeroes=['0']*len(storage_ids)    # for the other curve parameters which are not required for circular tanks
   storage_SurDepth=[0]*len(storage_ids)
@@ -386,7 +390,9 @@ def load_epanet(
       curves_x+=[0,0.01," "]
       curves_y+=[0,j*1000," "]
   # Reservoir Storage Curves
-  reservoir_volume = sum(storage_areas) * (n_days - 1 + 2)
+  # reservoir_volume = sum(storage_areas) * (n_days - 1 + 2) 
+  reservoir_volume = 5
+  logger.debug(f"Reservoir Volume: {reservoir_volume} m^3")
   for curve,head,elevation in zip(reservoir_curves,reservoir_heads.values(),reservoir_elevations):
       j=float(head)-float(elevation)
       for depth in [0,j-2,j-1,j]:
@@ -658,7 +664,10 @@ if __name__ == "__main__":
 
   # Disable adaptative discretization to reduce computational load
   maximum_xdelta = 20
-  adaptative = False                
+  adaptative = False             
+
+  # Initial fullness factor for storage tanks (households)
+  storage_initial_fullness_factor  = 0.2
 
   (
       n_days,
@@ -693,7 +702,8 @@ if __name__ == "__main__":
       n=n,
       pattern=pattern,
       leak_fraction=0.1,
-      n_days=1
+      n_days=1,
+      storage_initial_fullness_factor=storage_initial_fullness_factor
   )
 
   output_file = Path("Networks/Ismail/ismail_SWMMIN.inp")
