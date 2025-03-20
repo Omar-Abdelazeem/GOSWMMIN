@@ -86,6 +86,9 @@ DRY_ONLY         NO
 
 [CONTROLS]
 
+[INFLOWS]
+;;Node           Constituent      Time Series      Type     Mfactor  Sfactor  Baseline Pattern
+;;-------------- ---------------- ---------------- -------- -------- -------- -------- --------
 
 [CURVES]
 ;;Name           Type       X-Value    Y-Value

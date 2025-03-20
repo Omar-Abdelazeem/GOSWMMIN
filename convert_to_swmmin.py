@@ -1,3 +1,4 @@
+#%%
 import wntr
 import numpy as np      
 import pandas as pd
@@ -447,6 +448,8 @@ def load_epanet(
           time_24=time-days*len(pattern)
       else: time_24=time
       timesrs_pat+="Pattern\t"+str(time)+"\t"+str(pattern[time_24])+"\n"
+
+
   for outlet in outletdemand.iloc[:,0]:
       out_name="Outlet"+outlet[12:]
       storage_name=outletdemand.loc[outletdemand[0]==outlet,1].iloc[0]
@@ -584,34 +587,34 @@ def write_swmmin(
     if re.search("^DIMENSIONS",line):
         dimensions=linecount
     # Record the position of the phrase [JUNCTIONS] and add 3 to skip the header lines
-    if re.search('\[JUNCTIONS\]',line):
+    if re.search('\\[JUNCTIONS\\]',line):
         junctions_marker=linecount+3
     # Record the position of the phrase [OUTFALLS] and add 3 to skip the header lines
-    if re.search('\[OUTFALLS\]',line):
+    if re.search('\\[OUTFALLS\\]',line):
         outfalls_marker=linecount+3
     # Record the position of the phrase [STORAGE] and add 3 to skip the header lines
-    if re.search('\[STORAGE\]',line):
+    if re.search('\\[STORAGE\\]',line):
         storage_marker=linecount+3
     # Record the position of the phrase [CONDUITS] and add 3 to skip the header lines
-    if re.search('\[CONDUITS\]',line):
+    if re.search('\\[CONDUITS\\]',line):
         conduits_marker=linecount+3
      # Record the position of the phrase [OUTLETS] and add 3 to skip the header lines
-    if re.search('\[PUMPS\]',line):
+    if re.search('\\[PUMPS\\]',line):
         pumps_marker=linecount+3
-    if re.search('\[OUTLETS\]',line):
+    if re.search('\\[OUTLETS\\]',line):
         outlets_marker=linecount+3
      # Record the position of the phrase [XSECTIONS] and add 3 to skip the header lines
-    if re.search('\[XSECTIONS\]',line):
+    if re.search('\\[XSECTIONS\\]',line):
         xsections_marker=linecount+3
-    if re.search('\[CONTROLS\]',line):
+    if re.search('\\[CONTROLS\\]',line):
         controls_marker=linecount+1
     # Record the position of the phrase [CURVES] and add 3 to skip the header lines
-    if re.search('\[CURVES\]',line):
+    if re.search('\\[CURVES\\]',line):
         curves_marker=linecount+3
-    if re.search('\[TIMESERIES\]',line):
+    if re.search('\\[TIMESERIES\\]',line):
         timesrs_marker=linecount+3
     # Record the position of the phrase [COORDINATES] and add 3 to skip the header lines
-    if re.search('\[COORDINATES\]',line):
+    if re.search('\\[COORDINATES\\]',line):
         coords_marker=linecount+3
     # Store all lines in a list
     lines.append(line)
@@ -647,6 +650,52 @@ def write_swmmin(
       output.unlink()
   output.write_text(''.join(lines))
 
+
+def define_tank_inflow(filename:str, times:list, inflows:list):
+    '''
+    Define the inflow pattern for the supply tank
+
+    Parameters
+    ----------
+    filename : str
+        Name of the file to write the inflow pattern to
+    times : list
+        List of times in hours
+    inflows : list
+        List of inflows in LPS
+    '''
+    assert len(times) == len(inflows), "Times and inflows must have the same length"
+
+    file = open(filename, 'r')
+    filelines = file.readlines()
+    lines=[]
+    linecount=0 
+    for line in filelines:
+        if re.search(r"\[STORAGE\]",line):
+            tank_id_place = (linecount + 3)
+        if re.search(r"\[INFLOWS\]",line):
+            inflows_marker=linecount+3
+        if re.search(r"\[REPORT\]",line):
+            report_marker=linecount-1
+        linecount+=1
+        lines.append(line)
+
+    tank_id = lines[tank_id_place].split()[0] 
+    inflow_line = [f"{str(tank_id)}\tFLOW\tINFLOW\tFLOW\t1.0\t1.0\t1\n"]
+
+    inflow_pattern = [";\n"]
+    for time, inflow in zip(times, inflows):
+        inflow_pattern.append(f"INFLOW\t{str(time)}\t{str(inflow)}\n")
+
+    lines[report_marker:report_marker] = inflow_pattern
+    lines[inflows_marker:inflows_marker] = inflow_line
+
+    file.close()
+
+    with open(filename, 'w') as file:
+        file.writelines(lines)
+    
+    return filelines
 
 if __name__ == "__main__":
   network_file = Path("Networks/Ismail/ismail.inp")
@@ -731,4 +780,11 @@ if __name__ == "__main__":
       junctions_section=junctions_section
   )
 
- 
+    # Define the inflow pattern for the supply tank
+  times = np.arange(0, 24, 1)
+  inflows = [100/3600 for time in times]  ## REPLACE WITH DESIRED INFLOW PATTERN IN LPS (OR LINK IT TO YOUR SOLAR PANEL MODEL)
+  
+  logging.info(f"Assigning Tank Inflows: {output_file}")
+  a = define_tank_inflow(output_file, times, inflows)
+  
+    
