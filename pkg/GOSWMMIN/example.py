@@ -17,9 +17,14 @@ consum_pattern = '../Resources/consum_pattern.csv'
 
 # Create the SWMMIN simulation
 # Creates an 8-hr supply duration with a non-adaptive
-sim.Convert_to_SWMMIN(supply_duration= 2.0, 
+# sim.Convert_to_SWMMIN(supply_duration= 8.0, 
+#                   minimum_pressure=min_pressure, desired_pressure = des_pressure, pdw_exponent=pdw_exponent,
+#                   n_days= 1,length_to_diameter=30, solution_speed=100, q_des=q_des, tank_heights=tank_heights, 
+#                   tank_areas=tank_areas, consum_pattern=consum_pattern)
+
+sim.Convert_to_SWMMIN(supply_duration= 8.0, 
                   minimum_pressure=min_pressure, desired_pressure = des_pressure, pdw_exponent=pdw_exponent,
-                  n_days= 1,length_to_diameter=30, solution_speed=100, q_des=q_des, tank_heights=tank_heights, 
+                  n_days= 1,maximum_xdelta=100, q_des=q_des, tank_heights=tank_heights, 
                   tank_areas=tank_areas, consum_pattern=consum_pattern)
 
 #%%
@@ -30,3 +35,4 @@ sim.Run_SWMMIN()
 # Getting Pressure Results
 pressures = sim.get_pressures(specific_nodes=['DN1','DN2'])
 tank_vols, tank_heights = sim.get_tank_vols_heights(specific_nodes=['DN1','DN2'])
+# %%

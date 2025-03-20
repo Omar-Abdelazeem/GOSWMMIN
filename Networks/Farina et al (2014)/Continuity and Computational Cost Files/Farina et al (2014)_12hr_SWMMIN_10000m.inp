@@ -1,0 +1,2566 @@
+[TITLE]
+;;Project Title/Notes
+
+[OPTIONS]
+;;Option             Value
+FLOW_UNITS           LPS
+INFILTRATION         HORTON
+FLOW_ROUTING         DYNWAVE
+LINK_OFFSETS         DEPTH
+MIN_SLOPE            0
+ALLOW_PONDING        NO
+SKIP_STEADY_STATE    NO
+
+START_DATE           05/18/2022
+START_TIME           00:00:00
+REPORT_START_DATE    05/18/2022
+REPORT_START_TIME    00:00:00
+END_DATE             05/18/2022
+END_TIME             23:59:00
+SWEEP_START          01/01
+SWEEP_END            12/31
+DRY_DAYS             0
+REPORT_STEP          01:00:00
+WET_STEP             00:01:00
+DRY_STEP             00:01:00
+ROUTING_STEP         0:00:01
+RULE_STEP            00:00:00
+
+INERTIAL_DAMPING     PARTIAL
+NORMAL_FLOW_LIMITED  BOTH
+FORCE_MAIN_EQUATION  H-W
+VARIABLE_STEP        0.00
+LENGTHENING_STEP     0
+MIN_SURFAREA         0.000001
+MAX_TRIALS           20
+HEAD_TOLERANCE       0.000005
+SYS_FLOW_TOL         5
+LAT_FLOW_TOL         5
+MINIMUM_STEP         0.1
+THREADS              1
+
+[EVAPORATION]
+;;Data Source    Parameters
+;;-------------- ----------------
+CONSTANT         0.0
+DRY_ONLY         NO
+
+[JUNCTIONS]
+;;Name           Elevation  MaxDepth   InitDepth  SurDepth   Aponded
+;;-------------- ---------- ---------- ---------- ---------- ----------
+1                0.0        0          0          100        0
+2                0.0        0          0          100        0
+3                0.0        0          0          100        0
+4                0.0        0          0          100        0
+5                0.0        0          0          100        0
+6                0.0        0          0          100        0
+7                0.0        0          0          100        0
+8                0.0        0          0          100        0
+9                0.0        0          0          100        0
+10               0.0        0          0          100        0
+11               0.0        0          0          100        0
+12               0.0        0          0          100        0
+13               0.0        0          0          100        0
+14               0.0        0          0          100        0
+15               0.0        0          0          100        0
+16               0.0        0          0          100        0
+17               0.0        0          0          100        0
+18               0.0        0          0          100        0
+19               0.0        0          0          100        0
+20               0.0        0          0          100        0
+21               0.0        0          0          100        0
+22               0.0        0          0          100        0
+23               0.0        0          0          100        0
+24               0.0        0          0          100        0
+25               0.0        0          0          100        0
+26               0.0        0          0          100        0
+
+[OUTFALLS]
+;;Name           Elevation  Type       Stage Data       Gated    Route To
+;;-------------- ---------- ---------- ---------------- -------- ----------------
+Outfall1         0.0        FREE                        NO
+Outfall2         0.0        FREE                        NO
+Outfall3         0.0        FREE                        NO
+Outfall4         0.0        FREE                        NO
+Outfall5         0.0        FREE                        NO
+Outfall6         0.0        FREE                        NO
+Outfall7         0.0        FREE                        NO
+Outfall8         0.0        FREE                        NO
+Outfall9         0.0        FREE                        NO
+Outfall10        0.0        FREE                        NO
+Outfall11        0.0        FREE                        NO
+Outfall12        0.0        FREE                        NO
+Outfall13        0.0        FREE                        NO
+Outfall14        0.0        FREE                        NO
+Outfall15        0.0        FREE                        NO
+Outfall16        0.0        FREE                        NO
+Outfall17        0.0        FREE                        NO
+Outfall18        0.0        FREE                        NO
+Outfall19        0.0        FREE                        NO
+Outfall20        0.0        FREE                        NO
+Outfall21        0.0        FREE                        NO
+Outfall22        0.0        FREE                        NO
+Outfall23        0.0        FREE                        NO
+Outfall24        0.0        FREE                        NO
+Outfall25        0.0        FREE                        NO
+L_Outfall1       0.0        FREE                        NO
+L_Outfall2       0.0        FREE                        NO
+L_Outfall3       0.0        FREE                        NO
+L_Outfall4       0.0        FREE                        NO
+L_Outfall5       0.0        FREE                        NO
+L_Outfall6       0.0        FREE                        NO
+L_Outfall7       0.0        FREE                        NO
+L_Outfall8       0.0        FREE                        NO
+L_Outfall9       0.0        FREE                        NO
+L_Outfall10      0.0        FREE                        NO
+L_Outfall11      0.0        FREE                        NO
+L_Outfall12      0.0        FREE                        NO
+L_Outfall13      0.0        FREE                        NO
+L_Outfall14      0.0        FREE                        NO
+L_Outfall15      0.0        FREE                        NO
+L_Outfall16      0.0        FREE                        NO
+L_Outfall17      0.0        FREE                        NO
+L_Outfall18      0.0        FREE                        NO
+L_Outfall19      0.0        FREE                        NO
+L_Outfall20      0.0        FREE                        NO
+L_Outfall21      0.0        FREE                        NO
+L_Outfall22      0.0        FREE                        NO
+L_Outfall23      0.0        FREE                        NO
+L_Outfall24      0.0        FREE                        NO
+L_Outfall25      0.0        FREE                        NO
+
+[STORAGE]
+;;Name           Elev.    MaxDepth   InitDepth  Shape      Curve Type/Params            SurDepth  Fevap    Psi      Ksat     IMD
+;;-------------- -------- ---------- ----------- ---------- ---------------------------- --------- --------          -------- --------
+Reservoir-27     5.0      100        30.0       TABULAR    Source27                     0         0
+StorageforNode1  0.0      1          0.0        FUNCTIONAL 0          0          59.616   0         0
+StorageforNode2  0.0      1          0.0        FUNCTIONAL 0          0          7.776    0         0
+StorageforNode3  0.0      1          0.0        FUNCTIONAL 0          0          39.744   0         0
+StorageforNode4  0.0      1          0.0        FUNCTIONAL 0          0          111.024  0         0
+StorageforNode5  0.0      1          0.0        FUNCTIONAL 0          0          122.256  0         0
+StorageforNode6  0.0      1          0.0        FUNCTIONAL 0          0          361.152  0         0
+StorageforNode7  0.0      1          0.0        FUNCTIONAL 0          0          147.744  0         0
+StorageforNode8  0.0      1          0.0        FUNCTIONAL 0          0          230.256  0         0
+StorageforNode9  0.0      1          0.0        FUNCTIONAL 0          0          65.664   0         0
+StorageforNode10 0.0      1          0.0        FUNCTIONAL 0          0          37.152   0         0
+StorageforNode11 0.0      1          0.0        FUNCTIONAL 0          0          98.064   0         0
+StorageforNode12 0.0      1          0.0        FUNCTIONAL 0          0          56.592   0         0
+StorageforNode13 0.0      1          0.0        FUNCTIONAL 0          0          368.064  0         0
+StorageforNode14 0.0      1          0.0        FUNCTIONAL 0          0          38.016   0         0
+StorageforNode15 0.0      1          0.0        FUNCTIONAL 0          0          9.504    0         0
+StorageforNode16 0.0      1          0.0        FUNCTIONAL 0          0          16.848   0         0
+StorageforNode17 0.0      1          0.0        FUNCTIONAL 0          0          19.44    0         0
+StorageforNode18 0.0      1          0.0        FUNCTIONAL 0          0          121.824  0         0
+StorageforNode19 0.0      1          0.0        FUNCTIONAL 0          0          1.296    0         0
+StorageforNode20 0.0      1          0.0        FUNCTIONAL 0          0          13.392   0         0
+StorageforNode21 0.0      1          0.0        FUNCTIONAL 0          0          112.32   0         0
+StorageforNode22 0.0      1          0.0        FUNCTIONAL 0          0          44.496   0         0
+StorageforNode23 0.0      1          0.0        FUNCTIONAL 0          0          43.2     0         0
+StorageforNode24 0.0      1          0.0        FUNCTIONAL 0          0          22.896   0         0
+StorageforNode25 0.0      1          0.0        FUNCTIONAL 0          0          32.832   0         0
+
+[CONDUITS]
+;;Name           From Node        To Node          Length     Roughness  InOffset   OutOffset  InitFlow   MaxFlow
+;;-------------- ---------------- ---------------- ---------- ---------- ---------- ---------- ---------- ----------
+P-1              1                2                10.1       0.011      0.0125     0.0125     0          0
+P-2              2                3                2874.5     0.011      0.0000     0.0125     0          0
+P-3              3                4                1732.8     0.011      0.0000     0.0250     0          0
+P-4              1                16               2851.4     0.011      0.0000     0.0125     0          0
+P-5              4                5                2648.0     0.011      0.0000     0.0000     0          0
+P-6              5                7                144.5      0.011      0.0000     0.0500     0          0
+P-7              5                6                364.9      0.011      0.0000     0.0000     0          0
+P-8              7                10               817.4      0.011      0.0750     0.0000     0          0
+P-9              6                13               1269.8     0.011      0.0000     0.0250     0          0
+P-10             7                8                332.7      0.011      0.0000     0.0000     0          0
+P-11             8                11               628.3      0.011      0.0750     0.0000     0          0
+P-12             9                10               269.7      0.011      0.0000     0.0000     0          0
+P-13             11               9                241.3      0.011      0.0000     0.0000     0          0
+P-14             8                18               887.8      0.011      0.0000     0.0750     0          0
+P-15             12               14               2055.9     0.011      0.0500     0.0250     0          0
+P-16             13               12               130.9      0.011      0.0000     0.0000     0          0
+P-17             21               13               991.1      0.011      0.0250     0.0000     0          0
+P-18             14               15               6.8        0.011      0.0000     0.0000     0          0
+P-19             15               16               607.2      0.011      0.0250     0.0000     0          0
+P-20             15               17               1669.7     0.011      0.0375     0.0125     0          0
+P-21             17               16               1046.8     0.011      0.0000     0.0000     0          0
+P-22             18               21               132.1      0.011      0.0750     0.0000     0          0
+P-23             18               19               392.5      0.011      0.0000     0.0000     0          0
+P-24             19               20               154.5      0.011      0.0000     0.0000     0          0
+P-25             22               23               2469.3     0.011      0.0250     0.0000     0          0
+P-26             22               19               1593.6     0.011      0.0000     0.1000     0          0
+P-27             24               23               2567.0     0.011      0.0000     0.0375     0          0
+P-28             25               24               2337.7     0.011      0.0250     0.0125     0          0
+P-29             17               25               2452.7     0.011      0.0000     0.0000     0          0
+P-30             Reservoir-27     26               19.6       0.011      0.0000     0.0000     0          0
+P-32             20               11               490.9      0.011      0.1500     0.0000     0          0
+P-31             26               19               9.6        0.011      0.0000     0.0000     0          0
+
+[OUTLETS]
+;;Name           From Node        To Node          Offset     Type            QTable/Qcoeff    Qexpon     Gated
+;;-------------- ---------------- ---------------- ---------- --------------- ---------------- ---------- --------
+Outlet1          1                StorageforNode1  0.0625     FUNCTIONAL/DEPTH 0.436394         0.5        YES
+Outlet2          2                StorageforNode2  0.0625     FUNCTIONAL/DEPTH 0.056921         0.5        YES
+Outlet3          3                StorageforNode3  0.0750     FUNCTIONAL/DEPTH 0.29093          0.5        YES
+Outlet4          4                StorageforNode4  0.1000     FUNCTIONAL/DEPTH 0.812705         0.5        YES
+Outlet5          5                StorageforNode5  0.1000     FUNCTIONAL/DEPTH 0.894925         0.5        YES
+Outlet6          6                StorageforNode6  0.1000     FUNCTIONAL/DEPTH 2.643664         0.5        YES
+Outlet7          7                StorageforNode7  0.1500     FUNCTIONAL/DEPTH 1.081499         0.5        YES
+Outlet8          8                StorageforNode8  0.1500     FUNCTIONAL/DEPTH 1.685494         0.5        YES
+Outlet9          9                StorageforNode9  0.0750     FUNCTIONAL/DEPTH 0.480666         0.5        YES
+Outlet10         10               StorageforNode10 0.0750     FUNCTIONAL/DEPTH 0.271956         0.5        YES
+Outlet11         11               StorageforNode11 0.0750     FUNCTIONAL/DEPTH 0.717837         0.5        YES
+Outlet12         12               StorageforNode12 0.1250     FUNCTIONAL/DEPTH 0.414258         0.5        YES
+Outlet13         13               StorageforNode13 0.1250     FUNCTIONAL/DEPTH 2.694261         0.5        YES
+Outlet14         14               StorageforNode14 0.1000     FUNCTIONAL/DEPTH 0.27828          0.5        YES
+Outlet15         15               StorageforNode15 0.1000     FUNCTIONAL/DEPTH 0.06957          0.5        YES
+Outlet16         16               StorageforNode16 0.0750     FUNCTIONAL/DEPTH 0.123329         0.5        YES
+Outlet17         17               StorageforNode17 0.0750     FUNCTIONAL/DEPTH 0.142302         0.5        YES
+Outlet18         18               StorageforNode18 0.2250     FUNCTIONAL/DEPTH 0.891762         0.5        YES
+Outlet19         19               StorageforNode19 0.2250     FUNCTIONAL/DEPTH 0.009487         0.5        YES
+Outlet20         20               StorageforNode20 0.2250     FUNCTIONAL/DEPTH 0.098031         0.5        YES
+Outlet21         21               StorageforNode21 0.1500     FUNCTIONAL/DEPTH 0.822192         0.5        YES
+Outlet22         22               StorageforNode22 0.1250     FUNCTIONAL/DEPTH 0.325715         0.5        YES
+Outlet23         23               StorageforNode23 0.1000     FUNCTIONAL/DEPTH 0.316228         0.5        YES
+Outlet24         24               StorageforNode24 0.0625     FUNCTIONAL/DEPTH 0.167601         0.5        YES
+Outlet25         25               StorageforNode25 0.0750     FUNCTIONAL/DEPTH 0.240333         0.5        YES
+DemandOutlet1    StorageforNode1  Outfall1         0.0000     TABULAR/DEPTH   Demand1                     YES
+DemandOutlet2    StorageforNode2  Outfall2         0.0000     TABULAR/DEPTH   Demand2                     YES
+DemandOutlet3    StorageforNode3  Outfall3         0.0000     TABULAR/DEPTH   Demand3                     YES
+DemandOutlet4    StorageforNode4  Outfall4         0.0000     TABULAR/DEPTH   Demand4                     YES
+DemandOutlet5    StorageforNode5  Outfall5         0.0000     TABULAR/DEPTH   Demand5                     YES
+DemandOutlet6    StorageforNode6  Outfall6         0.0000     TABULAR/DEPTH   Demand6                     YES
+DemandOutlet7    StorageforNode7  Outfall7         0.0000     TABULAR/DEPTH   Demand7                     YES
+DemandOutlet8    StorageforNode8  Outfall8         0.0000     TABULAR/DEPTH   Demand8                     YES
+DemandOutlet9    StorageforNode9  Outfall9         0.0000     TABULAR/DEPTH   Demand9                     YES
+DemandOutlet10   StorageforNode10 Outfall10        0.0000     TABULAR/DEPTH   Demand10                    YES
+DemandOutlet11   StorageforNode11 Outfall11        0.0000     TABULAR/DEPTH   Demand11                    YES
+DemandOutlet12   StorageforNode12 Outfall12        0.0000     TABULAR/DEPTH   Demand12                    YES
+DemandOutlet13   StorageforNode13 Outfall13        0.0000     TABULAR/DEPTH   Demand13                    YES
+DemandOutlet14   StorageforNode14 Outfall14        0.0000     TABULAR/DEPTH   Demand14                    YES
+DemandOutlet15   StorageforNode15 Outfall15        0.0000     TABULAR/DEPTH   Demand15                    YES
+DemandOutlet16   StorageforNode16 Outfall16        0.0000     TABULAR/DEPTH   Demand16                    YES
+DemandOutlet17   StorageforNode17 Outfall17        0.0000     TABULAR/DEPTH   Demand17                    YES
+DemandOutlet18   StorageforNode18 Outfall18        0.0000     TABULAR/DEPTH   Demand18                    YES
+DemandOutlet19   StorageforNode19 Outfall19        0.0000     TABULAR/DEPTH   Demand19                    YES
+DemandOutlet20   StorageforNode20 Outfall20        0.0000     TABULAR/DEPTH   Demand20                    YES
+DemandOutlet21   StorageforNode21 Outfall21        0.0000     TABULAR/DEPTH   Demand21                    YES
+DemandOutlet22   StorageforNode22 Outfall22        0.0000     TABULAR/DEPTH   Demand22                    YES
+DemandOutlet23   StorageforNode23 Outfall23        0.0000     TABULAR/DEPTH   Demand23                    YES
+DemandOutlet24   StorageforNode24 Outfall24        0.0000     TABULAR/DEPTH   Demand24                    YES
+DemandOutlet25   StorageforNode25 Outfall25        0.0000     TABULAR/DEPTH   Demand25                    YES
+LeakforNode1     1                L_Outfall1       0.0625     FUNCTIONAL/DEPTH 0.043639         0.5        YES
+LeakforNode2     2                L_Outfall2       0.0625     FUNCTIONAL/DEPTH 0.005692         0.5        YES
+LeakforNode3     3                L_Outfall3       0.0750     FUNCTIONAL/DEPTH 0.029093         0.5        YES
+LeakforNode4     4                L_Outfall4       0.1000     FUNCTIONAL/DEPTH 0.081271         0.5        YES
+LeakforNode5     5                L_Outfall5       0.1000     FUNCTIONAL/DEPTH 0.089492         0.5        YES
+LeakforNode6     6                L_Outfall6       0.1000     FUNCTIONAL/DEPTH 0.264366         0.5        YES
+LeakforNode7     7                L_Outfall7       0.1500     FUNCTIONAL/DEPTH 0.10815          0.5        YES
+LeakforNode8     8                L_Outfall8       0.1500     FUNCTIONAL/DEPTH 0.168549         0.5        YES
+LeakforNode9     9                L_Outfall9       0.0750     FUNCTIONAL/DEPTH 0.048067         0.5        YES
+LeakforNode10    10               L_Outfall10      0.0750     FUNCTIONAL/DEPTH 0.027196         0.5        YES
+LeakforNode11    11               L_Outfall11      0.0750     FUNCTIONAL/DEPTH 0.071784         0.5        YES
+LeakforNode12    12               L_Outfall12      0.1250     FUNCTIONAL/DEPTH 0.041426         0.5        YES
+LeakforNode13    13               L_Outfall13      0.1250     FUNCTIONAL/DEPTH 0.269426         0.5        YES
+LeakforNode14    14               L_Outfall14      0.1000     FUNCTIONAL/DEPTH 0.027828         0.5        YES
+LeakforNode15    15               L_Outfall15      0.1000     FUNCTIONAL/DEPTH 0.006957         0.5        YES
+LeakforNode16    16               L_Outfall16      0.0750     FUNCTIONAL/DEPTH 0.012333         0.5        YES
+LeakforNode17    17               L_Outfall17      0.0750     FUNCTIONAL/DEPTH 0.01423          0.5        YES
+LeakforNode18    18               L_Outfall18      0.2250     FUNCTIONAL/DEPTH 0.089176         0.5        YES
+LeakforNode19    19               L_Outfall19      0.2250     FUNCTIONAL/DEPTH 0.000949         0.5        YES
+LeakforNode20    20               L_Outfall20      0.2250     FUNCTIONAL/DEPTH 0.009803         0.5        YES
+LeakforNode21    21               L_Outfall21      0.1500     FUNCTIONAL/DEPTH 0.082219         0.5        YES
+LeakforNode22    22               L_Outfall22      0.1250     FUNCTIONAL/DEPTH 0.032571         0.5        YES
+LeakforNode23    23               L_Outfall23      0.1000     FUNCTIONAL/DEPTH 0.031623         0.5        YES
+LeakforNode24    24               L_Outfall24      0.0625     FUNCTIONAL/DEPTH 0.01676          0.5        YES
+LeakforNode25    25               L_Outfall25      0.0750     FUNCTIONAL/DEPTH 0.024033         0.5        YES
+
+[XSECTIONS]
+;;Link           Shape        Geom1            Geom2      Geom3      Geom4      Barrels    Culvert
+;;-------------- ------------ ---------------- ---------- ---------- ---------- ---------- ----------
+P-1              FORCE_MAIN   0.100            130        0          0          1
+P-2              FORCE_MAIN   0.125            130        0          0          1
+P-3              FORCE_MAIN   0.150            130        0          0          1
+P-4              FORCE_MAIN   0.125            130        0          0          1
+P-5              FORCE_MAIN   0.200            130        0          0          1
+P-6              FORCE_MAIN   0.200            130        0          0          1
+P-7              FORCE_MAIN   0.200            130        0          0          1
+P-8              FORCE_MAIN   0.150            130        0          0          1
+P-9              FORCE_MAIN   0.200            130        0          0          1
+P-10             FORCE_MAIN   0.300            130        0          0          1
+P-11             FORCE_MAIN   0.150            130        0          0          1
+P-12             FORCE_MAIN   0.150            130        0          0          1
+P-13             FORCE_MAIN   0.150            130        0          0          1
+P-14             FORCE_MAIN   0.300            130        0          0          1
+P-15             FORCE_MAIN   0.150            130        0          0          1
+P-16             FORCE_MAIN   0.250            130        0          0          1
+P-17             FORCE_MAIN   0.250            130        0          0          1
+P-18             FORCE_MAIN   0.200            130        0          0          1
+P-19             FORCE_MAIN   0.150            130        0          0          1
+P-20             FORCE_MAIN   0.125            130        0          0          1
+P-21             FORCE_MAIN   0.150            130        0          0          1
+P-22             FORCE_MAIN   0.300            130        0          0          1
+P-23             FORCE_MAIN   0.450            130        0          0          1
+P-24             FORCE_MAIN   0.450            130        0          0          1
+P-25             FORCE_MAIN   0.200            130        0          0          1
+P-26             FORCE_MAIN   0.250            130        0          0          1
+P-27             FORCE_MAIN   0.125            130        0          0          1
+P-28             FORCE_MAIN   0.100            130        0          0          1
+P-29             FORCE_MAIN   0.150            130        0          0          1
+P-30             FORCE_MAIN   0.450            130        0          0          1
+P-32             FORCE_MAIN   0.150            130        0          0          1
+P-31             FORCE_MAIN   0.450            130        0          0          1
+
+[CONTROLS]
+
+
+Rule Outlet1
+IF NODE StorageforNode1 DEPTH >= 0.9
+THEN OUTLET Outlet1 SETTING = CURVE ControlOutlet1
+
+Rule Outlet2
+IF NODE StorageforNode2 DEPTH >= 0.9
+THEN OUTLET Outlet2 SETTING = CURVE ControlOutlet2
+
+Rule Outlet3
+IF NODE StorageforNode3 DEPTH >= 0.9
+THEN OUTLET Outlet3 SETTING = CURVE ControlOutlet3
+
+Rule Outlet4
+IF NODE StorageforNode4 DEPTH >= 0.9
+THEN OUTLET Outlet4 SETTING = CURVE ControlOutlet4
+
+Rule Outlet5
+IF NODE StorageforNode5 DEPTH >= 0.9
+THEN OUTLET Outlet5 SETTING = CURVE ControlOutlet5
+
+Rule Outlet6
+IF NODE StorageforNode6 DEPTH >= 0.9
+THEN OUTLET Outlet6 SETTING = CURVE ControlOutlet6
+
+Rule Outlet7
+IF NODE StorageforNode7 DEPTH >= 0.9
+THEN OUTLET Outlet7 SETTING = CURVE ControlOutlet7
+
+Rule Outlet8
+IF NODE StorageforNode8 DEPTH >= 0.9
+THEN OUTLET Outlet8 SETTING = CURVE ControlOutlet8
+
+Rule Outlet9
+IF NODE StorageforNode9 DEPTH >= 0.9
+THEN OUTLET Outlet9 SETTING = CURVE ControlOutlet9
+
+Rule Outlet10
+IF NODE StorageforNode10 DEPTH >= 0.9
+THEN OUTLET Outlet10 SETTING = CURVE ControlOutlet10
+
+Rule Outlet11
+IF NODE StorageforNode11 DEPTH >= 0.9
+THEN OUTLET Outlet11 SETTING = CURVE ControlOutlet11
+
+Rule Outlet12
+IF NODE StorageforNode12 DEPTH >= 0.9
+THEN OUTLET Outlet12 SETTING = CURVE ControlOutlet12
+
+Rule Outlet13
+IF NODE StorageforNode13 DEPTH >= 0.9
+THEN OUTLET Outlet13 SETTING = CURVE ControlOutlet13
+
+Rule Outlet14
+IF NODE StorageforNode14 DEPTH >= 0.9
+THEN OUTLET Outlet14 SETTING = CURVE ControlOutlet14
+
+Rule Outlet15
+IF NODE StorageforNode15 DEPTH >= 0.9
+THEN OUTLET Outlet15 SETTING = CURVE ControlOutlet15
+
+Rule Outlet16
+IF NODE StorageforNode16 DEPTH >= 0.9
+THEN OUTLET Outlet16 SETTING = CURVE ControlOutlet16
+
+Rule Outlet17
+IF NODE StorageforNode17 DEPTH >= 0.9
+THEN OUTLET Outlet17 SETTING = CURVE ControlOutlet17
+
+Rule Outlet18
+IF NODE StorageforNode18 DEPTH >= 0.9
+THEN OUTLET Outlet18 SETTING = CURVE ControlOutlet18
+
+Rule Outlet19
+IF NODE StorageforNode19 DEPTH >= 0.9
+THEN OUTLET Outlet19 SETTING = CURVE ControlOutlet19
+
+Rule Outlet20
+IF NODE StorageforNode20 DEPTH >= 0.9
+THEN OUTLET Outlet20 SETTING = CURVE ControlOutlet20
+
+Rule Outlet21
+IF NODE StorageforNode21 DEPTH >= 0.9
+THEN OUTLET Outlet21 SETTING = CURVE ControlOutlet21
+
+Rule Outlet22
+IF NODE StorageforNode22 DEPTH >= 0.9
+THEN OUTLET Outlet22 SETTING = CURVE ControlOutlet22
+
+Rule Outlet23
+IF NODE StorageforNode23 DEPTH >= 0.9
+THEN OUTLET Outlet23 SETTING = CURVE ControlOutlet23
+
+Rule Outlet24
+IF NODE StorageforNode24 DEPTH >= 0.9
+THEN OUTLET Outlet24 SETTING = CURVE ControlOutlet24
+
+Rule Outlet25
+IF NODE StorageforNode25 DEPTH >= 0.9
+THEN OUTLET Outlet25 SETTING = CURVE ControlOutlet25
+
+Rule STOPSUPPLY
+IF SIMULATION CLOCKTIME > 12:00
+THEN CONDUIT P-30 STATUS = CLOSED
+
+Rule STARTSUPPLY
+IF SIMULATION CLOCKTIME >= 0:00
+AND SIMULATION CLOCKTIME < 12:00
+THEN CONDUIT P-30 STATUS = OPEN
+
+Rule Patterns
+IF SIMULATION TIME > 0
+THEN OUTLET DemandOutlet1 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutlet2 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutlet3 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutlet4 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutlet5 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutlet6 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutlet7 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutlet8 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutlet9 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutlet10 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutlet11 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutlet12 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutlet13 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutlet14 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutlet15 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutlet16 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutlet17 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutlet18 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutlet19 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutlet20 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutlet21 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutlet22 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutlet23 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutlet24 SETTING = TIMESERIES Pattern
+AND OUTLET DemandOutlet25 SETTING = TIMESERIES Pattern
+
+
+
+[CURVES]
+;;Name           Type       X-Value    Y-Value
+;;-------------- ---------- ---------- ----------
+ControlOutlet1   Control    0.9        0.985953
+ControlOutlet1              0.902      0.984442
+ControlOutlet1              0.904      0.982766
+ControlOutlet1              0.906      0.980909
+ControlOutlet1              0.908      0.97885
+ControlOutlet1              0.91       0.976567
+ControlOutlet1              0.912      0.974035
+ControlOutlet1              0.914      0.971227
+ControlOutlet1              0.916      0.968113
+ControlOutlet1              0.918      0.964659
+ControlOutlet1              0.92       0.960829
+ControlOutlet1              0.922      0.956582
+ControlOutlet1              0.924      0.951871
+ControlOutlet1              0.926      0.946648
+ControlOutlet1              0.928      0.940858
+ControlOutlet1              0.93       0.934439
+ControlOutlet1              0.932      0.927326
+ControlOutlet1              0.934      0.919445
+ControlOutlet1              0.936      0.910718
+ControlOutlet1              0.938      0.901058
+ControlOutlet1              0.94       0.890372
+ControlOutlet1              0.942      0.878558
+ControlOutlet1              0.944      0.865508
+ControlOutlet1              0.946      0.851109
+ControlOutlet1              0.948      0.835238
+ControlOutlet1              0.95       0.817769
+ControlOutlet1              0.952      0.798572
+ControlOutlet1              0.954      0.777517
+ControlOutlet1              0.956      0.754473
+ControlOutlet1              0.958      0.729317
+ControlOutlet1              0.96       0.701937
+ControlOutlet1              0.962      0.672239
+ControlOutlet1              0.964      0.640154
+ControlOutlet1              0.966      0.605648
+ControlOutlet1              0.968      0.568737
+ControlOutlet1              0.97       0.529495
+ControlOutlet1              0.972      0.488069
+ControlOutlet1              0.974      0.444695
+ControlOutlet1              0.976      0.399714
+ControlOutlet1              0.978      0.353577
+ControlOutlet1              0.98       0.306863
+ControlOutlet1              0.982      0.260273
+ControlOutlet1              0.984      0.214633
+ControlOutlet1              0.986      0.170871
+ControlOutlet1              0.988      0.129996
+ControlOutlet1              0.99       0.093057
+ControlOutlet1              0.992      0.061089
+ControlOutlet1              0.994      0.035062
+ControlOutlet1              0.996      0.015812
+ControlOutlet1              0.998      0.003988
+ControlOutlet1              1.0        0.0
+;
+ControlOutlet2   Control    0.9        0.985953
+ControlOutlet2              0.902      0.984442
+ControlOutlet2              0.904      0.982766
+ControlOutlet2              0.906      0.980909
+ControlOutlet2              0.908      0.97885
+ControlOutlet2              0.91       0.976567
+ControlOutlet2              0.912      0.974035
+ControlOutlet2              0.914      0.971227
+ControlOutlet2              0.916      0.968113
+ControlOutlet2              0.918      0.964659
+ControlOutlet2              0.92       0.960829
+ControlOutlet2              0.922      0.956582
+ControlOutlet2              0.924      0.951871
+ControlOutlet2              0.926      0.946648
+ControlOutlet2              0.928      0.940858
+ControlOutlet2              0.93       0.934439
+ControlOutlet2              0.932      0.927326
+ControlOutlet2              0.934      0.919445
+ControlOutlet2              0.936      0.910718
+ControlOutlet2              0.938      0.901058
+ControlOutlet2              0.94       0.890372
+ControlOutlet2              0.942      0.878558
+ControlOutlet2              0.944      0.865508
+ControlOutlet2              0.946      0.851109
+ControlOutlet2              0.948      0.835238
+ControlOutlet2              0.95       0.817769
+ControlOutlet2              0.952      0.798572
+ControlOutlet2              0.954      0.777517
+ControlOutlet2              0.956      0.754473
+ControlOutlet2              0.958      0.729317
+ControlOutlet2              0.96       0.701937
+ControlOutlet2              0.962      0.672239
+ControlOutlet2              0.964      0.640154
+ControlOutlet2              0.966      0.605648
+ControlOutlet2              0.968      0.568737
+ControlOutlet2              0.97       0.529495
+ControlOutlet2              0.972      0.488069
+ControlOutlet2              0.974      0.444695
+ControlOutlet2              0.976      0.399714
+ControlOutlet2              0.978      0.353577
+ControlOutlet2              0.98       0.306863
+ControlOutlet2              0.982      0.260273
+ControlOutlet2              0.984      0.214633
+ControlOutlet2              0.986      0.170871
+ControlOutlet2              0.988      0.129996
+ControlOutlet2              0.99       0.093057
+ControlOutlet2              0.992      0.061089
+ControlOutlet2              0.994      0.035062
+ControlOutlet2              0.996      0.015812
+ControlOutlet2              0.998      0.003988
+ControlOutlet2              1.0        0.0
+;
+ControlOutlet3   Control    0.9        0.985953
+ControlOutlet3              0.902      0.984442
+ControlOutlet3              0.904      0.982766
+ControlOutlet3              0.906      0.980909
+ControlOutlet3              0.908      0.97885
+ControlOutlet3              0.91       0.976567
+ControlOutlet3              0.912      0.974035
+ControlOutlet3              0.914      0.971227
+ControlOutlet3              0.916      0.968113
+ControlOutlet3              0.918      0.964659
+ControlOutlet3              0.92       0.960829
+ControlOutlet3              0.922      0.956582
+ControlOutlet3              0.924      0.951871
+ControlOutlet3              0.926      0.946648
+ControlOutlet3              0.928      0.940858
+ControlOutlet3              0.93       0.934439
+ControlOutlet3              0.932      0.927326
+ControlOutlet3              0.934      0.919445
+ControlOutlet3              0.936      0.910718
+ControlOutlet3              0.938      0.901058
+ControlOutlet3              0.94       0.890372
+ControlOutlet3              0.942      0.878558
+ControlOutlet3              0.944      0.865508
+ControlOutlet3              0.946      0.851109
+ControlOutlet3              0.948      0.835238
+ControlOutlet3              0.95       0.817769
+ControlOutlet3              0.952      0.798572
+ControlOutlet3              0.954      0.777517
+ControlOutlet3              0.956      0.754473
+ControlOutlet3              0.958      0.729317
+ControlOutlet3              0.96       0.701937
+ControlOutlet3              0.962      0.672239
+ControlOutlet3              0.964      0.640154
+ControlOutlet3              0.966      0.605648
+ControlOutlet3              0.968      0.568737
+ControlOutlet3              0.97       0.529495
+ControlOutlet3              0.972      0.488069
+ControlOutlet3              0.974      0.444695
+ControlOutlet3              0.976      0.399714
+ControlOutlet3              0.978      0.353577
+ControlOutlet3              0.98       0.306863
+ControlOutlet3              0.982      0.260273
+ControlOutlet3              0.984      0.214633
+ControlOutlet3              0.986      0.170871
+ControlOutlet3              0.988      0.129996
+ControlOutlet3              0.99       0.093057
+ControlOutlet3              0.992      0.061089
+ControlOutlet3              0.994      0.035062
+ControlOutlet3              0.996      0.015812
+ControlOutlet3              0.998      0.003988
+ControlOutlet3              1.0        0.0
+;
+ControlOutlet4   Control    0.9        0.985953
+ControlOutlet4              0.902      0.984442
+ControlOutlet4              0.904      0.982766
+ControlOutlet4              0.906      0.980909
+ControlOutlet4              0.908      0.97885
+ControlOutlet4              0.91       0.976567
+ControlOutlet4              0.912      0.974035
+ControlOutlet4              0.914      0.971227
+ControlOutlet4              0.916      0.968113
+ControlOutlet4              0.918      0.964659
+ControlOutlet4              0.92       0.960829
+ControlOutlet4              0.922      0.956582
+ControlOutlet4              0.924      0.951871
+ControlOutlet4              0.926      0.946648
+ControlOutlet4              0.928      0.940858
+ControlOutlet4              0.93       0.934439
+ControlOutlet4              0.932      0.927326
+ControlOutlet4              0.934      0.919445
+ControlOutlet4              0.936      0.910718
+ControlOutlet4              0.938      0.901058
+ControlOutlet4              0.94       0.890372
+ControlOutlet4              0.942      0.878558
+ControlOutlet4              0.944      0.865508
+ControlOutlet4              0.946      0.851109
+ControlOutlet4              0.948      0.835238
+ControlOutlet4              0.95       0.817769
+ControlOutlet4              0.952      0.798572
+ControlOutlet4              0.954      0.777517
+ControlOutlet4              0.956      0.754473
+ControlOutlet4              0.958      0.729317
+ControlOutlet4              0.96       0.701937
+ControlOutlet4              0.962      0.672239
+ControlOutlet4              0.964      0.640154
+ControlOutlet4              0.966      0.605648
+ControlOutlet4              0.968      0.568737
+ControlOutlet4              0.97       0.529495
+ControlOutlet4              0.972      0.488069
+ControlOutlet4              0.974      0.444695
+ControlOutlet4              0.976      0.399714
+ControlOutlet4              0.978      0.353577
+ControlOutlet4              0.98       0.306863
+ControlOutlet4              0.982      0.260273
+ControlOutlet4              0.984      0.214633
+ControlOutlet4              0.986      0.170871
+ControlOutlet4              0.988      0.129996
+ControlOutlet4              0.99       0.093057
+ControlOutlet4              0.992      0.061089
+ControlOutlet4              0.994      0.035062
+ControlOutlet4              0.996      0.015812
+ControlOutlet4              0.998      0.003988
+ControlOutlet4              1.0        0.0
+;
+ControlOutlet5   Control    0.9        0.985953
+ControlOutlet5              0.902      0.984442
+ControlOutlet5              0.904      0.982766
+ControlOutlet5              0.906      0.980909
+ControlOutlet5              0.908      0.97885
+ControlOutlet5              0.91       0.976567
+ControlOutlet5              0.912      0.974035
+ControlOutlet5              0.914      0.971227
+ControlOutlet5              0.916      0.968113
+ControlOutlet5              0.918      0.964659
+ControlOutlet5              0.92       0.960829
+ControlOutlet5              0.922      0.956582
+ControlOutlet5              0.924      0.951871
+ControlOutlet5              0.926      0.946648
+ControlOutlet5              0.928      0.940858
+ControlOutlet5              0.93       0.934439
+ControlOutlet5              0.932      0.927326
+ControlOutlet5              0.934      0.919445
+ControlOutlet5              0.936      0.910718
+ControlOutlet5              0.938      0.901058
+ControlOutlet5              0.94       0.890372
+ControlOutlet5              0.942      0.878558
+ControlOutlet5              0.944      0.865508
+ControlOutlet5              0.946      0.851109
+ControlOutlet5              0.948      0.835238
+ControlOutlet5              0.95       0.817769
+ControlOutlet5              0.952      0.798572
+ControlOutlet5              0.954      0.777517
+ControlOutlet5              0.956      0.754473
+ControlOutlet5              0.958      0.729317
+ControlOutlet5              0.96       0.701937
+ControlOutlet5              0.962      0.672239
+ControlOutlet5              0.964      0.640154
+ControlOutlet5              0.966      0.605648
+ControlOutlet5              0.968      0.568737
+ControlOutlet5              0.97       0.529495
+ControlOutlet5              0.972      0.488069
+ControlOutlet5              0.974      0.444695
+ControlOutlet5              0.976      0.399714
+ControlOutlet5              0.978      0.353577
+ControlOutlet5              0.98       0.306863
+ControlOutlet5              0.982      0.260273
+ControlOutlet5              0.984      0.214633
+ControlOutlet5              0.986      0.170871
+ControlOutlet5              0.988      0.129996
+ControlOutlet5              0.99       0.093057
+ControlOutlet5              0.992      0.061089
+ControlOutlet5              0.994      0.035062
+ControlOutlet5              0.996      0.015812
+ControlOutlet5              0.998      0.003988
+ControlOutlet5              1.0        0.0
+;
+ControlOutlet6   Control    0.9        0.985953
+ControlOutlet6              0.902      0.984442
+ControlOutlet6              0.904      0.982766
+ControlOutlet6              0.906      0.980909
+ControlOutlet6              0.908      0.97885
+ControlOutlet6              0.91       0.976567
+ControlOutlet6              0.912      0.974035
+ControlOutlet6              0.914      0.971227
+ControlOutlet6              0.916      0.968113
+ControlOutlet6              0.918      0.964659
+ControlOutlet6              0.92       0.960829
+ControlOutlet6              0.922      0.956582
+ControlOutlet6              0.924      0.951871
+ControlOutlet6              0.926      0.946648
+ControlOutlet6              0.928      0.940858
+ControlOutlet6              0.93       0.934439
+ControlOutlet6              0.932      0.927326
+ControlOutlet6              0.934      0.919445
+ControlOutlet6              0.936      0.910718
+ControlOutlet6              0.938      0.901058
+ControlOutlet6              0.94       0.890372
+ControlOutlet6              0.942      0.878558
+ControlOutlet6              0.944      0.865508
+ControlOutlet6              0.946      0.851109
+ControlOutlet6              0.948      0.835238
+ControlOutlet6              0.95       0.817769
+ControlOutlet6              0.952      0.798572
+ControlOutlet6              0.954      0.777517
+ControlOutlet6              0.956      0.754473
+ControlOutlet6              0.958      0.729317
+ControlOutlet6              0.96       0.701937
+ControlOutlet6              0.962      0.672239
+ControlOutlet6              0.964      0.640154
+ControlOutlet6              0.966      0.605648
+ControlOutlet6              0.968      0.568737
+ControlOutlet6              0.97       0.529495
+ControlOutlet6              0.972      0.488069
+ControlOutlet6              0.974      0.444695
+ControlOutlet6              0.976      0.399714
+ControlOutlet6              0.978      0.353577
+ControlOutlet6              0.98       0.306863
+ControlOutlet6              0.982      0.260273
+ControlOutlet6              0.984      0.214633
+ControlOutlet6              0.986      0.170871
+ControlOutlet6              0.988      0.129996
+ControlOutlet6              0.99       0.093057
+ControlOutlet6              0.992      0.061089
+ControlOutlet6              0.994      0.035062
+ControlOutlet6              0.996      0.015812
+ControlOutlet6              0.998      0.003988
+ControlOutlet6              1.0        0.0
+;
+ControlOutlet7   Control    0.9        0.985953
+ControlOutlet7              0.902      0.984442
+ControlOutlet7              0.904      0.982766
+ControlOutlet7              0.906      0.980909
+ControlOutlet7              0.908      0.97885
+ControlOutlet7              0.91       0.976567
+ControlOutlet7              0.912      0.974035
+ControlOutlet7              0.914      0.971227
+ControlOutlet7              0.916      0.968113
+ControlOutlet7              0.918      0.964659
+ControlOutlet7              0.92       0.960829
+ControlOutlet7              0.922      0.956582
+ControlOutlet7              0.924      0.951871
+ControlOutlet7              0.926      0.946648
+ControlOutlet7              0.928      0.940858
+ControlOutlet7              0.93       0.934439
+ControlOutlet7              0.932      0.927326
+ControlOutlet7              0.934      0.919445
+ControlOutlet7              0.936      0.910718
+ControlOutlet7              0.938      0.901058
+ControlOutlet7              0.94       0.890372
+ControlOutlet7              0.942      0.878558
+ControlOutlet7              0.944      0.865508
+ControlOutlet7              0.946      0.851109
+ControlOutlet7              0.948      0.835238
+ControlOutlet7              0.95       0.817769
+ControlOutlet7              0.952      0.798572
+ControlOutlet7              0.954      0.777517
+ControlOutlet7              0.956      0.754473
+ControlOutlet7              0.958      0.729317
+ControlOutlet7              0.96       0.701937
+ControlOutlet7              0.962      0.672239
+ControlOutlet7              0.964      0.640154
+ControlOutlet7              0.966      0.605648
+ControlOutlet7              0.968      0.568737
+ControlOutlet7              0.97       0.529495
+ControlOutlet7              0.972      0.488069
+ControlOutlet7              0.974      0.444695
+ControlOutlet7              0.976      0.399714
+ControlOutlet7              0.978      0.353577
+ControlOutlet7              0.98       0.306863
+ControlOutlet7              0.982      0.260273
+ControlOutlet7              0.984      0.214633
+ControlOutlet7              0.986      0.170871
+ControlOutlet7              0.988      0.129996
+ControlOutlet7              0.99       0.093057
+ControlOutlet7              0.992      0.061089
+ControlOutlet7              0.994      0.035062
+ControlOutlet7              0.996      0.015812
+ControlOutlet7              0.998      0.003988
+ControlOutlet7              1.0        0.0
+;
+ControlOutlet8   Control    0.9        0.985953
+ControlOutlet8              0.902      0.984442
+ControlOutlet8              0.904      0.982766
+ControlOutlet8              0.906      0.980909
+ControlOutlet8              0.908      0.97885
+ControlOutlet8              0.91       0.976567
+ControlOutlet8              0.912      0.974035
+ControlOutlet8              0.914      0.971227
+ControlOutlet8              0.916      0.968113
+ControlOutlet8              0.918      0.964659
+ControlOutlet8              0.92       0.960829
+ControlOutlet8              0.922      0.956582
+ControlOutlet8              0.924      0.951871
+ControlOutlet8              0.926      0.946648
+ControlOutlet8              0.928      0.940858
+ControlOutlet8              0.93       0.934439
+ControlOutlet8              0.932      0.927326
+ControlOutlet8              0.934      0.919445
+ControlOutlet8              0.936      0.910718
+ControlOutlet8              0.938      0.901058
+ControlOutlet8              0.94       0.890372
+ControlOutlet8              0.942      0.878558
+ControlOutlet8              0.944      0.865508
+ControlOutlet8              0.946      0.851109
+ControlOutlet8              0.948      0.835238
+ControlOutlet8              0.95       0.817769
+ControlOutlet8              0.952      0.798572
+ControlOutlet8              0.954      0.777517
+ControlOutlet8              0.956      0.754473
+ControlOutlet8              0.958      0.729317
+ControlOutlet8              0.96       0.701937
+ControlOutlet8              0.962      0.672239
+ControlOutlet8              0.964      0.640154
+ControlOutlet8              0.966      0.605648
+ControlOutlet8              0.968      0.568737
+ControlOutlet8              0.97       0.529495
+ControlOutlet8              0.972      0.488069
+ControlOutlet8              0.974      0.444695
+ControlOutlet8              0.976      0.399714
+ControlOutlet8              0.978      0.353577
+ControlOutlet8              0.98       0.306863
+ControlOutlet8              0.982      0.260273
+ControlOutlet8              0.984      0.214633
+ControlOutlet8              0.986      0.170871
+ControlOutlet8              0.988      0.129996
+ControlOutlet8              0.99       0.093057
+ControlOutlet8              0.992      0.061089
+ControlOutlet8              0.994      0.035062
+ControlOutlet8              0.996      0.015812
+ControlOutlet8              0.998      0.003988
+ControlOutlet8              1.0        0.0
+;
+ControlOutlet9   Control    0.9        0.985953
+ControlOutlet9              0.902      0.984442
+ControlOutlet9              0.904      0.982766
+ControlOutlet9              0.906      0.980909
+ControlOutlet9              0.908      0.97885
+ControlOutlet9              0.91       0.976567
+ControlOutlet9              0.912      0.974035
+ControlOutlet9              0.914      0.971227
+ControlOutlet9              0.916      0.968113
+ControlOutlet9              0.918      0.964659
+ControlOutlet9              0.92       0.960829
+ControlOutlet9              0.922      0.956582
+ControlOutlet9              0.924      0.951871
+ControlOutlet9              0.926      0.946648
+ControlOutlet9              0.928      0.940858
+ControlOutlet9              0.93       0.934439
+ControlOutlet9              0.932      0.927326
+ControlOutlet9              0.934      0.919445
+ControlOutlet9              0.936      0.910718
+ControlOutlet9              0.938      0.901058
+ControlOutlet9              0.94       0.890372
+ControlOutlet9              0.942      0.878558
+ControlOutlet9              0.944      0.865508
+ControlOutlet9              0.946      0.851109
+ControlOutlet9              0.948      0.835238
+ControlOutlet9              0.95       0.817769
+ControlOutlet9              0.952      0.798572
+ControlOutlet9              0.954      0.777517
+ControlOutlet9              0.956      0.754473
+ControlOutlet9              0.958      0.729317
+ControlOutlet9              0.96       0.701937
+ControlOutlet9              0.962      0.672239
+ControlOutlet9              0.964      0.640154
+ControlOutlet9              0.966      0.605648
+ControlOutlet9              0.968      0.568737
+ControlOutlet9              0.97       0.529495
+ControlOutlet9              0.972      0.488069
+ControlOutlet9              0.974      0.444695
+ControlOutlet9              0.976      0.399714
+ControlOutlet9              0.978      0.353577
+ControlOutlet9              0.98       0.306863
+ControlOutlet9              0.982      0.260273
+ControlOutlet9              0.984      0.214633
+ControlOutlet9              0.986      0.170871
+ControlOutlet9              0.988      0.129996
+ControlOutlet9              0.99       0.093057
+ControlOutlet9              0.992      0.061089
+ControlOutlet9              0.994      0.035062
+ControlOutlet9              0.996      0.015812
+ControlOutlet9              0.998      0.003988
+ControlOutlet9              1.0        0.0
+;
+ControlOutlet10  Control    0.9        0.985953
+ControlOutlet10             0.902      0.984442
+ControlOutlet10             0.904      0.982766
+ControlOutlet10             0.906      0.980909
+ControlOutlet10             0.908      0.97885
+ControlOutlet10             0.91       0.976567
+ControlOutlet10             0.912      0.974035
+ControlOutlet10             0.914      0.971227
+ControlOutlet10             0.916      0.968113
+ControlOutlet10             0.918      0.964659
+ControlOutlet10             0.92       0.960829
+ControlOutlet10             0.922      0.956582
+ControlOutlet10             0.924      0.951871
+ControlOutlet10             0.926      0.946648
+ControlOutlet10             0.928      0.940858
+ControlOutlet10             0.93       0.934439
+ControlOutlet10             0.932      0.927326
+ControlOutlet10             0.934      0.919445
+ControlOutlet10             0.936      0.910718
+ControlOutlet10             0.938      0.901058
+ControlOutlet10             0.94       0.890372
+ControlOutlet10             0.942      0.878558
+ControlOutlet10             0.944      0.865508
+ControlOutlet10             0.946      0.851109
+ControlOutlet10             0.948      0.835238
+ControlOutlet10             0.95       0.817769
+ControlOutlet10             0.952      0.798572
+ControlOutlet10             0.954      0.777517
+ControlOutlet10             0.956      0.754473
+ControlOutlet10             0.958      0.729317
+ControlOutlet10             0.96       0.701937
+ControlOutlet10             0.962      0.672239
+ControlOutlet10             0.964      0.640154
+ControlOutlet10             0.966      0.605648
+ControlOutlet10             0.968      0.568737
+ControlOutlet10             0.97       0.529495
+ControlOutlet10             0.972      0.488069
+ControlOutlet10             0.974      0.444695
+ControlOutlet10             0.976      0.399714
+ControlOutlet10             0.978      0.353577
+ControlOutlet10             0.98       0.306863
+ControlOutlet10             0.982      0.260273
+ControlOutlet10             0.984      0.214633
+ControlOutlet10             0.986      0.170871
+ControlOutlet10             0.988      0.129996
+ControlOutlet10             0.99       0.093057
+ControlOutlet10             0.992      0.061089
+ControlOutlet10             0.994      0.035062
+ControlOutlet10             0.996      0.015812
+ControlOutlet10             0.998      0.003988
+ControlOutlet10             1.0        0.0
+;
+ControlOutlet11  Control    0.9        0.985953
+ControlOutlet11             0.902      0.984442
+ControlOutlet11             0.904      0.982766
+ControlOutlet11             0.906      0.980909
+ControlOutlet11             0.908      0.97885
+ControlOutlet11             0.91       0.976567
+ControlOutlet11             0.912      0.974035
+ControlOutlet11             0.914      0.971227
+ControlOutlet11             0.916      0.968113
+ControlOutlet11             0.918      0.964659
+ControlOutlet11             0.92       0.960829
+ControlOutlet11             0.922      0.956582
+ControlOutlet11             0.924      0.951871
+ControlOutlet11             0.926      0.946648
+ControlOutlet11             0.928      0.940858
+ControlOutlet11             0.93       0.934439
+ControlOutlet11             0.932      0.927326
+ControlOutlet11             0.934      0.919445
+ControlOutlet11             0.936      0.910718
+ControlOutlet11             0.938      0.901058
+ControlOutlet11             0.94       0.890372
+ControlOutlet11             0.942      0.878558
+ControlOutlet11             0.944      0.865508
+ControlOutlet11             0.946      0.851109
+ControlOutlet11             0.948      0.835238
+ControlOutlet11             0.95       0.817769
+ControlOutlet11             0.952      0.798572
+ControlOutlet11             0.954      0.777517
+ControlOutlet11             0.956      0.754473
+ControlOutlet11             0.958      0.729317
+ControlOutlet11             0.96       0.701937
+ControlOutlet11             0.962      0.672239
+ControlOutlet11             0.964      0.640154
+ControlOutlet11             0.966      0.605648
+ControlOutlet11             0.968      0.568737
+ControlOutlet11             0.97       0.529495
+ControlOutlet11             0.972      0.488069
+ControlOutlet11             0.974      0.444695
+ControlOutlet11             0.976      0.399714
+ControlOutlet11             0.978      0.353577
+ControlOutlet11             0.98       0.306863
+ControlOutlet11             0.982      0.260273
+ControlOutlet11             0.984      0.214633
+ControlOutlet11             0.986      0.170871
+ControlOutlet11             0.988      0.129996
+ControlOutlet11             0.99       0.093057
+ControlOutlet11             0.992      0.061089
+ControlOutlet11             0.994      0.035062
+ControlOutlet11             0.996      0.015812
+ControlOutlet11             0.998      0.003988
+ControlOutlet11             1.0        0.0
+;
+ControlOutlet12  Control    0.9        0.985953
+ControlOutlet12             0.902      0.984442
+ControlOutlet12             0.904      0.982766
+ControlOutlet12             0.906      0.980909
+ControlOutlet12             0.908      0.97885
+ControlOutlet12             0.91       0.976567
+ControlOutlet12             0.912      0.974035
+ControlOutlet12             0.914      0.971227
+ControlOutlet12             0.916      0.968113
+ControlOutlet12             0.918      0.964659
+ControlOutlet12             0.92       0.960829
+ControlOutlet12             0.922      0.956582
+ControlOutlet12             0.924      0.951871
+ControlOutlet12             0.926      0.946648
+ControlOutlet12             0.928      0.940858
+ControlOutlet12             0.93       0.934439
+ControlOutlet12             0.932      0.927326
+ControlOutlet12             0.934      0.919445
+ControlOutlet12             0.936      0.910718
+ControlOutlet12             0.938      0.901058
+ControlOutlet12             0.94       0.890372
+ControlOutlet12             0.942      0.878558
+ControlOutlet12             0.944      0.865508
+ControlOutlet12             0.946      0.851109
+ControlOutlet12             0.948      0.835238
+ControlOutlet12             0.95       0.817769
+ControlOutlet12             0.952      0.798572
+ControlOutlet12             0.954      0.777517
+ControlOutlet12             0.956      0.754473
+ControlOutlet12             0.958      0.729317
+ControlOutlet12             0.96       0.701937
+ControlOutlet12             0.962      0.672239
+ControlOutlet12             0.964      0.640154
+ControlOutlet12             0.966      0.605648
+ControlOutlet12             0.968      0.568737
+ControlOutlet12             0.97       0.529495
+ControlOutlet12             0.972      0.488069
+ControlOutlet12             0.974      0.444695
+ControlOutlet12             0.976      0.399714
+ControlOutlet12             0.978      0.353577
+ControlOutlet12             0.98       0.306863
+ControlOutlet12             0.982      0.260273
+ControlOutlet12             0.984      0.214633
+ControlOutlet12             0.986      0.170871
+ControlOutlet12             0.988      0.129996
+ControlOutlet12             0.99       0.093057
+ControlOutlet12             0.992      0.061089
+ControlOutlet12             0.994      0.035062
+ControlOutlet12             0.996      0.015812
+ControlOutlet12             0.998      0.003988
+ControlOutlet12             1.0        0.0
+;
+ControlOutlet13  Control    0.9        0.985953
+ControlOutlet13             0.902      0.984442
+ControlOutlet13             0.904      0.982766
+ControlOutlet13             0.906      0.980909
+ControlOutlet13             0.908      0.97885
+ControlOutlet13             0.91       0.976567
+ControlOutlet13             0.912      0.974035
+ControlOutlet13             0.914      0.971227
+ControlOutlet13             0.916      0.968113
+ControlOutlet13             0.918      0.964659
+ControlOutlet13             0.92       0.960829
+ControlOutlet13             0.922      0.956582
+ControlOutlet13             0.924      0.951871
+ControlOutlet13             0.926      0.946648
+ControlOutlet13             0.928      0.940858
+ControlOutlet13             0.93       0.934439
+ControlOutlet13             0.932      0.927326
+ControlOutlet13             0.934      0.919445
+ControlOutlet13             0.936      0.910718
+ControlOutlet13             0.938      0.901058
+ControlOutlet13             0.94       0.890372
+ControlOutlet13             0.942      0.878558
+ControlOutlet13             0.944      0.865508
+ControlOutlet13             0.946      0.851109
+ControlOutlet13             0.948      0.835238
+ControlOutlet13             0.95       0.817769
+ControlOutlet13             0.952      0.798572
+ControlOutlet13             0.954      0.777517
+ControlOutlet13             0.956      0.754473
+ControlOutlet13             0.958      0.729317
+ControlOutlet13             0.96       0.701937
+ControlOutlet13             0.962      0.672239
+ControlOutlet13             0.964      0.640154
+ControlOutlet13             0.966      0.605648
+ControlOutlet13             0.968      0.568737
+ControlOutlet13             0.97       0.529495
+ControlOutlet13             0.972      0.488069
+ControlOutlet13             0.974      0.444695
+ControlOutlet13             0.976      0.399714
+ControlOutlet13             0.978      0.353577
+ControlOutlet13             0.98       0.306863
+ControlOutlet13             0.982      0.260273
+ControlOutlet13             0.984      0.214633
+ControlOutlet13             0.986      0.170871
+ControlOutlet13             0.988      0.129996
+ControlOutlet13             0.99       0.093057
+ControlOutlet13             0.992      0.061089
+ControlOutlet13             0.994      0.035062
+ControlOutlet13             0.996      0.015812
+ControlOutlet13             0.998      0.003988
+ControlOutlet13             1.0        0.0
+;
+ControlOutlet14  Control    0.9        0.985953
+ControlOutlet14             0.902      0.984442
+ControlOutlet14             0.904      0.982766
+ControlOutlet14             0.906      0.980909
+ControlOutlet14             0.908      0.97885
+ControlOutlet14             0.91       0.976567
+ControlOutlet14             0.912      0.974035
+ControlOutlet14             0.914      0.971227
+ControlOutlet14             0.916      0.968113
+ControlOutlet14             0.918      0.964659
+ControlOutlet14             0.92       0.960829
+ControlOutlet14             0.922      0.956582
+ControlOutlet14             0.924      0.951871
+ControlOutlet14             0.926      0.946648
+ControlOutlet14             0.928      0.940858
+ControlOutlet14             0.93       0.934439
+ControlOutlet14             0.932      0.927326
+ControlOutlet14             0.934      0.919445
+ControlOutlet14             0.936      0.910718
+ControlOutlet14             0.938      0.901058
+ControlOutlet14             0.94       0.890372
+ControlOutlet14             0.942      0.878558
+ControlOutlet14             0.944      0.865508
+ControlOutlet14             0.946      0.851109
+ControlOutlet14             0.948      0.835238
+ControlOutlet14             0.95       0.817769
+ControlOutlet14             0.952      0.798572
+ControlOutlet14             0.954      0.777517
+ControlOutlet14             0.956      0.754473
+ControlOutlet14             0.958      0.729317
+ControlOutlet14             0.96       0.701937
+ControlOutlet14             0.962      0.672239
+ControlOutlet14             0.964      0.640154
+ControlOutlet14             0.966      0.605648
+ControlOutlet14             0.968      0.568737
+ControlOutlet14             0.97       0.529495
+ControlOutlet14             0.972      0.488069
+ControlOutlet14             0.974      0.444695
+ControlOutlet14             0.976      0.399714
+ControlOutlet14             0.978      0.353577
+ControlOutlet14             0.98       0.306863
+ControlOutlet14             0.982      0.260273
+ControlOutlet14             0.984      0.214633
+ControlOutlet14             0.986      0.170871
+ControlOutlet14             0.988      0.129996
+ControlOutlet14             0.99       0.093057
+ControlOutlet14             0.992      0.061089
+ControlOutlet14             0.994      0.035062
+ControlOutlet14             0.996      0.015812
+ControlOutlet14             0.998      0.003988
+ControlOutlet14             1.0        0.0
+;
+ControlOutlet15  Control    0.9        0.985953
+ControlOutlet15             0.902      0.984442
+ControlOutlet15             0.904      0.982766
+ControlOutlet15             0.906      0.980909
+ControlOutlet15             0.908      0.97885
+ControlOutlet15             0.91       0.976567
+ControlOutlet15             0.912      0.974035
+ControlOutlet15             0.914      0.971227
+ControlOutlet15             0.916      0.968113
+ControlOutlet15             0.918      0.964659
+ControlOutlet15             0.92       0.960829
+ControlOutlet15             0.922      0.956582
+ControlOutlet15             0.924      0.951871
+ControlOutlet15             0.926      0.946648
+ControlOutlet15             0.928      0.940858
+ControlOutlet15             0.93       0.934439
+ControlOutlet15             0.932      0.927326
+ControlOutlet15             0.934      0.919445
+ControlOutlet15             0.936      0.910718
+ControlOutlet15             0.938      0.901058
+ControlOutlet15             0.94       0.890372
+ControlOutlet15             0.942      0.878558
+ControlOutlet15             0.944      0.865508
+ControlOutlet15             0.946      0.851109
+ControlOutlet15             0.948      0.835238
+ControlOutlet15             0.95       0.817769
+ControlOutlet15             0.952      0.798572
+ControlOutlet15             0.954      0.777517
+ControlOutlet15             0.956      0.754473
+ControlOutlet15             0.958      0.729317
+ControlOutlet15             0.96       0.701937
+ControlOutlet15             0.962      0.672239
+ControlOutlet15             0.964      0.640154
+ControlOutlet15             0.966      0.605648
+ControlOutlet15             0.968      0.568737
+ControlOutlet15             0.97       0.529495
+ControlOutlet15             0.972      0.488069
+ControlOutlet15             0.974      0.444695
+ControlOutlet15             0.976      0.399714
+ControlOutlet15             0.978      0.353577
+ControlOutlet15             0.98       0.306863
+ControlOutlet15             0.982      0.260273
+ControlOutlet15             0.984      0.214633
+ControlOutlet15             0.986      0.170871
+ControlOutlet15             0.988      0.129996
+ControlOutlet15             0.99       0.093057
+ControlOutlet15             0.992      0.061089
+ControlOutlet15             0.994      0.035062
+ControlOutlet15             0.996      0.015812
+ControlOutlet15             0.998      0.003988
+ControlOutlet15             1.0        0.0
+;
+ControlOutlet16  Control    0.9        0.985953
+ControlOutlet16             0.902      0.984442
+ControlOutlet16             0.904      0.982766
+ControlOutlet16             0.906      0.980909
+ControlOutlet16             0.908      0.97885
+ControlOutlet16             0.91       0.976567
+ControlOutlet16             0.912      0.974035
+ControlOutlet16             0.914      0.971227
+ControlOutlet16             0.916      0.968113
+ControlOutlet16             0.918      0.964659
+ControlOutlet16             0.92       0.960829
+ControlOutlet16             0.922      0.956582
+ControlOutlet16             0.924      0.951871
+ControlOutlet16             0.926      0.946648
+ControlOutlet16             0.928      0.940858
+ControlOutlet16             0.93       0.934439
+ControlOutlet16             0.932      0.927326
+ControlOutlet16             0.934      0.919445
+ControlOutlet16             0.936      0.910718
+ControlOutlet16             0.938      0.901058
+ControlOutlet16             0.94       0.890372
+ControlOutlet16             0.942      0.878558
+ControlOutlet16             0.944      0.865508
+ControlOutlet16             0.946      0.851109
+ControlOutlet16             0.948      0.835238
+ControlOutlet16             0.95       0.817769
+ControlOutlet16             0.952      0.798572
+ControlOutlet16             0.954      0.777517
+ControlOutlet16             0.956      0.754473
+ControlOutlet16             0.958      0.729317
+ControlOutlet16             0.96       0.701937
+ControlOutlet16             0.962      0.672239
+ControlOutlet16             0.964      0.640154
+ControlOutlet16             0.966      0.605648
+ControlOutlet16             0.968      0.568737
+ControlOutlet16             0.97       0.529495
+ControlOutlet16             0.972      0.488069
+ControlOutlet16             0.974      0.444695
+ControlOutlet16             0.976      0.399714
+ControlOutlet16             0.978      0.353577
+ControlOutlet16             0.98       0.306863
+ControlOutlet16             0.982      0.260273
+ControlOutlet16             0.984      0.214633
+ControlOutlet16             0.986      0.170871
+ControlOutlet16             0.988      0.129996
+ControlOutlet16             0.99       0.093057
+ControlOutlet16             0.992      0.061089
+ControlOutlet16             0.994      0.035062
+ControlOutlet16             0.996      0.015812
+ControlOutlet16             0.998      0.003988
+ControlOutlet16             1.0        0.0
+;
+ControlOutlet17  Control    0.9        0.985953
+ControlOutlet17             0.902      0.984442
+ControlOutlet17             0.904      0.982766
+ControlOutlet17             0.906      0.980909
+ControlOutlet17             0.908      0.97885
+ControlOutlet17             0.91       0.976567
+ControlOutlet17             0.912      0.974035
+ControlOutlet17             0.914      0.971227
+ControlOutlet17             0.916      0.968113
+ControlOutlet17             0.918      0.964659
+ControlOutlet17             0.92       0.960829
+ControlOutlet17             0.922      0.956582
+ControlOutlet17             0.924      0.951871
+ControlOutlet17             0.926      0.946648
+ControlOutlet17             0.928      0.940858
+ControlOutlet17             0.93       0.934439
+ControlOutlet17             0.932      0.927326
+ControlOutlet17             0.934      0.919445
+ControlOutlet17             0.936      0.910718
+ControlOutlet17             0.938      0.901058
+ControlOutlet17             0.94       0.890372
+ControlOutlet17             0.942      0.878558
+ControlOutlet17             0.944      0.865508
+ControlOutlet17             0.946      0.851109
+ControlOutlet17             0.948      0.835238
+ControlOutlet17             0.95       0.817769
+ControlOutlet17             0.952      0.798572
+ControlOutlet17             0.954      0.777517
+ControlOutlet17             0.956      0.754473
+ControlOutlet17             0.958      0.729317
+ControlOutlet17             0.96       0.701937
+ControlOutlet17             0.962      0.672239
+ControlOutlet17             0.964      0.640154
+ControlOutlet17             0.966      0.605648
+ControlOutlet17             0.968      0.568737
+ControlOutlet17             0.97       0.529495
+ControlOutlet17             0.972      0.488069
+ControlOutlet17             0.974      0.444695
+ControlOutlet17             0.976      0.399714
+ControlOutlet17             0.978      0.353577
+ControlOutlet17             0.98       0.306863
+ControlOutlet17             0.982      0.260273
+ControlOutlet17             0.984      0.214633
+ControlOutlet17             0.986      0.170871
+ControlOutlet17             0.988      0.129996
+ControlOutlet17             0.99       0.093057
+ControlOutlet17             0.992      0.061089
+ControlOutlet17             0.994      0.035062
+ControlOutlet17             0.996      0.015812
+ControlOutlet17             0.998      0.003988
+ControlOutlet17             1.0        0.0
+;
+ControlOutlet18  Control    0.9        0.985953
+ControlOutlet18             0.902      0.984442
+ControlOutlet18             0.904      0.982766
+ControlOutlet18             0.906      0.980909
+ControlOutlet18             0.908      0.97885
+ControlOutlet18             0.91       0.976567
+ControlOutlet18             0.912      0.974035
+ControlOutlet18             0.914      0.971227
+ControlOutlet18             0.916      0.968113
+ControlOutlet18             0.918      0.964659
+ControlOutlet18             0.92       0.960829
+ControlOutlet18             0.922      0.956582
+ControlOutlet18             0.924      0.951871
+ControlOutlet18             0.926      0.946648
+ControlOutlet18             0.928      0.940858
+ControlOutlet18             0.93       0.934439
+ControlOutlet18             0.932      0.927326
+ControlOutlet18             0.934      0.919445
+ControlOutlet18             0.936      0.910718
+ControlOutlet18             0.938      0.901058
+ControlOutlet18             0.94       0.890372
+ControlOutlet18             0.942      0.878558
+ControlOutlet18             0.944      0.865508
+ControlOutlet18             0.946      0.851109
+ControlOutlet18             0.948      0.835238
+ControlOutlet18             0.95       0.817769
+ControlOutlet18             0.952      0.798572
+ControlOutlet18             0.954      0.777517
+ControlOutlet18             0.956      0.754473
+ControlOutlet18             0.958      0.729317
+ControlOutlet18             0.96       0.701937
+ControlOutlet18             0.962      0.672239
+ControlOutlet18             0.964      0.640154
+ControlOutlet18             0.966      0.605648
+ControlOutlet18             0.968      0.568737
+ControlOutlet18             0.97       0.529495
+ControlOutlet18             0.972      0.488069
+ControlOutlet18             0.974      0.444695
+ControlOutlet18             0.976      0.399714
+ControlOutlet18             0.978      0.353577
+ControlOutlet18             0.98       0.306863
+ControlOutlet18             0.982      0.260273
+ControlOutlet18             0.984      0.214633
+ControlOutlet18             0.986      0.170871
+ControlOutlet18             0.988      0.129996
+ControlOutlet18             0.99       0.093057
+ControlOutlet18             0.992      0.061089
+ControlOutlet18             0.994      0.035062
+ControlOutlet18             0.996      0.015812
+ControlOutlet18             0.998      0.003988
+ControlOutlet18             1.0        0.0
+;
+ControlOutlet19  Control    0.9        0.985953
+ControlOutlet19             0.902      0.984442
+ControlOutlet19             0.904      0.982766
+ControlOutlet19             0.906      0.980909
+ControlOutlet19             0.908      0.97885
+ControlOutlet19             0.91       0.976567
+ControlOutlet19             0.912      0.974035
+ControlOutlet19             0.914      0.971227
+ControlOutlet19             0.916      0.968113
+ControlOutlet19             0.918      0.964659
+ControlOutlet19             0.92       0.960829
+ControlOutlet19             0.922      0.956582
+ControlOutlet19             0.924      0.951871
+ControlOutlet19             0.926      0.946648
+ControlOutlet19             0.928      0.940858
+ControlOutlet19             0.93       0.934439
+ControlOutlet19             0.932      0.927326
+ControlOutlet19             0.934      0.919445
+ControlOutlet19             0.936      0.910718
+ControlOutlet19             0.938      0.901058
+ControlOutlet19             0.94       0.890372
+ControlOutlet19             0.942      0.878558
+ControlOutlet19             0.944      0.865508
+ControlOutlet19             0.946      0.851109
+ControlOutlet19             0.948      0.835238
+ControlOutlet19             0.95       0.817769
+ControlOutlet19             0.952      0.798572
+ControlOutlet19             0.954      0.777517
+ControlOutlet19             0.956      0.754473
+ControlOutlet19             0.958      0.729317
+ControlOutlet19             0.96       0.701937
+ControlOutlet19             0.962      0.672239
+ControlOutlet19             0.964      0.640154
+ControlOutlet19             0.966      0.605648
+ControlOutlet19             0.968      0.568737
+ControlOutlet19             0.97       0.529495
+ControlOutlet19             0.972      0.488069
+ControlOutlet19             0.974      0.444695
+ControlOutlet19             0.976      0.399714
+ControlOutlet19             0.978      0.353577
+ControlOutlet19             0.98       0.306863
+ControlOutlet19             0.982      0.260273
+ControlOutlet19             0.984      0.214633
+ControlOutlet19             0.986      0.170871
+ControlOutlet19             0.988      0.129996
+ControlOutlet19             0.99       0.093057
+ControlOutlet19             0.992      0.061089
+ControlOutlet19             0.994      0.035062
+ControlOutlet19             0.996      0.015812
+ControlOutlet19             0.998      0.003988
+ControlOutlet19             1.0        0.0
+;
+ControlOutlet20  Control    0.9        0.985953
+ControlOutlet20             0.902      0.984442
+ControlOutlet20             0.904      0.982766
+ControlOutlet20             0.906      0.980909
+ControlOutlet20             0.908      0.97885
+ControlOutlet20             0.91       0.976567
+ControlOutlet20             0.912      0.974035
+ControlOutlet20             0.914      0.971227
+ControlOutlet20             0.916      0.968113
+ControlOutlet20             0.918      0.964659
+ControlOutlet20             0.92       0.960829
+ControlOutlet20             0.922      0.956582
+ControlOutlet20             0.924      0.951871
+ControlOutlet20             0.926      0.946648
+ControlOutlet20             0.928      0.940858
+ControlOutlet20             0.93       0.934439
+ControlOutlet20             0.932      0.927326
+ControlOutlet20             0.934      0.919445
+ControlOutlet20             0.936      0.910718
+ControlOutlet20             0.938      0.901058
+ControlOutlet20             0.94       0.890372
+ControlOutlet20             0.942      0.878558
+ControlOutlet20             0.944      0.865508
+ControlOutlet20             0.946      0.851109
+ControlOutlet20             0.948      0.835238
+ControlOutlet20             0.95       0.817769
+ControlOutlet20             0.952      0.798572
+ControlOutlet20             0.954      0.777517
+ControlOutlet20             0.956      0.754473
+ControlOutlet20             0.958      0.729317
+ControlOutlet20             0.96       0.701937
+ControlOutlet20             0.962      0.672239
+ControlOutlet20             0.964      0.640154
+ControlOutlet20             0.966      0.605648
+ControlOutlet20             0.968      0.568737
+ControlOutlet20             0.97       0.529495
+ControlOutlet20             0.972      0.488069
+ControlOutlet20             0.974      0.444695
+ControlOutlet20             0.976      0.399714
+ControlOutlet20             0.978      0.353577
+ControlOutlet20             0.98       0.306863
+ControlOutlet20             0.982      0.260273
+ControlOutlet20             0.984      0.214633
+ControlOutlet20             0.986      0.170871
+ControlOutlet20             0.988      0.129996
+ControlOutlet20             0.99       0.093057
+ControlOutlet20             0.992      0.061089
+ControlOutlet20             0.994      0.035062
+ControlOutlet20             0.996      0.015812
+ControlOutlet20             0.998      0.003988
+ControlOutlet20             1.0        0.0
+;
+ControlOutlet21  Control    0.9        0.985953
+ControlOutlet21             0.902      0.984442
+ControlOutlet21             0.904      0.982766
+ControlOutlet21             0.906      0.980909
+ControlOutlet21             0.908      0.97885
+ControlOutlet21             0.91       0.976567
+ControlOutlet21             0.912      0.974035
+ControlOutlet21             0.914      0.971227
+ControlOutlet21             0.916      0.968113
+ControlOutlet21             0.918      0.964659
+ControlOutlet21             0.92       0.960829
+ControlOutlet21             0.922      0.956582
+ControlOutlet21             0.924      0.951871
+ControlOutlet21             0.926      0.946648
+ControlOutlet21             0.928      0.940858
+ControlOutlet21             0.93       0.934439
+ControlOutlet21             0.932      0.927326
+ControlOutlet21             0.934      0.919445
+ControlOutlet21             0.936      0.910718
+ControlOutlet21             0.938      0.901058
+ControlOutlet21             0.94       0.890372
+ControlOutlet21             0.942      0.878558
+ControlOutlet21             0.944      0.865508
+ControlOutlet21             0.946      0.851109
+ControlOutlet21             0.948      0.835238
+ControlOutlet21             0.95       0.817769
+ControlOutlet21             0.952      0.798572
+ControlOutlet21             0.954      0.777517
+ControlOutlet21             0.956      0.754473
+ControlOutlet21             0.958      0.729317
+ControlOutlet21             0.96       0.701937
+ControlOutlet21             0.962      0.672239
+ControlOutlet21             0.964      0.640154
+ControlOutlet21             0.966      0.605648
+ControlOutlet21             0.968      0.568737
+ControlOutlet21             0.97       0.529495
+ControlOutlet21             0.972      0.488069
+ControlOutlet21             0.974      0.444695
+ControlOutlet21             0.976      0.399714
+ControlOutlet21             0.978      0.353577
+ControlOutlet21             0.98       0.306863
+ControlOutlet21             0.982      0.260273
+ControlOutlet21             0.984      0.214633
+ControlOutlet21             0.986      0.170871
+ControlOutlet21             0.988      0.129996
+ControlOutlet21             0.99       0.093057
+ControlOutlet21             0.992      0.061089
+ControlOutlet21             0.994      0.035062
+ControlOutlet21             0.996      0.015812
+ControlOutlet21             0.998      0.003988
+ControlOutlet21             1.0        0.0
+;
+ControlOutlet22  Control    0.9        0.985953
+ControlOutlet22             0.902      0.984442
+ControlOutlet22             0.904      0.982766
+ControlOutlet22             0.906      0.980909
+ControlOutlet22             0.908      0.97885
+ControlOutlet22             0.91       0.976567
+ControlOutlet22             0.912      0.974035
+ControlOutlet22             0.914      0.971227
+ControlOutlet22             0.916      0.968113
+ControlOutlet22             0.918      0.964659
+ControlOutlet22             0.92       0.960829
+ControlOutlet22             0.922      0.956582
+ControlOutlet22             0.924      0.951871
+ControlOutlet22             0.926      0.946648
+ControlOutlet22             0.928      0.940858
+ControlOutlet22             0.93       0.934439
+ControlOutlet22             0.932      0.927326
+ControlOutlet22             0.934      0.919445
+ControlOutlet22             0.936      0.910718
+ControlOutlet22             0.938      0.901058
+ControlOutlet22             0.94       0.890372
+ControlOutlet22             0.942      0.878558
+ControlOutlet22             0.944      0.865508
+ControlOutlet22             0.946      0.851109
+ControlOutlet22             0.948      0.835238
+ControlOutlet22             0.95       0.817769
+ControlOutlet22             0.952      0.798572
+ControlOutlet22             0.954      0.777517
+ControlOutlet22             0.956      0.754473
+ControlOutlet22             0.958      0.729317
+ControlOutlet22             0.96       0.701937
+ControlOutlet22             0.962      0.672239
+ControlOutlet22             0.964      0.640154
+ControlOutlet22             0.966      0.605648
+ControlOutlet22             0.968      0.568737
+ControlOutlet22             0.97       0.529495
+ControlOutlet22             0.972      0.488069
+ControlOutlet22             0.974      0.444695
+ControlOutlet22             0.976      0.399714
+ControlOutlet22             0.978      0.353577
+ControlOutlet22             0.98       0.306863
+ControlOutlet22             0.982      0.260273
+ControlOutlet22             0.984      0.214633
+ControlOutlet22             0.986      0.170871
+ControlOutlet22             0.988      0.129996
+ControlOutlet22             0.99       0.093057
+ControlOutlet22             0.992      0.061089
+ControlOutlet22             0.994      0.035062
+ControlOutlet22             0.996      0.015812
+ControlOutlet22             0.998      0.003988
+ControlOutlet22             1.0        0.0
+;
+ControlOutlet23  Control    0.9        0.985953
+ControlOutlet23             0.902      0.984442
+ControlOutlet23             0.904      0.982766
+ControlOutlet23             0.906      0.980909
+ControlOutlet23             0.908      0.97885
+ControlOutlet23             0.91       0.976567
+ControlOutlet23             0.912      0.974035
+ControlOutlet23             0.914      0.971227
+ControlOutlet23             0.916      0.968113
+ControlOutlet23             0.918      0.964659
+ControlOutlet23             0.92       0.960829
+ControlOutlet23             0.922      0.956582
+ControlOutlet23             0.924      0.951871
+ControlOutlet23             0.926      0.946648
+ControlOutlet23             0.928      0.940858
+ControlOutlet23             0.93       0.934439
+ControlOutlet23             0.932      0.927326
+ControlOutlet23             0.934      0.919445
+ControlOutlet23             0.936      0.910718
+ControlOutlet23             0.938      0.901058
+ControlOutlet23             0.94       0.890372
+ControlOutlet23             0.942      0.878558
+ControlOutlet23             0.944      0.865508
+ControlOutlet23             0.946      0.851109
+ControlOutlet23             0.948      0.835238
+ControlOutlet23             0.95       0.817769
+ControlOutlet23             0.952      0.798572
+ControlOutlet23             0.954      0.777517
+ControlOutlet23             0.956      0.754473
+ControlOutlet23             0.958      0.729317
+ControlOutlet23             0.96       0.701937
+ControlOutlet23             0.962      0.672239
+ControlOutlet23             0.964      0.640154
+ControlOutlet23             0.966      0.605648
+ControlOutlet23             0.968      0.568737
+ControlOutlet23             0.97       0.529495
+ControlOutlet23             0.972      0.488069
+ControlOutlet23             0.974      0.444695
+ControlOutlet23             0.976      0.399714
+ControlOutlet23             0.978      0.353577
+ControlOutlet23             0.98       0.306863
+ControlOutlet23             0.982      0.260273
+ControlOutlet23             0.984      0.214633
+ControlOutlet23             0.986      0.170871
+ControlOutlet23             0.988      0.129996
+ControlOutlet23             0.99       0.093057
+ControlOutlet23             0.992      0.061089
+ControlOutlet23             0.994      0.035062
+ControlOutlet23             0.996      0.015812
+ControlOutlet23             0.998      0.003988
+ControlOutlet23             1.0        0.0
+;
+ControlOutlet24  Control    0.9        0.985953
+ControlOutlet24             0.902      0.984442
+ControlOutlet24             0.904      0.982766
+ControlOutlet24             0.906      0.980909
+ControlOutlet24             0.908      0.97885
+ControlOutlet24             0.91       0.976567
+ControlOutlet24             0.912      0.974035
+ControlOutlet24             0.914      0.971227
+ControlOutlet24             0.916      0.968113
+ControlOutlet24             0.918      0.964659
+ControlOutlet24             0.92       0.960829
+ControlOutlet24             0.922      0.956582
+ControlOutlet24             0.924      0.951871
+ControlOutlet24             0.926      0.946648
+ControlOutlet24             0.928      0.940858
+ControlOutlet24             0.93       0.934439
+ControlOutlet24             0.932      0.927326
+ControlOutlet24             0.934      0.919445
+ControlOutlet24             0.936      0.910718
+ControlOutlet24             0.938      0.901058
+ControlOutlet24             0.94       0.890372
+ControlOutlet24             0.942      0.878558
+ControlOutlet24             0.944      0.865508
+ControlOutlet24             0.946      0.851109
+ControlOutlet24             0.948      0.835238
+ControlOutlet24             0.95       0.817769
+ControlOutlet24             0.952      0.798572
+ControlOutlet24             0.954      0.777517
+ControlOutlet24             0.956      0.754473
+ControlOutlet24             0.958      0.729317
+ControlOutlet24             0.96       0.701937
+ControlOutlet24             0.962      0.672239
+ControlOutlet24             0.964      0.640154
+ControlOutlet24             0.966      0.605648
+ControlOutlet24             0.968      0.568737
+ControlOutlet24             0.97       0.529495
+ControlOutlet24             0.972      0.488069
+ControlOutlet24             0.974      0.444695
+ControlOutlet24             0.976      0.399714
+ControlOutlet24             0.978      0.353577
+ControlOutlet24             0.98       0.306863
+ControlOutlet24             0.982      0.260273
+ControlOutlet24             0.984      0.214633
+ControlOutlet24             0.986      0.170871
+ControlOutlet24             0.988      0.129996
+ControlOutlet24             0.99       0.093057
+ControlOutlet24             0.992      0.061089
+ControlOutlet24             0.994      0.035062
+ControlOutlet24             0.996      0.015812
+ControlOutlet24             0.998      0.003988
+ControlOutlet24             1.0        0.0
+;
+ControlOutlet25  Control    0.9        0.985953
+ControlOutlet25             0.902      0.984442
+ControlOutlet25             0.904      0.982766
+ControlOutlet25             0.906      0.980909
+ControlOutlet25             0.908      0.97885
+ControlOutlet25             0.91       0.976567
+ControlOutlet25             0.912      0.974035
+ControlOutlet25             0.914      0.971227
+ControlOutlet25             0.916      0.968113
+ControlOutlet25             0.918      0.964659
+ControlOutlet25             0.92       0.960829
+ControlOutlet25             0.922      0.956582
+ControlOutlet25             0.924      0.951871
+ControlOutlet25             0.926      0.946648
+ControlOutlet25             0.928      0.940858
+ControlOutlet25             0.93       0.934439
+ControlOutlet25             0.932      0.927326
+ControlOutlet25             0.934      0.919445
+ControlOutlet25             0.936      0.910718
+ControlOutlet25             0.938      0.901058
+ControlOutlet25             0.94       0.890372
+ControlOutlet25             0.942      0.878558
+ControlOutlet25             0.944      0.865508
+ControlOutlet25             0.946      0.851109
+ControlOutlet25             0.948      0.835238
+ControlOutlet25             0.95       0.817769
+ControlOutlet25             0.952      0.798572
+ControlOutlet25             0.954      0.777517
+ControlOutlet25             0.956      0.754473
+ControlOutlet25             0.958      0.729317
+ControlOutlet25             0.96       0.701937
+ControlOutlet25             0.962      0.672239
+ControlOutlet25             0.964      0.640154
+ControlOutlet25             0.966      0.605648
+ControlOutlet25             0.968      0.568737
+ControlOutlet25             0.97       0.529495
+ControlOutlet25             0.972      0.488069
+ControlOutlet25             0.974      0.444695
+ControlOutlet25             0.976      0.399714
+ControlOutlet25             0.978      0.353577
+ControlOutlet25             0.98       0.306863
+ControlOutlet25             0.982      0.260273
+ControlOutlet25             0.984      0.214633
+ControlOutlet25             0.986      0.170871
+ControlOutlet25             0.988      0.129996
+ControlOutlet25             0.99       0.093057
+ControlOutlet25             0.992      0.061089
+ControlOutlet25             0.994      0.035062
+ControlOutlet25             0.996      0.015812
+ControlOutlet25             0.998      0.003988
+ControlOutlet25             1.0        0.0
+;
+Demand1          Rating     0          0
+Demand1                     0.01       0.69
+;
+Demand2          Rating     0          0
+Demand2                     0.01       0.09
+;
+Demand3          Rating     0          0
+Demand3                     0.01       0.46
+;
+Demand4          Rating     0          0
+Demand4                     0.01       1.285
+;
+Demand5          Rating     0          0
+Demand5                     0.01       1.415
+;
+Demand6          Rating     0          0
+Demand6                     0.01       4.18
+;
+Demand7          Rating     0          0
+Demand7                     0.01       1.71
+;
+Demand8          Rating     0          0
+Demand8                     0.01       2.665
+;
+Demand9          Rating     0          0
+Demand9                     0.01       0.76
+;
+Demand10         Rating     0          0
+Demand10                    0.01       0.43
+;
+Demand11         Rating     0          0
+Demand11                    0.01       1.135
+;
+Demand12         Rating     0          0
+Demand12                    0.01       0.655
+;
+Demand13         Rating     0          0
+Demand13                    0.01       4.26
+;
+Demand14         Rating     0          0
+Demand14                    0.01       0.44
+;
+Demand15         Rating     0          0
+Demand15                    0.01       0.11
+;
+Demand16         Rating     0          0
+Demand16                    0.01       0.195
+;
+Demand17         Rating     0          0
+Demand17                    0.01       0.225
+;
+Demand18         Rating     0          0
+Demand18                    0.01       1.41
+;
+Demand19         Rating     0          0
+Demand19                    0.01       0.015
+;
+Demand20         Rating     0          0
+Demand20                    0.01       0.155
+;
+Demand21         Rating     0          0
+Demand21                    0.01       1.3
+;
+Demand22         Rating     0          0
+Demand22                    0.01       0.515
+;
+Demand23         Rating     0          0
+Demand23                    0.01       0.5
+;
+Demand24         Rating     0          0
+Demand24                    0.01       0.265
+;
+Demand25         Rating     0          0
+Demand25                    0.01       0.38
+;
+Source27         Storage    0          1
+Source27                    28.0       1
+Source27                    29.0       261740.16
+Source27                    30.0       261740.16  
+
+[TIMESERIES]
+;;Name           Date       Time       Value
+;;-------------- ---------- ---------- ----------
+Pattern                     0          0.8
+Pattern                     1          0.7
+Pattern                     2          0.6
+Pattern                     3          0.5
+Pattern                     4          0.5
+Pattern                     5          0.5
+Pattern                     6          0.6
+Pattern                     7          0.8
+Pattern                     8          1.2
+Pattern                     9          1.3
+Pattern                     10         1.2
+Pattern                     11         1.2
+Pattern                     12         1.2
+Pattern                     13         1.2
+Pattern                     14         1.2
+Pattern                     15         1.2
+Pattern                     16         1.1
+Pattern                     17         1.1
+Pattern                     18         1.1
+Pattern                     19         1.2
+Pattern                     20         1.3
+Pattern                     21         1.3
+Pattern                     22         1.1
+Pattern                     23         1
+Pattern                     24         0.8
+Pattern                     25         0.7
+Pattern                     26         0.6
+Pattern                     27         0.5
+Pattern                     28         0.5
+Pattern                     29         0.5
+Pattern                     30         0.6
+Pattern                     31         0.8
+Pattern                     32         1.2
+Pattern                     33         1.3
+Pattern                     34         1.2
+Pattern                     35         1.2
+Pattern                     36         1.2
+Pattern                     37         1.2
+Pattern                     38         1.2
+Pattern                     39         1.2
+Pattern                     40         1.1
+Pattern                     41         1.1
+Pattern                     42         1.1
+Pattern                     43         1.2
+Pattern                     44         1.3
+Pattern                     45         1.3
+Pattern                     46         1.1
+Pattern                     47         1
+Pattern                     48         0.8
+Pattern                     49         0.7
+Pattern                     50         0.6
+Pattern                     51         0.5
+Pattern                     52         0.5
+Pattern                     53         0.5
+Pattern                     54         0.6
+Pattern                     55         0.8
+Pattern                     56         1.2
+Pattern                     57         1.3
+Pattern                     58         1.2
+Pattern                     59         1.2
+Pattern                     60         1.2
+Pattern                     61         1.2
+Pattern                     62         1.2
+Pattern                     63         1.2
+Pattern                     64         1.1
+Pattern                     65         1.1
+Pattern                     66         1.1
+Pattern                     67         1.2
+Pattern                     68         1.3
+Pattern                     69         1.3
+Pattern                     70         1.1
+Pattern                     71         1
+Pattern                     72         0.8
+Pattern                     73         0.7
+Pattern                     74         0.6
+Pattern                     75         0.5
+Pattern                     76         0.5
+Pattern                     77         0.5
+Pattern                     78         0.6
+Pattern                     79         0.8
+Pattern                     80         1.2
+Pattern                     81         1.3
+Pattern                     82         1.2
+Pattern                     83         1.2
+Pattern                     84         1.2
+Pattern                     85         1.2
+Pattern                     86         1.2
+Pattern                     87         1.2
+Pattern                     88         1.1
+Pattern                     89         1.1
+Pattern                     90         1.1
+Pattern                     91         1.2
+Pattern                     92         1.3
+Pattern                     93         1.3
+Pattern                     94         1.1
+Pattern                     95         1
+Pattern                     96         0.8
+Pattern                     97         0.7
+Pattern                     98         0.6
+Pattern                     99         0.5
+Pattern                     100        0.5
+Pattern                     101        0.5
+Pattern                     102        0.6
+Pattern                     103        0.8
+Pattern                     104        1.2
+Pattern                     105        1.3
+Pattern                     106        1.2
+Pattern                     107        1.2
+Pattern                     108        1.2
+Pattern                     109        1.2
+Pattern                     110        1.2
+Pattern                     111        1.2
+Pattern                     112        1.1
+Pattern                     113        1.1
+Pattern                     114        1.1
+Pattern                     115        1.2
+Pattern                     116        1.3
+Pattern                     117        1.3
+Pattern                     118        1.1
+Pattern                     119        1
+Pattern                     120        0.8
+Pattern                     121        0.7
+Pattern                     122        0.6
+Pattern                     123        0.5
+Pattern                     124        0.5
+Pattern                     125        0.5
+Pattern                     126        0.6
+Pattern                     127        0.8
+Pattern                     128        1.2
+Pattern                     129        1.3
+Pattern                     130        1.2
+Pattern                     131        1.2
+Pattern                     132        1.2
+Pattern                     133        1.2
+Pattern                     134        1.2
+Pattern                     135        1.2
+Pattern                     136        1.1
+Pattern                     137        1.1
+Pattern                     138        1.1
+Pattern                     139        1.2
+Pattern                     140        1.3
+Pattern                     141        1.3
+Pattern                     142        1.1
+Pattern                     143        1
+Pattern                     144        0.8
+Pattern                     145        0.7
+Pattern                     146        0.6
+Pattern                     147        0.5
+Pattern                     148        0.5
+Pattern                     149        0.5
+Pattern                     150        0.6
+Pattern                     151        0.8
+Pattern                     152        1.2
+Pattern                     153        1.3
+Pattern                     154        1.2
+Pattern                     155        1.2
+Pattern                     156        1.2
+Pattern                     157        1.2
+Pattern                     158        1.2
+Pattern                     159        1.2
+Pattern                     160        1.1
+Pattern                     161        1.1
+Pattern                     162        1.1
+Pattern                     163        1.2
+Pattern                     164        1.3
+Pattern                     165        1.3
+Pattern                     166        1.1
+Pattern                     167        1
+Pattern                     168        0.8
+Pattern                     169        0.7
+Pattern                     170        0.6
+Pattern                     171        0.5
+Pattern                     172        0.5
+Pattern                     173        0.5
+Pattern                     174        0.6
+Pattern                     175        0.8
+Pattern                     176        1.2
+Pattern                     177        1.3
+Pattern                     178        1.2
+Pattern                     179        1.2
+Pattern                     180        1.2
+Pattern                     181        1.2
+Pattern                     182        1.2
+Pattern                     183        1.2
+Pattern                     184        1.1
+Pattern                     185        1.1
+Pattern                     186        1.1
+Pattern                     187        1.2
+Pattern                     188        1.3
+Pattern                     189        1.3
+Pattern                     190        1.1
+Pattern                     191        1
+Pattern                     192        0.8
+Pattern                     193        0.7
+Pattern                     194        0.6
+Pattern                     195        0.5
+Pattern                     196        0.5
+Pattern                     197        0.5
+Pattern                     198        0.6
+Pattern                     199        0.8
+Pattern                     200        1.2
+Pattern                     201        1.3
+Pattern                     202        1.2
+Pattern                     203        1.2
+Pattern                     204        1.2
+Pattern                     205        1.2
+Pattern                     206        1.2
+Pattern                     207        1.2
+Pattern                     208        1.1
+Pattern                     209        1.1
+Pattern                     210        1.1
+Pattern                     211        1.2
+Pattern                     212        1.3
+Pattern                     213        1.3
+Pattern                     214        1.1
+Pattern                     215        1
+Pattern                     216        0.8
+Pattern                     217        0.7
+Pattern                     218        0.6
+Pattern                     219        0.5
+Pattern                     220        0.5
+Pattern                     221        0.5
+Pattern                     222        0.6
+Pattern                     223        0.8
+Pattern                     224        1.2
+Pattern                     225        1.3
+Pattern                     226        1.2
+Pattern                     227        1.2
+Pattern                     228        1.2
+Pattern                     229        1.2
+Pattern                     230        1.2
+Pattern                     231        1.2
+Pattern                     232        1.1
+Pattern                     233        1.1
+Pattern                     234        1.1
+Pattern                     235        1.2
+Pattern                     236        1.3
+Pattern                     237        1.3
+Pattern                     238        1.1
+Pattern                     239        1
+Pattern                     240        0.8
+Pattern                     241        0.7
+Pattern                     242        0.6
+Pattern                     243        0.5
+Pattern                     244        0.5
+Pattern                     245        0.5
+Pattern                     246        0.6
+Pattern                     247        0.8
+Pattern                     248        1.2
+Pattern                     249        1.3
+Pattern                     250        1.2
+Pattern                     251        1.2
+Pattern                     252        1.2
+Pattern                     253        1.2
+Pattern                     254        1.2
+Pattern                     255        1.2
+Pattern                     256        1.1
+Pattern                     257        1.1
+Pattern                     258        1.1
+Pattern                     259        1.2
+Pattern                     260        1.3
+Pattern                     261        1.3
+Pattern                     262        1.1
+Pattern                     263        1
+Pattern                     264        0.8
+Pattern                     265        0.7
+Pattern                     266        0.6
+Pattern                     267        0.5
+Pattern                     268        0.5
+Pattern                     269        0.5
+Pattern                     270        0.6
+Pattern                     271        0.8
+Pattern                     272        1.2
+Pattern                     273        1.3
+Pattern                     274        1.2
+Pattern                     275        1.2
+Pattern                     276        1.2
+Pattern                     277        1.2
+Pattern                     278        1.2
+Pattern                     279        1.2
+Pattern                     280        1.1
+Pattern                     281        1.1
+Pattern                     282        1.1
+Pattern                     283        1.2
+Pattern                     284        1.3
+Pattern                     285        1.3
+Pattern                     286        1.1
+Pattern                     287        1
+Pattern                     288        0.8
+Pattern                     289        0.7
+Pattern                     290        0.6
+Pattern                     291        0.5
+Pattern                     292        0.5
+Pattern                     293        0.5
+Pattern                     294        0.6
+Pattern                     295        0.8
+Pattern                     296        1.2
+Pattern                     297        1.3
+Pattern                     298        1.2
+Pattern                     299        1.2
+Pattern                     300        1.2
+Pattern                     301        1.2
+Pattern                     302        1.2
+Pattern                     303        1.2
+Pattern                     304        1.1
+Pattern                     305        1.1
+Pattern                     306        1.1
+Pattern                     307        1.2
+Pattern                     308        1.3
+Pattern                     309        1.3
+Pattern                     310        1.1
+Pattern                     311        1
+Pattern                     312        0.8
+Pattern                     313        0.7
+Pattern                     314        0.6
+Pattern                     315        0.5
+Pattern                     316        0.5
+Pattern                     317        0.5
+Pattern                     318        0.6
+Pattern                     319        0.8
+Pattern                     320        1.2
+Pattern                     321        1.3
+Pattern                     322        1.2
+Pattern                     323        1.2
+Pattern                     324        1.2
+Pattern                     325        1.2
+Pattern                     326        1.2
+Pattern                     327        1.2
+Pattern                     328        1.1
+Pattern                     329        1.1
+Pattern                     330        1.1
+Pattern                     331        1.2
+Pattern                     332        1.3
+Pattern                     333        1.3
+Pattern                     334        1.1
+Pattern                     335        1
+Pattern                     336        0.8
+Pattern                     337        0.7
+Pattern                     338        0.6
+Pattern                     339        0.5
+Pattern                     340        0.5
+Pattern                     341        0.5
+Pattern                     342        0.6
+Pattern                     343        0.8
+Pattern                     344        1.2
+Pattern                     345        1.3
+Pattern                     346        1.2
+Pattern                     347        1.2
+Pattern                     348        1.2
+Pattern                     349        1.2
+Pattern                     350        1.2
+Pattern                     351        1.2
+Pattern                     352        1.1
+Pattern                     353        1.1
+Pattern                     354        1.1
+Pattern                     355        1.2
+Pattern                     356        1.3
+Pattern                     357        1.3
+Pattern                     358        1.1
+Pattern                     359        1
+Pattern                     360        0.8
+Pattern                     361        0.7
+Pattern                     362        0.6
+Pattern                     363        0.5
+Pattern                     364        0.5
+Pattern                     365        0.5
+Pattern                     366        0.6
+Pattern                     367        0.8
+Pattern                     368        1.2
+Pattern                     369        1.3
+Pattern                     370        1.2
+Pattern                     371        1.2
+Pattern                     372        1.2
+Pattern                     373        1.2
+Pattern                     374        1.2
+Pattern                     375        1.2
+Pattern                     376        1.1
+Pattern                     377        1.1
+Pattern                     378        1.1
+Pattern                     379        1.2
+Pattern                     380        1.3
+Pattern                     381        1.3
+Pattern                     382        1.1
+Pattern                     383        1
+Pattern                     384        0.8
+Pattern                     385        0.7
+Pattern                     386        0.6
+Pattern                     387        0.5
+Pattern                     388        0.5
+Pattern                     389        0.5
+Pattern                     390        0.6
+Pattern                     391        0.8
+Pattern                     392        1.2
+Pattern                     393        1.3
+Pattern                     394        1.2
+Pattern                     395        1.2
+Pattern                     396        1.2
+Pattern                     397        1.2
+Pattern                     398        1.2
+Pattern                     399        1.2
+Pattern                     400        1.1
+Pattern                     401        1.1
+Pattern                     402        1.1
+Pattern                     403        1.2
+Pattern                     404        1.3
+Pattern                     405        1.3
+Pattern                     406        1.1
+Pattern                     407        1
+Pattern                     408        0.8
+Pattern                     409        0.7
+Pattern                     410        0.6
+Pattern                     411        0.5
+Pattern                     412        0.5
+Pattern                     413        0.5
+Pattern                     414        0.6
+Pattern                     415        0.8
+Pattern                     416        1.2
+Pattern                     417        1.3
+Pattern                     418        1.2
+Pattern                     419        1.2
+Pattern                     420        1.2
+Pattern                     421        1.2
+Pattern                     422        1.2
+Pattern                     423        1.2
+Pattern                     424        1.1
+Pattern                     425        1.1
+Pattern                     426        1.1
+Pattern                     427        1.2
+Pattern                     428        1.3
+Pattern                     429        1.3
+Pattern                     430        1.1
+Pattern                     431        1
+Pattern                     432        0.8
+Pattern                     433        0.7
+Pattern                     434        0.6
+Pattern                     435        0.5
+Pattern                     436        0.5
+Pattern                     437        0.5
+Pattern                     438        0.6
+Pattern                     439        0.8
+Pattern                     440        1.2
+Pattern                     441        1.3
+Pattern                     442        1.2
+Pattern                     443        1.2
+Pattern                     444        1.2
+Pattern                     445        1.2
+Pattern                     446        1.2
+Pattern                     447        1.2
+Pattern                     448        1.1
+Pattern                     449        1.1
+Pattern                     450        1.1
+Pattern                     451        1.2
+Pattern                     452        1.3
+Pattern                     453        1.3
+Pattern                     454        1.1
+Pattern                     455        1
+Pattern                     456        0.8
+Pattern                     457        0.7
+Pattern                     458        0.6
+Pattern                     459        0.5
+Pattern                     460        0.5
+Pattern                     461        0.5
+Pattern                     462        0.6
+Pattern                     463        0.8
+Pattern                     464        1.2
+Pattern                     465        1.3
+Pattern                     466        1.2
+Pattern                     467        1.2
+Pattern                     468        1.2
+Pattern                     469        1.2
+Pattern                     470        1.2
+Pattern                     471        1.2
+Pattern                     472        1.1
+Pattern                     473        1.1
+Pattern                     474        1.1
+Pattern                     475        1.2
+Pattern                     476        1.3
+Pattern                     477        1.3
+Pattern                     478        1.1
+Pattern                     479        1
+Pattern                     480        0.8
+Pattern                     481        0.7
+Pattern                     482        0.6
+Pattern                     483        0.5
+Pattern                     484        0.5
+Pattern                     485        0.5
+Pattern                     486        0.6
+Pattern                     487        0.8
+Pattern                     488        1.2
+Pattern                     489        1.3
+Pattern                     490        1.2
+Pattern                     491        1.2
+Pattern                     492        1.2
+Pattern                     493        1.2
+Pattern                     494        1.2
+Pattern                     495        1.2
+Pattern                     496        1.1
+Pattern                     497        1.1
+Pattern                     498        1.1
+Pattern                     499        1.2
+Pattern                     500        1.3
+Pattern                     501        1.3
+Pattern                     502        1.1
+Pattern                     503        1
+Pattern                     504        0.8
+Pattern                     505        0.7
+Pattern                     506        0.6
+Pattern                     507        0.5
+Pattern                     508        0.5
+Pattern                     509        0.5
+Pattern                     510        0.6
+Pattern                     511        0.8
+Pattern                     512        1.2
+Pattern                     513        1.3
+Pattern                     514        1.2
+Pattern                     515        1.2
+Pattern                     516        1.2
+Pattern                     517        1.2
+Pattern                     518        1.2
+Pattern                     519        1.2
+Pattern                     520        1.1
+Pattern                     521        1.1
+Pattern                     522        1.1
+Pattern                     523        1.2
+Pattern                     524        1.3
+Pattern                     525        1.3
+Pattern                     526        1.1
+Pattern                     527        1
+Pattern                     528        0.8
+Pattern                     529        0.7
+Pattern                     530        0.6
+Pattern                     531        0.5
+Pattern                     532        0.5
+Pattern                     533        0.5
+Pattern                     534        0.6
+Pattern                     535        0.8
+Pattern                     536        1.2
+Pattern                     537        1.3
+Pattern                     538        1.2
+Pattern                     539        1.2
+Pattern                     540        1.2
+Pattern                     541        1.2
+Pattern                     542        1.2
+Pattern                     543        1.2
+Pattern                     544        1.1
+Pattern                     545        1.1
+Pattern                     546        1.1
+Pattern                     547        1.2
+Pattern                     548        1.3
+Pattern                     549        1.3
+Pattern                     550        1.1
+Pattern                     551        1
+Pattern                     552        0.8
+Pattern                     553        0.7
+Pattern                     554        0.6
+Pattern                     555        0.5
+Pattern                     556        0.5
+Pattern                     557        0.5
+Pattern                     558        0.6
+Pattern                     559        0.8
+Pattern                     560        1.2
+Pattern                     561        1.3
+Pattern                     562        1.2
+Pattern                     563        1.2
+Pattern                     564        1.2
+Pattern                     565        1.2
+Pattern                     566        1.2
+Pattern                     567        1.2
+Pattern                     568        1.1
+Pattern                     569        1.1
+Pattern                     570        1.1
+Pattern                     571        1.2
+Pattern                     572        1.3
+Pattern                     573        1.3
+Pattern                     574        1.1
+Pattern                     575        1
+Pattern                     576        0.8
+Pattern                     577        0.7
+Pattern                     578        0.6
+Pattern                     579        0.5
+Pattern                     580        0.5
+Pattern                     581        0.5
+Pattern                     582        0.6
+Pattern                     583        0.8
+Pattern                     584        1.2
+Pattern                     585        1.3
+Pattern                     586        1.2
+Pattern                     587        1.2
+Pattern                     588        1.2
+Pattern                     589        1.2
+Pattern                     590        1.2
+Pattern                     591        1.2
+Pattern                     592        1.1
+Pattern                     593        1.1
+Pattern                     594        1.1
+Pattern                     595        1.2
+Pattern                     596        1.3
+Pattern                     597        1.3
+Pattern                     598        1.1
+Pattern                     599        1
+
+[REPORT]
+;;Reporting Options
+SUBCATCHMENTS ALL
+NODES ALL
+LINKS ALL
+
+[TAGS]
+
+[MAP]
+DIMENSIONS -953.619 2371.104 8889.877 10094.338
+Units      None
+
+[COORDINATES]
+;;Node           X-Coord            Y-Coord
+;;-------------- ------------------ ------------------
+1                6524.184           7277.840
+2                6974.128           6850.394
+3                8436.445           5601.800
+4                7772.778           3385.827
+5                4803.150           4128.234
+6                5151.856           4735.658
+7                4589.426           4218.223
+8                4184.477           4386.952
+9                3802.025           3217.098
+10               4161.980           3070.866
+11               3959.505           3464.567
+12               4195.726           5928.009
+13               3948.256           5185.602
+14               4386.952           6872.891
+15               4386.952           7536.558
+16               4758.155           8256.468
+17               3757.030           8593.926
+18               3757.030           4341.957
+19               3363.330           3723.285
+20               3577.053           3622.047
+21               3385.827           4499.438
+22               2598.425           4004.499
+23               877.390            5365.579
+24               -506.187           7187.852
+25               404.949            9741.282
+26               2902.137           3127.109
+Outfall1         6530.184           7279.840
+Outfall2         6980.128           6852.394
+Outfall3         8442.445           5603.800
+Outfall4         7778.778           3387.827
+Outfall5         4809.150           4130.234
+Outfall6         5157.856           4737.658
+Outfall7         4595.426           4220.223
+Outfall8         4190.477           4388.952
+Outfall9         3808.025           3219.098
+Outfall10        4167.980           3072.866
+Outfall11        3965.505           3466.567
+Outfall12        4201.726           5930.009
+Outfall13        3954.256           5187.602
+Outfall14        4392.952           6874.891
+Outfall15        4392.952           7538.558
+Outfall16        4764.155           8258.468
+Outfall17        3763.030           8595.926
+Outfall18        3763.030           4343.957
+Outfall19        3369.330           3725.285
+Outfall20        3583.053           3624.047
+Outfall21        3391.827           4501.438
+Outfall22        2604.425           4006.499
+Outfall23        883.390            5367.579
+Outfall24        -500.187           7189.852
+Outfall25        410.949            9743.282
+L_Outfall1       6526.184           7274.840
+L_Outfall2       6976.128           6847.394
+L_Outfall3       8438.445           5598.800
+L_Outfall4       7774.778           3382.827
+L_Outfall5       4805.150           4125.234
+L_Outfall6       5153.856           4732.658
+L_Outfall7       4591.426           4215.223
+L_Outfall8       4186.477           4383.952
+L_Outfall9       3804.025           3214.098
+L_Outfall10      4163.980           3067.866
+L_Outfall11      3961.505           3461.567
+L_Outfall12      4197.726           5925.009
+L_Outfall13      3950.256           5182.602
+L_Outfall14      4388.952           6869.891
+L_Outfall15      4388.952           7533.558
+L_Outfall16      4760.155           8253.468
+L_Outfall17      3759.030           8590.926
+L_Outfall18      3759.030           4338.957
+L_Outfall19      3365.330           3720.285
+L_Outfall20      3579.053           3619.047
+L_Outfall21      3387.827           4496.438
+L_Outfall22      2600.425           4001.499
+L_Outfall23      879.390            5362.579
+L_Outfall24      -504.187           7184.852
+L_Outfall25      406.949            9738.282
+Reservoir-27     1979.753           2722.160
+StorageforNode1  6528.184           7277.840
+StorageforNode2  6978.128           6850.394
+StorageforNode3  8440.445           5601.800
+StorageforNode4  7776.778           3385.827
+StorageforNode5  4807.150           4128.234
+StorageforNode6  5155.856           4735.658
+StorageforNode7  4593.426           4218.223
+StorageforNode8  4188.477           4386.952
+StorageforNode9  3806.025           3217.098
+StorageforNode10 4165.980           3070.866
+StorageforNode11 3963.505           3464.567
+StorageforNode12 4199.726           5928.009
+StorageforNode13 3952.256           5185.602
+StorageforNode14 4390.952           6872.891
+StorageforNode15 4390.952           7536.558
+StorageforNode16 4762.155           8256.468
+StorageforNode17 3761.030           8593.926
+StorageforNode18 3761.030           4341.957
+StorageforNode19 3367.330           3723.285
+StorageforNode20 3581.053           3622.047
+StorageforNode21 3389.827           4499.438
+StorageforNode22 2602.425           4004.499
+StorageforNode23 881.390            5365.579
+StorageforNode24 -502.187           7187.852
+StorageforNode25 408.949            9741.282
+
+[VERTICES]
+;;Link           X-Coord            Y-Coord
+;;-------------- ------------------ ------------------
+
+[Polygons]
+;;Storage Node   X-Coord            Y-Coord
+;;-------------- ------------------ ------------------

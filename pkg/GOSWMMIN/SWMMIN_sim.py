@@ -6,6 +6,8 @@ import math
 import pathlib 
 import pyswmm
 import tqdm
+import matplotlib.pyplot as plt
+import scipy.integrate as sci
 
 class SWMMIN_sim:
     def __init__(self, input_file):
@@ -442,6 +444,7 @@ class SWMMIN_sim:
                 conduits.drop(conduit,inplace=True)
 
         conduits[["InOffset","OutOffset"]]=conduits[["InOffset","OutOffset"]].fillna(0)
+        self.mean_xdelta = conduits['Length'].mean()
         self.conduits = conduits
         self.junctions=junctions
         self.reservoir_pipes = reservoir_pipes
@@ -644,6 +647,7 @@ class SWMMIN_sim:
 
         outlets=pd.DataFrame(list(zip(outlet_ids,outlet_from,outlet_to,outlet_offset,outlet_type,outlet_coeff,outlet_expon,outlet_gated)))
         outletdemand=pd.DataFrame(list(zip(outdemand_ids,outdemand_from,outdemand_to,outdemand_offset,outdemand_type,outdemand_coeff,outdemand_expon,outdemand_gated)))
+        self.outletwithdraw = outlets
         self.outletdemand = outletdemand
 
         # Leakage Outlets
@@ -773,12 +777,12 @@ class SWMMIN_sim:
             timesrs_pat+="Pattern\t"+str(time)+"\t"+str(pattern[time_24])+"\n"
 
         i = 0
-        for outlet in self.outletdemand.iloc[:,0]:
+        for outlet in self.outletwithdraw.iloc[:,0]:
             out_name=outlet
             if self.tank_heights_flag == True:
                 h_max = self.tank_heights[i]
             h_min = 0
-            storage_name=self.outletdemand.loc[self.outletdemand[0]==outlet,1].iloc[0]
+            storage_name=self.outletwithdraw.loc[self.outletwithdraw[0]==outlet,2].iloc[0]
             control_curves+="Control"+out_name+"\tControl"
             for height in np.arange(h_min,h_max+step,step):
                 red_coeff=np.tanh(m*(h_max-height)/(h_max-h_min))*np.tanh(n*(h_max-height)/(h_max-h_min))
@@ -949,7 +953,7 @@ class SWMMIN_sim:
         lines[end_time]="END_TIME             "+str(23)+":"+str(59)+":00\n"
         lines[end_date]="END_DATE             "+start_date[0]+"/"+str(min((int(start_date[1])+self.n_days),30))+"/"+start_date[2]
         if not self.timestep:
-            self.timestep = self.maximum_xdelta / self.solution_speed
+            self.timestep = self.mean_xdelta / self.solution_speed
         lines[routing_step]="ROUTING_STEP         "+str(self.timestep)+"\n"
         lines[dimensions]="DIMENSIONS "+self.dimensions_line
         lines[coords_marker:coords_marker]=self.coordinate_section
@@ -1030,7 +1034,7 @@ class SWMMIN_sim:
                 
                 if node in demand_nodes:
                     pressures[node] = pd.Series(out.node_series(node, 'INVERT_DEPTH').values())
-
+        self.pressures  = pressures
         return pressures
     
     def get_tank_vols_heights(self, specific_nodes = None):
@@ -1054,11 +1058,13 @@ class SWMMIN_sim:
                     swtch = False
                 
                 if node in storage_ids:
-                    tank_vols[node] = pd.Series(out.node_series(node, 'PONDED_VOLUME').values())
-                    tank_heights[node] = pd.Series(out.node_series(node, 'INVERT_DEPTH').values())
+                    tank_vols[node.split('Node')[1]] = pd.Series(out.node_series(node, 'PONDED_VOLUME').values())
+                    tank_heights[node.split('Node')[1]] = pd.Series(out.node_series(node, 'INVERT_DEPTH').values())
 
-        return tank_vols, tank_heights
-    
+        self.tank_vols_result = tank_vols
+        self.tank_heights_result = tank_heights
+
+        return self.tank_vols_result, self.tank_heights_result
 
     def get_withdrawals(self, specific_nodes = None):
         '''
@@ -1080,13 +1086,13 @@ class SWMMIN_sim:
                     swtch = False
                 
                 if link in with_ids:
-                    withdrawals[link] = pd.Series(out.link_series(link, 'FLOW_RATE').values())
+                    withdrawals[link.split('Outlet')[1]] = pd.Series(out.link_series(link, 'FLOW_RATE').values())
 
-
+        self.withdrawals = withdrawals
 
         return withdrawals
 
-    def get_withdrawals(self, specific_nodes = None):
+    def get_consumptions(self, specific_nodes = None):
         '''
         This function retrieves the consumption rates at the demand nodes and returns a dataframe with the consumption rates and the time
 
@@ -1106,8 +1112,164 @@ class SWMMIN_sim:
                     swtch = False
                 
                 if link in cons_ids:
-                    consumptions[link] = pd.Series(out.link_series(link, 'FLOW_RATE').values())
+                    consumptions[link.split("Outlet")[1]] = pd.Series(out.link_series(link, 'FLOW_RATE').values())
 
-
-
+        self.consumptions = consumptions
         return consumptions
+    
+    def get_leaks(self, specific_nodes = None):
+        demand_nodes = self.demand_nodes
+        if specific_nodes:
+            demand_nodes = specific_nodes
+        leak_ids = ["LeakforNode"+str(node) for node in demand_nodes]
+        leakage = pd.DataFrame()
+        swtch = True
+        # Open the SWMM Output
+        with pyswmm.Output(self.output_file) as out:
+            for link in out.links:
+                if swtch:
+                    leakage['Time'] = pd.Series(out.link_series(link, 'FLOW_RATE').keys())
+                    swtch = False
+                
+                if link in leak_ids:
+                    leakage[link.split("Node")[1]] = pd.Series(out.link_series(link, 'FLOW_RATE').values())
+
+        self.leakage = leakage
+        return leakage
+
+    def __get_source_volumes__(self):
+        '''
+        This function retrieves the volumes stored at the source reservoirs and returns a dataframe with the volumes and the time
+        '''
+        reservoir_ids = self.reservoir_ids_new
+        source_volumes = pd.DataFrame()
+        swtch = True
+        # Open the SWMM Output
+        with pyswmm.Output(self.output_file) as out:
+            for node in out.nodes:
+                if swtch:
+                    source_volumes['Time'] = pd.Series((pyswmm.NodeSeries(out)[node].ponded_volume).keys())
+                    swtch = False
+                
+                if node in reservoir_ids:
+                    source_volumes[node] = pd.Series((pyswmm.NodeSeries(out)[node].ponded_volume).values())
+
+        self.source_volumes = source_volumes
+        return source_volumes
+    
+    def get_pipe_network_vols(self):
+        '''
+        Calculates the volume stored in network pipes as a timeseries
+        '''
+
+        pipe_ids = self.conduits.index
+        pipe_volumes = pd.DataFrame()
+        swtch = True
+        # Open the SWMM Output
+        with pyswmm.Output(self.output_file) as out:
+            for link in out.links:
+                if swtch:
+                    pipe_volumes['Time'] = pd.Series((pyswmm.LinkSeries(out)[link].flow_volume).keys())
+                    swtch = False
+                if re.search("^P",link):
+                    pipe_volumes[link] = pd.Series((pyswmm.LinkSeries(out)[link].flow_volume).values())
+
+        pipe_volumes_total = pipe_volumes.iloc[:,1:].sum(axis = 1)
+        self.pipe_volumes = pipe_volumes_total
+        return pipe_volumes_total
+
+
+    def track_water_balances(self):
+        '''
+        Computes the amounts of water in the different components of the network: 
+        Source reservoirs, network pipes, user tanks, consumed by users, and leaked water.
+        
+
+        returns: None
+        '''
+        attribs = { 'source_volumes': self.__get_source_volumes__,
+                    'tank_vols_result': self.get_tank_vols_heights,
+                    'pipe_volumes_total': self.get_pipe_network_vols,
+                    'consumptions': self.get_consumptions,
+                    'leakage': self.get_leaks}
+        # Get the volumes in the reservoirs
+        for attr in attribs.keys():
+            if not hasattr(self, attr):
+                attribs[attr]()
+
+        # self.__get_source_volumes__()
+        # self.get_tank_vols_heights()
+        # self.get_pipe_network_vols()
+        # self.get_consumptions()
+        # self.get_leaks()
+
+        #reporting step
+        reporting_step = (self.consumptions.at[1,'Time'] - self.consumptions.at[0,'Time']).total_seconds()
+
+        # Get the volumes in the reservoirs
+        self.__get_source_volumes__()
+
+        # get cumulative consumption totals
+        consumptions = self.consumptions
+        consumptions.set_index('Time', inplace = True)
+        total_consumptions = consumptions.sum(axis = 1)
+        cum_consumptions = sci.cumulative_trapezoid(total_consumptions, dx = reporting_step) / 1000 # in m3
+        cum_consumptions = np.append(0,cum_consumptions)
+
+        # get cumulative leakage totals
+        leakage = self.leakage
+        leakage.set_index('Time', inplace=True)
+        total_leakage = leakage.sum(axis = 1)
+        cum_leakage = sci.cumulative_trapezoid(total_leakage, dx = reporting_step) / 1000 # in m3
+        cum_leakage = np.append(0,cum_leakage)
+
+        # get total pipe volumes
+        pipe_vols = self.pipe_volumes
+        pipe_vols.index = consumptions.index
+
+        # get total tank volumes
+        tank_vols = self.tank_vols_result
+        tank_vols.set_index('Time', inplace = True)
+        tank_vols_total = tank_vols.sum(axis = 1)
+
+        # source volumes 
+        source_volumes = self.source_volumes.iloc[:,1:].sum(axis = 1)
+        source_volumes.index = consumptions.index
+        source_volumes = source_volumes - source_volumes.min()
+
+        self.cum_consumptions = cum_consumptions
+        self.cum_leakage = cum_leakage
+        self.tank_vols_total = tank_vols_total
+        self.source_volumes = source_volumes
+        # get total system volumes
+        total_sys_volume = source_volumes + cum_consumptions + cum_leakage + tank_vols_total + pipe_vols
+        base_volume = total_sys_volume.iloc[0]
+        # get time column 
+        time = consumptions.index
+        time = [(x-time[0]).total_seconds()/3600 for x in time]
+        water_balance=pd.DataFrame(zip(time,self.source_volumes,pipe_vols,tank_vols_total,cum_consumptions,cum_leakage,total_sys_volume),
+                           columns=["Time","Reservoirs","In Pipes","Stored","Consumed","Leaked","Total"])
+        self.water_balance = water_balance
+        fig, ax = plt.subplots()
+        fig.set_figheight(9)
+        fig.set_figwidth(6)
+
+        yaxis = np.vstack([water_balance["Leaked"],water_balance["Consumed"],water_balance["Stored"],water_balance["In Pipes"],water_balance["Reservoirs"]])
+        ax.stackplot(water_balance["Time"],yaxis,labels=["Leaked","Consumed","Stored","In Pipes","In Reservoirs"],colors=["#e66101","#fdb863","#fee0b6","#b2abd2","#5e3c99"])
+        ax.set_xlim(0,max(water_balance["Time"]))
+        ax.set_xlabel("Time (hr)")
+        ax.set_ylabel("Total Volume")
+        ax.set_xticks(np.arange(0,max(water_balance["Time"])*1.01,round((max(water_balance["Time"]))/4,0)))
+        ax.set_xticks(np.arange(0,max(water_balance["Time"])*1.01,round((max(water_balance["Time"]))/12,2)),minor=True)
+        ax.set_yticks(np.arange(0,int(max(water_balance["Total"])+1),int(max(water_balance["Total"])/10)))
+        ax.set_ylim(0,round(max(water_balance["Total"])+1))
+        ax.legend(loc="lower right")
+        ax.spines[['right', 'top']].set_visible(False)
+
+        plt.show()
+
+
+        
+
+
+
