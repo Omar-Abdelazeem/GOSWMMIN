@@ -1,6 +1,7 @@
 # GOSWMMIN
 
-Guided Operation of SWMM for Intermittent Networks: a package for SWMM-based simulations of Intermittent Water Supply Networks. This repository containas the GOSWMMIN package in addition to materials and code used to produce the figures and analysis of the associated publication entitled **"Modeling Intermittent Water Supply in SWMM: A Critical Review with Reproducible Recommendations and a Python Package"** 
+Guided Operation of SWMM for Intermittent Networks: a package for SWMM-based simulations of Intermittent Water Supply Networks. This repository containas the GOSWMMIN package in addition to materials and code used to produce the figures and analysis of the associated publication entitled **"Modeling Intermittent Water Supply in SWMM: A Critical Review with Reproducible Recommendations and a Python Package"**   
+*GPT4o model was used (through GitHub Copilot) for suggesting code completions and general programming assistance in the production of this repository*
 
 ## Table of Contents
 
