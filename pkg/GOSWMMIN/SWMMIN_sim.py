@@ -9,6 +9,8 @@ import tqdm
 import matplotlib.pyplot as plt
 import matplotlib
 import scipy.integrate as sci
+from warnings import simplefilter
+simplefilter(action='ignore', category=pd.errors.PerformanceWarning)
 
 class SWMMIN_sim:
     def __init__(self, input_file):
