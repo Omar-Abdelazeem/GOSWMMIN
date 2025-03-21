@@ -7,6 +7,7 @@ import pathlib
 import pyswmm
 import tqdm
 import matplotlib.pyplot as plt
+import matplotlib
 import scipy.integrate as sci
 
 class SWMMIN_sim:
@@ -87,7 +88,8 @@ class SWMMIN_sim:
             self.consum_pattern_flag = True
             consum_pattern = pd.read_csv(consum_pattern,header=None, names = ['Time','Pattern'])['Pattern'].to_list()
             assert len(consum_pattern) == 24, "Consumption pattern must be 24 hours long"
-        else: self.consum_pattern_flag = False
+        else: consum_pattern = [0.8,0.7,0.6,0.5,0.5,0.5,0.6,0.8,1.2,1.3,1.2,1.2,1.2,1.2,1.2,1.2,1.1,1.1,1.1,1.2,1.3,1.3,1.1,1]
+
 
 
         self.supply_duration = supply_duration
@@ -345,7 +347,7 @@ class SWMMIN_sim:
             else: n_parts = math.ceil(length / self.maximum_xdelta)
 
             # If the conduit is bigger than the maximum allowable length (delta x), we will break it down into smaller pipes
-            if n_parts>0:
+            if n_parts>1:
                 # Calculate the length of each part 
                 part_length=length/n_parts
                 # Start node ID (for shorthand)
@@ -586,7 +588,8 @@ class SWMMIN_sim:
         reservoirs = self.reservoirs
 
         # Create the IDs for the conduits
-        conduit_ids=["P-"+str(conduit) if str(conduit)[0]!="P" else conduit for conduit in conduits.index]
+        conduit_ids=["P-"+str(conduit) for conduit in conduits.index]
+        conduits.index = conduit_ids
         # Set the Manning's roughness coefficient for a typical plastic pipe
         roughness=[0.011]*len(conduits)
         # Other inputs that are set to 0
@@ -808,15 +811,17 @@ class SWMMIN_sim:
         control_rules+="Rule STOPSUPPLY\n"
         control_rules+="IF SIMULATION CLOCKTIME > "+supply_hh+":"+supply_mm+"\n"
         reservoirs_list = self.network.reservoir_name_list
+        flag = True
         for reservoir in reservoirs_list:
             pipes = self.network.get_links_for_node(reservoir)
             for pipe in pipes:
                 if self.network.get_link(pipe).length > self.maximum_xdelta:
                     suffix = '-1'
                 else: suffix = ''
-                if reservoir == reservoirs_list[0]:
-                    control_rules+="THEN CONDUIT "+pipe+suffix+" STATUS = CLOSED\n"
-                else: control_rules+="AND CONDUIT "+pipe+suffix+" STATUS = CLOSED\n"
+                if flag:
+                    control_rules+="THEN CONDUIT P-"+pipe+suffix+" STATUS = CLOSED\n"
+                    flag = False
+                else: control_rules+="AND CONDUIT P-"+pipe+suffix+" STATUS = CLOSED\n"
         control_rules+="\n"
 
         
@@ -824,15 +829,17 @@ class SWMMIN_sim:
         control_rules+="Rule STARTSUPPLY\n"
         control_rules+="IF SIMULATION CLOCKTIME >= 0:00\n"
         control_rules += "AND SIMULATION CLOCKTIME < "+supply_hh+":"+supply_mm+"\n"
+        flag = True
         for reservoir in reservoirs_list:
             pipes = self.network.get_links_for_node(reservoir)
             for pipe in pipes:
                 if self.network.get_link(pipe).length > self.maximum_xdelta:
                     suffix = '-1'
                 else: suffix = ''
-                if reservoir == reservoirs_list[0]:
-                    control_rules+="THEN CONDUIT "+pipe+suffix+" STATUS = OPEN\n"
-                else: control_rules+="AND CONDUIT "+pipe+suffix+" STATUS = OPEN\n"
+                if flag:
+                    control_rules+="THEN CONDUIT P-"+pipe+suffix+" STATUS = OPEN\n"
+                    flag = False
+                else: control_rules+="AND CONDUIT P-"+pipe+suffix+" STATUS = OPEN\n"
         control_rules+="\n"
 
 
@@ -1179,13 +1186,13 @@ class SWMMIN_sim:
         return pipe_volumes_total
 
 
-    def track_water_balances(self):
+    def track_water_balances(self, plot = True, all_source_vol = False):
         '''
         Computes the amounts of water in the different components of the network: 
         Source reservoirs, network pipes, user tanks, consumed by users, and leaked water.
         
 
-        returns: None
+        returns: water balance dataframe
         '''
         attribs = { 'source_volumes': self.__get_source_volumes__,
                     'tank_vols_result': self.get_tank_vols_heights,
@@ -1235,7 +1242,8 @@ class SWMMIN_sim:
         # source volumes 
         source_volumes = self.source_volumes.iloc[:,1:].sum(axis = 1)
         source_volumes.index = consumptions.index
-        source_volumes = source_volumes - source_volumes.min()
+        if not all_source_vol:
+            source_volumes = source_volumes - source_volumes.min()
 
         self.cum_consumptions = cum_consumptions
         self.cum_leakage = cum_leakage
@@ -1250,24 +1258,122 @@ class SWMMIN_sim:
         water_balance=pd.DataFrame(zip(time,self.source_volumes,pipe_vols,tank_vols_total,cum_consumptions,cum_leakage,total_sys_volume),
                            columns=["Time","Reservoirs","In Pipes","Stored","Consumed","Leaked","Total"])
         self.water_balance = water_balance
+        
+        if plot:
+            fig, ax = plt.subplots(1,2)
+            fig.set_figheight(9)
+            fig.set_figwidth(12)
+
+            yaxis = np.vstack([water_balance["Leaked"],water_balance["Consumed"],water_balance["Stored"],water_balance["In Pipes"],water_balance["Reservoirs"]])
+            ax[0].stackplot(water_balance["Time"],yaxis,labels=["Leaked","Consumed","Stored","In Pipes","In Reservoirs"],colors=["#e66101","#fdb863","#fee0b6","#b2abd2","#5e3c99"])
+            ax[0].set_xlim(0,max(water_balance["Time"]))
+            ax[0].set_xlabel("Time (hr)")
+            ax[0].set_ylabel("Total Volume")
+            ax[0].set_xticks(np.arange(0,max(water_balance["Time"])*1.01,round((max(water_balance["Time"]))/4,0)))
+            ax[0].set_xticks(np.arange(0,max(water_balance["Time"])*1.01,round((max(water_balance["Time"]))/12,2)),minor=True)
+            ax[0].set_yticks(np.arange(0,int(max(water_balance["Total"])+1),int(max(water_balance["Total"])/10)))
+            ax[0].set_ylim(0,round(max(water_balance["Total"])+1))
+            ax[0].legend(loc="lower right")
+            ax[0].spines[['right', 'top']].set_visible(False)
+
+            line1,=ax[1].plot(water_balance["Time"],water_balance["Reservoirs"],label="In Reservoirs",color="#5e3c99")
+            line2,=ax[1].plot(water_balance["Time"],water_balance["In Pipes"],label="In Pipes",color="#b2abd2")
+            line3,=ax[1].plot(water_balance["Time"],water_balance["Stored"],label="Stored",color="#fee0b6")
+            line4,=ax[1].plot(water_balance["Time"],water_balance["Consumed"],label="Consumed",color="#fdb863")
+            line6,=ax[1].plot(water_balance["Time"],water_balance["Leaked"],label="Leaked",color="#e66101")
+            line5,=ax[1].plot(water_balance["Time"],water_balance["Total"],label="Total",color='black')
+
+
+            ax[1].set_xlim(0,max(water_balance["Time"]))
+            ax[1].set_xlabel("Time (hr)")
+            ax[1].set_ylabel(r"Volume (1000 m3)")
+            ax[1].set_xticks(np.arange(0,max(water_balance["Time"])*1.01,round((max(water_balance["Time"]))/4,0)))
+            ax[1].set_xticks(np.arange(0,max(water_balance["Time"])*1.01,round((max(water_balance["Time"]))/12,2)),minor=True)
+            ax[1].set_yticks(np.arange(0,int(max(water_balance["Total"])+1),int(max(water_balance["Total"])/10)))
+            ax[1].set_ylim(0,int(max(water_balance["Total"])+1))
+            # ax[0,1].legend(loc="upper right")
+            ax[1].spines[['right', 'top']].set_visible(False)
+
+
+            plt.show()
+
+        return self.water_balance
+    
+    def mass_balance(self, plot=True):
+        '''
+        Computes and visualizes the mass balance of the system
+
+        plot: bool: whether to plot the mass balance or not
+
+        returns: mass balance and instantaneous mass balance dataframes
+        '''
+        # Get the volumes in the reservoirs
+        if not hasattr(self, 'water_balance'):
+            water_balance = self.track_water_balances(plot = False)
+        else: water_balance = self.water_balance
+
+
+        base_volume = water_balance['Total'].iloc[0]
+        cont_error = (water_balance['Total'] - base_volume) / base_volume * 100
+        inst_mass_balance = water_balance['Total'].diff().fillna(0)
+
+        fig, ax = plt.subplots(1,2)
+        fig.set_figheight(5)
+        fig.set_figwidth(12)
+
+        ax[0].plot(water_balance['Time'], cont_error, label = 'Continuity Error (%)', color = 'black')
+        ax[0].set_xlabel('Time (hr)')
+        ax[0].set_ylabel('Continuity Error (%)')
+        ax[0].set_xlim(0, max(water_balance['Time']))
+        ax[0].yaxis.set_major_formatter(matplotlib.ticker.PercentFormatter())
+        ax[0].set_ylim(-1, 1)
+
+        ax[1].plot(water_balance['Time'], inst_mass_balance, label = 'Instantaneous Mass Balance (m3)', color = 'black')
+        ax[1].set_xlabel('Time (hr)')
+        ax[1].set_ylabel('Instantaneous Mass Balance (m3)')
+        ax[1].set_xlim(0, max(water_balance['Time']))
+        # ax[1].set_ylim(-1, 1)
+
+        return cont_error, inst_mass_balance
+
+    def effective_supply_duration(self, pressure_threshold = None, plot = True):
+        '''
+        Computes the effective supply duration for each node and visualizes it
+        If a pressure threshold is defined, the effective supply duration is computed based on the time each node spends with pressure > pressure threshold
+        If no pressure threshold is defined, the effective supply duration is the time with non-zero withdrawals
+        Parameters:
+        pressure_threshold: float: the pressure threshold below which the supply is considered ineffective
+        '''
+ 
+        if not pressure_threshold:
+            withdrawals = self.get_withdrawals()
+            withdrawals.set_index('Time', inplace = True)
+            supply_on = withdrawals.apply(lambda x: x > 0)
+            reporting_step = (withdrawals.index[1] - withdrawals.index[0]).total_seconds()
+            eff_supply_duration = supply_on.sum() * reporting_step / 3600
+        else:
+            pressures = self.get_pressures()
+            pressures.set_index('Time', inplace = True)
+            supply_on = pressures.apply(lambda x: x > pressure_threshold)
+            reporting_step = (withdrawals.index[1] - withdrawals.index[0]).total_seconds()
+            eff_supply_duration = supply_on.sum() * reporting_step / 3600
+        
         fig, ax = plt.subplots()
-        fig.set_figheight(9)
-        fig.set_figwidth(6)
+        fig.set_figheight(5)
+        fig.set_figwidth(8)
+        hist, bins, patches = ax.hist(eff_supply_duration, bins=20, color='black')
+        bin_centers = 0.5 * (bins[:-1] + bins[1:])
+        col = bin_centers - min(bin_centers)
+        col /= max(col)
+        for c, p in zip(col, patches):
+            plt.setp(p, 'facecolor', plt.cm.viridis(c))
+        ax.set_xlabel('Effective Supply Duration (hr)')
+        ax.set_ylabel('Frequency')
 
-        yaxis = np.vstack([water_balance["Leaked"],water_balance["Consumed"],water_balance["Stored"],water_balance["In Pipes"],water_balance["Reservoirs"]])
-        ax.stackplot(water_balance["Time"],yaxis,labels=["Leaked","Consumed","Stored","In Pipes","In Reservoirs"],colors=["#e66101","#fdb863","#fee0b6","#b2abd2","#5e3c99"])
-        ax.set_xlim(0,max(water_balance["Time"]))
-        ax.set_xlabel("Time (hr)")
-        ax.set_ylabel("Total Volume")
-        ax.set_xticks(np.arange(0,max(water_balance["Time"])*1.01,round((max(water_balance["Time"]))/4,0)))
-        ax.set_xticks(np.arange(0,max(water_balance["Time"])*1.01,round((max(water_balance["Time"]))/12,2)),minor=True)
-        ax.set_yticks(np.arange(0,int(max(water_balance["Total"])+1),int(max(water_balance["Total"])/10)))
-        ax.set_ylim(0,round(max(water_balance["Total"])+1))
-        ax.legend(loc="lower right")
-        ax.spines[['right', 'top']].set_visible(False)
+        return eff_supply_duration
 
-        plt.show()
 
+    
 
         
 
