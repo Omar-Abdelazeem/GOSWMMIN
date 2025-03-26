@@ -1,16 +1,18 @@
 import pyswmm
 import re
 import pandas as pd
-import numpy as np
-import datetime
-import matplotlib
 import matplotlib.pyplot as plt
 import logging
 from pathlib import Path
+from swmm.toolkit.shared_enum import NodeAttribute
+
 
 logger=logging.getLogger()
 logger.setLevel(logging.DEBUG)
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s')
+
+OUTPUT_DIR = Path("outputs")
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 def run_simulation(input_file: Path,output_file: Path):
   sim=pyswmm.Simulation(inputfile=input_file.as_posix(), outputfile=output_file.as_posix())
@@ -70,8 +72,6 @@ def analyze_demand_satisfaction(
               ConsumeRates.loc[:,link[12:]]= out.link_series(link, 'Flow_rate').values()
 
   reporting_timestep = index.diff().dt.seconds.mode()[0] #reporting time step in seconds
-  Withdraw_by_Day = WithdrawRates.groupby(pd.Grouper(key = 'time', freq = 'D'))
-  Consumer_by_Day = ConsumeRates.groupby(pd.Grouper(key = 'time', freq = 'D'))
   Daily_Totals_W = WithdrawRates.groupby(pd.Grouper(key = 'time', freq = 'D')).sum().T*reporting_timestep / 1000
   Daily_Totals_C = ConsumeRates.groupby(pd.Grouper(key = 'time', freq = 'D')).sum().T*reporting_timestep / 1000
 
@@ -87,20 +87,24 @@ def analyze_demand_satisfaction(
   ax.bar(Daily_Satis_W.index, Daily_Satis_W.mean(axis=1), label = 'Withdrawal Satisfaction')
   ax.set_xlabel('Demand Node')
   ax.set_ylabel('Satisfaction Consumption-based (%)')
-  ax.set_ylim(0,100)
+  # ax.set_ylim(0,100)
   plt.savefig(output_file.parent / "Withdrawal_Satisfaction.png")
 
 
 
 if __name__ == "__main__":
   swmmin_file = Path("Networks/Ismail/ismail_SWMMIN.inp")
-  output_file = Path("Networks/Ismail/ismail_SWMMIN.out")
+
+  sim_output_file = OUTPUT_DIR/"ismail_SWMMIN.out"
 
   logging.info(f"Inp file: {swmmin_file}")
-  logging.info(f"Output file: {output_file}")
+  logging.info(f"Output file: {sim_output_file}")
 
-  Withdraw_ids,Consume_ids = run_simulation(swmmin_file,output_file)
-  analyze_demand_satisfaction(output_file, Path("Networks/Ismail/ismail.inp_DemandVolumes.csv"),Withdraw_ids,Consume_ids)
+  (Withdraw_ids # ['OutletDN1', 'OutletDN2', 'OutletDN3', 'OutletDN4', 'OutletDN5', 'OutletDN6', 'OutletDN7', 'OutletDN8', 'OutletDN9']
+   ,Consume_ids # ['DemandOutletDN1', 'DemandOutletDN2', 'DemandOutletDN3', 'DemandOutletDN4', 'DemandOutletDN5', 'DemandOutletDN6', 'DemandOutletDN7', 'DemandOutletDN8', 'DemandOutletDN9']
+   ) = run_simulation(swmmin_file,sim_output_file)
+
+  analyze_demand_satisfaction(sim_output_file, Path("Networks/Ismail/ismail.inp_DemandVolumes.csv"),Withdraw_ids,Consume_ids)
 
   
 

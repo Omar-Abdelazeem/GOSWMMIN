@@ -49,7 +49,7 @@ PINK_DIAM = 0.09
 RED_DIAM = 0.075
 GREEN_DIAM = 0.063
 
-print(f"Base demand: {BASE_DEMAND}  (m^3/s)")
+
 
 wn.add_junction('DN1', elevation=99.35, base_demand=BASE_DEMAND)  # Node 2 in diagram
 wn.add_junction('DN2', elevation=99.65, base_demand=BASE_DEMAND)  # Node 7 in diagram
@@ -60,6 +60,9 @@ wn.add_junction('DN6', elevation=95.88, base_demand=BASE_DEMAND)  # Node 6 in di
 wn.add_junction('DN7', elevation=96.44, base_demand=BASE_DEMAND)  # Node 8 in diagram
 wn.add_junction('DN8', elevation=96.14, base_demand=BASE_DEMAND)  # Node 9 in diagram
 wn.add_junction('DN9', elevation=96.08, base_demand=BASE_DEMAND)  # Node 10 in diagram
+
+print(f"Base demand per junction: {BASE_DEMAND}  (m^3/s)")
+print(f"Network Base Demand: {BASE_DEMAND * wn.num_junctions}  (m^3/s)")
 
 
 wn.add_pipe("P1", "1", "DN1", length=30, diameter=PINK_DIAM) 

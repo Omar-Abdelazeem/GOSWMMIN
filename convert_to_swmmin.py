@@ -782,9 +782,9 @@ if __name__ == "__main__":
 
     # Define the inflow pattern for the supply tank
   times = np.arange(0, 24, 1)
-  inflows = [100/3600 for time in times]  ## REPLACE WITH DESIRED INFLOW PATTERN IN LPS (OR LINK IT TO YOUR SOLAR PANEL MODEL)
+  inflows = [0.0 for time in times]  ## REPLACE WITH DESIRED INFLOW PATTERN IN LPS (OR LINK IT TO YOUR SOLAR PANEL MODEL)
   
   logging.info(f"Assigning Tank Inflows: {output_file}")
-  a = define_tank_inflow(output_file, times, inflows)
+  # a = define_tank_inflow(output_file, times, inflows)
   
     
