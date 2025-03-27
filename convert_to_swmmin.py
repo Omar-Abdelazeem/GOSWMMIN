@@ -269,7 +269,7 @@ def load_epanet(
   # Writing Storage Nodes
   storage_ids=["StorageforNode"+id for id in demand_nodes]
   # Calculate the area of each storage based on their demand
-  demands_total=[demand*60* supply_duration/tank_height for demand in base_demands]
+  demands_total=[demand*60* supply_duration/tank_height for demand in desired_demands]
   demand_volumes = pd.DataFrame({'ID':demand_nodes,'Volume':demands_total})
   demand_volumes.to_csv(inp_file.parent/(inp_file.name+'_DemandVolumes.csv'))
   storage_areas=demands_total
@@ -736,7 +736,7 @@ if __name__ == "__main__":
       junctions_section
   ) = load_epanet(
       inp_file=network_file,
-      supply_duration_inp=8.0,
+      supply_duration_inp=24.0,
       concentric=True,
       len_to_diameter_ratio=30,
       adaptive=adaptative,
