@@ -1,8 +1,10 @@
 # GOSWMMIN
 
-Guided Operation of SWMM for Intermittent Networks: a package for SWMM-based simulations of Intermittent Water Supply Networks. This repository containas the GOSWMMIN package in addition to materials and code used to produce the figures and analysis of the associated publication entitled **"Modeling Intermittent Water Supply in SWMM: A Critical Review with Reproducible Recommendations and a Python Package"** 
-<!--[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.18914.svg)](http://dx.doi.org/10.5281/zenodo.18914)-->
-*GPT4o model was used (through GitHub Copilot) for suggesting code completions and general programming assistance in the production of this repository*
+Guided Operation of SWMM for Intermittent Networks: a package for SWMM-based simulations of Intermittent Water Supply Networks. This repository containas the GOSWMMIN package in addition to materials and code used to produce the figures and analysis of the associated publication entitled **"Modeling Intermittent Water Supply in SWMM: A Critical Review with Reproducible Recommendations and a Python Package"** published in Water Resources Research ([DOI](https://doi.org/10.1029/2024WR039551))
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15739484.svg)](https://doi.org/10.5281/zenodo.15739484)  
+[![CC BY-NC 4.0][cc-by-nc-shield]][cc-by-nc]
+
+*Diclaimer: GPT4o model was used (through GitHub Copilot) for suggesting code completions and general programming assistance in the production of this repository*
 
 ## Table of Contents
 
@@ -84,9 +86,6 @@ The dependencies of the GOSWMMIN package are listed in [requirements.txt](./pkg/
 - PySWMM: a Python wrapper for the Storm Water Management Model [McDonell et al. (2020)](#references)
 
 ## License
-
-Shield: [![CC BY-NC 4.0][cc-by-nc-shield]][cc-by-nc]
-
 This work is licensed under a
 [Creative Commons Attribution-NonCommercial 4.0 International License][cc-by-nc].
 
