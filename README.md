@@ -73,7 +73,7 @@ The GOSWMMIN package is structured as a new class ```SWMMIN_sim()``` which is in
 - ```Convert_to_SWMMIN()```: this method creates a SWMMIN simulation from the input EPANET file using a combination of built-in recommended settings and input arguments
 - ```Run_SWMMIN()```: this method executes the SWMMIN simulation and parses its output
 
-![image](./Figures/Figure%20Files/Figure%206.png)
+![image](./Figures/Figure%20Files/Figure%206%20-%20SWMMIN%20Package%20Map.png)
 further details on the methods, inputs and outputs of the GOSWMMIN package can be found in the package's [README](./pkg/README.md)
 
 #### Dependencies
