@@ -1,6 +1,7 @@
 # GOSWMMIN
 
-Guided Operation of SWMM for Intermittent Networks: a package for SWMM-based simulations of Intermittent Water Supply Networks. This repository containas the GOSWMMIN package in addition to materials and code used to produce the figures and analysis of the associated publication entitled **"Modeling Intermittent Water Supply in SWMM: A Critical Review with Reproducible Recommendations and a Python Package"**   
+Guided Operation of SWMM for Intermittent Networks: a package for SWMM-based simulations of Intermittent Water Supply Networks. This repository containas the GOSWMMIN package in addition to materials and code used to produce the figures and analysis of the associated publication entitled **"Modeling Intermittent Water Supply in SWMM: A Critical Review with Reproducible Recommendations and a Python Package"** 
+<!--[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.18914.svg)](http://dx.doi.org/10.5281/zenodo.18914)-->
 *GPT4o model was used (through GitHub Copilot) for suggesting code completions and general programming assistance in the production of this repository*
 
 ## Table of Contents
@@ -84,7 +85,17 @@ The dependencies of the GOSWMMIN package are listed in [requirements.txt](./pkg/
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
+Shield: [![CC BY-NC 4.0][cc-by-nc-shield]][cc-by-nc]
+
+This work is licensed under a
+[Creative Commons Attribution-NonCommercial 4.0 International License][cc-by-nc].
+
+[![CC BY-NC 4.0][cc-by-nc-image]][cc-by-nc]
+
+[cc-by-nc]: https://creativecommons.org/licenses/by-nc/4.0/
+[cc-by-nc-image]: https://licensebuttons.net/l/by-nc/4.0/88x31.png
+[cc-by-nc-shield]: https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg
+
 
 ## References
 
