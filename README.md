@@ -5,7 +5,7 @@ Guided Operation of SWMM for Intermittent Networks: a package for SWMM-based sim
     
     
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15739484.svg)](https://doi.org/10.5281/zenodo.15739484)  
-[![CC BY-NC 4.0][cc-by-nc-shield]][cc-by-nc]
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 *Diclaimer: GPT4o model was used (through GitHub Copilot) for suggesting code completions and general programming assistance in the production of this repository*
 
@@ -89,14 +89,8 @@ The dependencies of the GOSWMMIN package are listed in [requirements.txt](./pkg/
 - PySWMM: a Python wrapper for the Storm Water Management Model [McDonell et al. (2020)](#references)
 
 ## License
-This work is licensed under a
-[Creative Commons Attribution-NonCommercial 4.0 International License][cc-by-nc].
+This work is licensed under a MIT License, which allows for reuse with attribution in both commercial and non-commercial applications. The full text of the license can be found in the [LICENSE](./LICENSE) file.
 
-[![CC BY-NC 4.0][cc-by-nc-image]][cc-by-nc]
-
-[cc-by-nc]: https://creativecommons.org/licenses/by-nc/4.0/
-[cc-by-nc-image]: https://licensebuttons.net/l/by-nc/4.0/88x31.png
-[cc-by-nc-shield]: https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg
 
 
 ## References
