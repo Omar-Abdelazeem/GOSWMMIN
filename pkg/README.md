@@ -1,26 +1,30 @@
 # GOSWMMIN
 
-#### Guided Operation of SWMM for Intermittent Networks: a package for SWMM-based simulations of Intermittent Water Supply Networks.  
+Guided Operation of SWMM for Intermittent Networks: a package for SWMM-based simulations of Intermittent Water Supply Networks. This repository containas the GOSWMMIN package in addition to materials and code used to produce the figures and analysis of the associated publication entitled **"Modeling Intermittent Water Supply in SWMM: A Critical Review with Reproducible Recommendations and a Python Package"** published in Water Resources Research ([DOI](https://doi.org/10.1029/2024WR039551))  
+  
+    
+    
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15739484.svg)](https://doi.org/10.5281/zenodo.15739484)  
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
- This repository containas the GOSWMMIN package in addition to materials and code used to produce the figures and analysis of the associated publication entitled **"Modeling Intermittent Water Supply in SWMM: A Critical Review with Reproducible Recommendations and a Python Package"** 
+*Diclaimer: GPT4o model was used (through GitHub Copilot) for suggesting code completions and general programming assistance in the production of this repository*
 
 ## Table of Contents
 
 - Introduction
 - Installation
-- Dependencies
-- Documentation:
-  - [Creating a Simulation](#creating-a-simulation)
-  - [Running a Simulation](#running-a-simulation)
-  - [Processing Results](#processing-results)
-  - [Example](#example)
-
+- Contents:
+  - [Notebooks](#notebooks)
+  - [Networks](#networks)
+  - [Replication of Figures](#replication-of-figures)
+  - [Tools](#tools)
+  - [Package](#package)
 - License
 - [References](#references)
 
 ## Introduction
 
-GOSWMMIN is a package designed for the simulation of Intermittent Water Supply Networks using the Storm Water Management Model (SWMM). This package provides tools to model and analyze the behavior of water supply networks that do not operate continuously, i.e., Intermittent Water Supply (IWS).
+GOSWMMIN is a package designed for the simulation of Intermittent Water Supply Networks using the Storm Water Management Model (SWMM). This package provides tools and utilities to model and analyze the behavior of water supply networks that do not operate continuously.
 
 ## Installation
 
@@ -29,119 +33,65 @@ To install GOSWMMIN, clone the repository, install the required dependencies and
 ```sh
 git clone <repository-url>
 cd GOSWMMIN
-pip install ./pkg/requirements.txt
 pip install ./pkg
 ```
 
-## Dependencies 
+## Contents  
+  
+### Notebooks  
 
-The GOSWMMIN package is built on several key dependencies and uses a variety of common Python data handling and visualization packages. A full list of the required packages and specifications for using GOSWMMIN are provided in the [Requirements.txt](./requirements.txt) file. Additionally, the [conda environment](./GOSWMMIN.yaml) file attached can be used to import a conda environment that contains all requirements and dependencies.  
-A few prominent dependencies and requirements are listed below: 
+ This [folder](./Notebooks/) contains a number of Jupyter notebooks that explain the process undertaken by GOSWMMIN to create, execute and process SWMMIN simulations step-by-step. These procedures correspond to and expand upon the details present in the associated publication.
+ [Conversion_to_SWMMIN.ipynb](./Notebooks/Conversion_to_SWMMIN.ipynb): Converts an input EPANET simulation into a SWMMIN simulation
+ [Run_SWMMIN.ipynb](./Notebooks/Run_SWMMIN.ipynb): Executes a SWMMIN simulation and post-processes and visualizes its output
 
-1. **Python** = 3.9.20  
-2. **WNTR** = 1.2.0
-3. **PySWMM** = 2.0.1
+### Networks
 
-## Documentation  
+This directory contains all network models used in this study in the form of EPANET and SWMM input files, in addition to some network-specific results (e.g., Continuity error + computational time results) and helper files. Four network models were used in the analysis presented in the main text and the supporting information:
 
-![image](./Resources/Figure%206.png)  
-The GOSWMMIN package introduces a new class representing a SWMMIN simulation: ```SWMMIN_sim()```. This section documents the process of creating, executing and processing such a simulation using the ```SWMMIN_sim()``` object and its methods.
+  1. The [Linear network](./Networks/Linear%20Network/): A network consisting of four 1,000 m long pipes serving four demand nodes of different, zig-zaging elevations. The network was originally presented by [Gupta and Bhave (1996)](#references).  
+  2. The [Modena Network](./Networks/Modena/): A model of the WDN in Modena, Italy, originally presented by [Bragalli et al. (2012)](#references)  
+  3. The [Farina Network](./Networks/Farina%20et%20al%20(2014)/): A model of a WDN in northern Italy originally presented by [Farina et al. (2014)](#references)  
+  4. The [Pescara Network](./Networks/Pescara/): A model of the WDN in Pescara, Italy originally presented by [Bragalli et al. (2012)](#references)  
 
-### Creating a Simulation
+Note that, by default, all generated input files and post-processed result files will be saved in the same directory as their corresponding original input file, i.e., Modena's SWMMIN input files will be in the Modena directory.
 
-A SWMMIN simualtion is initialized by calling ```SWMMIN_sim(path)``` where ```path``` refers to an EPANET .inp file that is pre-configured. This **EPANET input file** is later used to generate the network model and read important inputs like pipe lengths and diameters, node elevations and demands ($Q_{demand}$), etc. The EPANET input file must contain demands assigned to each demand node (non-zero demand nodes) and that demand is assumed to be the base demand of the node over 24 hours, similar to a CWS base demand.
+### Replication of Figures  
 
-```python
-#Initialize a SWMMIN simulation for the Linear Network
-sim = SWIMMIN_sim(path/Linear_Network.inp)
-```
+ This [folder](./Figures/) contains Jupyter notebooks that generate some of the reproducible figures in the associated publication which can be found in the [Figure Notebooks](./Figures/). This includes:
 
-Once the simulation is initialized (sim), the user can use ```Convert_to_SWMMIN()``` method to input key conversion inputs and details. The conversion function has the following inputs (inputs with a default value are optional):
+- **Figure 3 - Noise reduction**: Regenerates the data for and reproduces Figure 3.  
+- **Figure 4 - Spatiotemporal discretization w Timesteps**:  *Only reprdocues* the figure from data stored in the Networks directory. The data for this figure can be generated using the scripts in the [Tools](./Tools/) directory. (see [Tools](#tools))  
+- **Figure 5 - Spatiotemporal Discretization w solution speeds**: *Only reprdocues* the figure from data stored in the Networks directory. This notebook also generates Figure S10, The data for this figure can be generated using the scripts in the [Tools](./Tools/) directory. (see [Tools](#tools))  
+  
+### Tools
+  
+This directory contains python scripts that can be used to assess how the computational efficiency and mass balance of SWMMIN simulations change with the spatial and temporal discretization resolutions ($\Delta x_{max}$ and $\Delta t$).  
+These scripts were used to generate the data in Figures [4](./Figures/Figure%20Files/Figure%204-Modena.png) and [5](/Figures/Figure%20Files/Figure%205%20Modena.png) as well as supporting figures [S8](./Figures/Figure%20Files/Figure%20S8%20Farina%20et%20al.png), [S9](./Figures/Figure%20Files/Figure%20S9%20Pescara.png) and S10 (Figure S11 to Figure 5).  
 
-- **Supply Duration** (in hours): input the desired duration of the intermittent supply in hours in float, e.g., 4:30 hours should be input as 4.5.  Currently only one supply duration per day are supported.  
-- **PDW Parameters**: This group of inputs are used to define the Pressure Dependent Withdrawal (PDW) function for withdrawal outlets. Currently, this package uses the formulation by [Wagner et al. (1989)](#references) and as such, the following input are required:  
-  - **Minimum Pressure** (m): The minimum pressure required for withdrawal at the nodes. Float/integer inputs will be used for all nodes. To define a specifc minimum pressure for each node, a path to a CSV file containing node IDs and their corresponding minimum pressure must be passed instead. See example CSV files below.  
-  - **Desired Pressure** (m): pressure at which users can withdraw at the desired flow rate. float/integer input for uniform $H_{des}$ or csv input for node-specific assignment.
-  - **Desired Flowrate** (m<sup>3</sup>/s): Flow rate withdrawn when pressure equals desired pressure. If None, $Q_{des}$ is inferred from the assigned $Q_{demand}$ and the input supply duration ($t_{supply}$) such that $Q_{des} = Q_{demand} \times 24 hr/ t_{supply}$. Otherwise, a path to a CSV specifying $Q_{des}$ for each node should be input.
-  - **PDW Exponent**: the exponent of the PDW formula. Wagner et al. (1989) used 0.4. Float/integer for uniform exponents or CSV for node-specific assignment.  
-  - **PDW Variable**: By default, the PDW formula is applied using the pressure difference between the demand node and the user tank ("PRESSURE"). Changing this option to "DEPTH" means that the freeboard depth or pressure at the demand node will be used instead.
-- **Number of Days**: number of simulation days in whole numbers only. Default is 1 day. Additional days repeat the same supply duration once a day.  
-- **Spatial  Discretization**: the following collection of inputs set the resolution and method of discretizing the SWMMIN simulation spatially. Two methods and an override option are available.
-  - **Adaptive Discretization** (bool): default is ```False```. Determines whether the discretization will be adaptive to each pipe's diameter or uniform across all pipes.
-  - **Length to Diameter Ratio**: default is 30. The ratio of the maximum discretized pipe length $\Delta x_{max}$ to the pipe diameter. If Adaptive is True, each pipe will have its own $\Delta x_{max}$ equal to $L/D \times D_i$. If Adaptive is False, all pipes will have the same $\Delta x_{max}$ based on the largest pipe diameter and equal to $L/D \times D_{max}$.  
-  - **Maximum $\Delta x$**: Override option, default is None. Overrides previous inputs and applies the input $\Delta x_{max}$ unifromly on all pipes.
-- **Temporal Discretization**: Sets the timestep for the SWMMIN simulation:
-  - **Solution Speed** (m): The ratio of the spatial resolution to the temporal resolution: $\Delta x_{max} / \Delta t$. Default value is 100 m/s and the recommended range is 50-200 m/s. Used along with computed or input $\Delta x_{max}$ to set the timestep.  
-  - **timestep** (s): Overrides solution speed input. Timestep input here is used directly. Default is None.  
-- **User Tanks**: Defining the height and capacity of user storage tanks:
-  - **Tank Heights** (m): default is 1. The heigh of user storage tanks: float/integer input for uniform assignment (e.g., all tanks 1 m high) or CSV for node specifc assignment.  
-  - **Tank Areas** (m<sup>2</sup>): The area of storage tanks. Default is None, when None, areas are inferred from user demands where the area of each tank is equal to $Q_{demand} \times 24$ hr $/ h_{tank}$. Otherwise, pass a path ot a CSV with each tank's area.  
-- **Leak Fraction**: The fraction of each $Q_{des}$ to be assigned as leakage in each node, e.g., if fraction = 0.1, 10% of each node's $Q_des$ will be taken as leakage using the same PDW parameters ($H_{des}, H_{min}, n$)  
-- **Consumption Pattern**: Optional. Input a path to a CSV containing an **hourly** consumption pattern. Only hourly patterns are supported. The CSV should contain exactly 24 pairs of hour-multiplier.
+- [Continuity_Error_Computational_Time_w_timesteps.py](./Tools/Continuity_Error_Computational_Time_w_timesteps.py): Evaluates the continuity error and the average execution time for a specific network at the input spatial resolutions and timesteps.  
+- [Continuity_Error_Computational_Time_w_solspeeds.py](./Tools/Continuity_Error_Computational_Time_w_solspeeds.py): Evaluates the continuity error and the average execution time for a specific network at the input spatial resolutions and solution speeds. 
 
-#### Example  
+### Package  
 
-In the [example](./GOSWMMIN/example.py) provided, an example of creating a SWMMIN simulation with all optional CSV inputs used.  For example, the minimum pressure is assigned by specifying a path to
+The GOSWMMIN package is structured as a new class ```SWMMIN_sim()``` which is initialized by an EPANET .inp file. The class's main methods include:
 
-```python
-min_pressure = '../Resources/min_pressure.csv'
-```
+- ```Convert_to_SWMMIN()```: this method creates a SWMMIN simulation from the input EPANET file using a combination of built-in recommended settings and input arguments
+- ```Run_SWMMIN()```: this method executes the SWMMIN simulation and parses its output
 
-where ```min_pressure.csv``` is formatted as follows with node IDs and corresponding minimum pressures
+![image](./Figures/Figure%20Files/Figure%206%20-%20SWMMIN%20Package%20Map.png)
+further details on the methods, inputs and outputs of the GOSWMMIN package can be found in the package's [README](./pkg/README.md)
 
-```csv
-1, 1
-2, 2
-3, 3
-4, 4
-```
+#### Dependencies
 
-after specifying all paths to CSVs, the conversion function is called
+The dependencies of the GOSWMMIN package are listed in [requirements.txt](./pkg/requirements.txt). These include:
 
-```python
-sim.Convert_to_SWMMIN(supply_duration= 8.0, minimum_pressure=min_pressure, 
-                  desired_pressure = des_pressure, pdw_exponent=pdw_exponent,
-                  q_des=q_des, tank_heights=tank_heights, 
-                  tank_areas=tank_areas, consum_pattern=consum_pattern)
-
-```
-
-Note that certain inputs must be defined as the same type: if minimum_pressure is a CSV, then desired_pressure and pdw_exponent must also be CSVs.  
-
-A SWMM .inp file is generated after running the previous method. The path to the .inp file is saved in the ```sim``` object. 
-
-### Running a Simulation 
-
-Once the SWMMIN simulation (.inp file) has been created using ```Convert_to_SWMMIN()```, the simulation can be run in one of two ways:
-
-1. Opening the .inp file in the standard SWMM 5 GUI and running it
-2. Run in Python using GOSWMMIN's methods
-
-When running the SWMMIN simulation in Python, modelers can use the ```Run_SWMMIN()``` method. The method requires no input and runs the SWMM input file generated from an earlier call of the ```Convert_to_SWMMIN()``` method. Alternatively, a path can optionally be specified to execute a SWMMIN simulation without converting it first, for running previously converted SWMMIN input files.  
-
-In the [example](./GOSWMMIN/example.py) provided, the method is simply called to execute the simulation:  
-
-```python
-# Running the simulation
-sim.Run_SWMMIN()
-```
-
-### Processing Results
-
-Currently (in version 0.1.0), only a portion of the planned processing tools have been implemented.  Currently, modelers can use methods to retrieve key information from the simulation resutls, which can then be visualized by the modelers. For instance, methods for retrieving timeseries for node pressures, withdrawal rates, consumption rates, stored volumes and height of water inside user tanks are available in 0.1.0. As an example, we demonstrate the process of getting node pressures in the provided [example](./GOSWMMIN/example.py):  
-
-```python
-sim.get_pressures(specific_nodes=['DN1','DN2'])
-```
-
-This example also specifies certain nodes to retrieve the pressure results for. Similar procedures for retrieving other key inputs are available.  
-
-In upcoming versions, further processing and visualization tools will be added 
-
+- WNTR: the Water Network Tool for Resilience, a package for EPANET in python [Klise et al. (2017)](#references)
+- PySWMM: a Python wrapper for the Storm Water Management Model [McDonell et al. (2020)](#references)
 
 ## License
+This work is licensed under a MIT License, which allows for reuse with attribution in both commercial and non-commercial applications. The full text of the license can be found in the [LICENSE](./LICENSE) file.
 
-This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
+
 
 ## References
 
