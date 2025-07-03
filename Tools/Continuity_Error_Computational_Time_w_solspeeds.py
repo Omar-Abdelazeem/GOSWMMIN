@@ -71,6 +71,7 @@ def time_simulation(results_dict,delta_x, solspeed, mean_xs, timing_count, filep
     results_dict[delta_x]=dict_temp
     results_df = pd.DataFrame.from_dict(dict(results_dict))
     results_df.to_csv(filepath/'Test_DF_SS.csv')
+    print("Finished Processing for Delta x =", delta_x, "at time step Delta t =", round(timestep, 3), "with solution speed =", solspeed)
 
     return cont_error, elapsed_time
 
@@ -79,7 +80,7 @@ def time_simulation(results_dict,delta_x, solspeed, mean_xs, timing_count, filep
 # Parallelize the simulation runs
 if __name__=='__main__':
     # Location of input files
-    network = 'Pescara'
+    network = 'Modena'
     directory = pathlib.Path('./Networks/'+network+'/Continuity and Computational Cost Files')
     filepath = directory.resolve()
     print(filepath)
@@ -90,7 +91,7 @@ if __name__=='__main__':
     # List of delta x max values (spatial discretization)
     delta_xs=["10000m", "250m", "100m", "50m", "25m"]
     # Log spaced array of solution speeds to sweep over
-    sol_speeds = np.logspace(3, 0, 75)
+    sol_speeds = np.logspace(3, 0, 76)
     # sol_speeds = np.append(sol_speeds, np.logspace(3,0,75))
     # sol_speeds = np.unique(sol_speeds)
     # sol_speeds = sol_speeds[::-1]
@@ -109,7 +110,7 @@ if __name__=='__main__':
 
         # Export mean_xs to a csv file
         mean_xs_df = pd.DataFrame(list(mean_xs.items()), columns=['Delta_x', 'Mean_Conduit_Length'])
-        # mean_xs_df.to_csv(directory/'mean_delta_xs.csv', index=False)
+        mean_xs_df.to_csv(directory/'mean_delta_xs.csv', index=False)
 
     timing_count=1
 
