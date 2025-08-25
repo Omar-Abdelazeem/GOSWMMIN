@@ -1,0 +1,49 @@
+# Changelog
+
+All notable changes to the GOSWMMIN package will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [0.3.0] - 2025-01-18
+
+### Added
+- Modern package structure following Python best practices
+- Comprehensive type hints and documentation
+- New `SWMMINSimulation` class with improved API design
+- Utility functions for input validation and file handling
+- Comprehensive test suite with pytest
+- Pre-commit hooks for code quality
+- Development dependencies and configuration
+- Proper error handling and validation
+- Support for both uniform and CSV-based parameter inputs
+- Backward compatibility with `SWMMIN_sim` alias
+
+### Changed
+- Renamed package from `GOSWMMIN` to `goswmmin` (lowercase)
+- Moved from camelCase to snake_case method names
+- Improved parameter validation and error messages
+- Restructured package with proper submodules
+- Updated dependencies with version constraints
+- Enhanced documentation and examples
+
+### Fixed
+- Input file validation and error handling
+- CSV file reading and validation
+- Package structure and imports
+
+### Deprecated
+- `SWMMIN_sim` class name (use `SWMMINSimulation` instead)
+- `Convert_to_SWMMIN` method name (use `convert_to_swmmin` instead)
+- `Run_SWMMIN` method name (use `run_swmmin` instead)
+
+## [0.1.0] - 2024-12-XX
+
+### Added
+- Initial package release
+- Basic EPANET to SWMM conversion functionality
+- Pressure-dependent withdrawal modeling
+- Spatial and temporal discretization options
+- User storage tank modeling
+- Consumption pattern support
+- Basic result extraction methods

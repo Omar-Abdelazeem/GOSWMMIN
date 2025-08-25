@@ -1,0 +1,35 @@
+name: goswmmin
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # Core Python
+  - python>=3.8,<3.13
+  
+  # Scientific computing stack
+  - numpy>=1.20.0
+  - pandas>=1.3.0
+  - scipy>=1.7.0
+  - matplotlib>=3.5.0
+  
+  # Network and modeling
+  - networkx>=2.6
+  
+  # Progress bars and utilities
+  - tqdm>=4.60.0
+  
+  # Development tools (optional)
+  - jupyter
+  - ipykernel
+  - pytest
+  - pytest-cov
+  
+  # Build tools
+  - setuptools
+  - wheel
+  - pip
+  
+  # Dependencies that must be installed via pip
+  - pip:
+    - wntr>=1.0.0
+    - pyswmm>=2.0.0
